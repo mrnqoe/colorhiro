@@ -14,6 +14,10 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+<<<<<<< HEAD
+=======
+  gem 'hanami-router'
+>>>>>>> d313a6a67e5fa8b2d8312cf20879394b624c5548
 end
 
 group :test do

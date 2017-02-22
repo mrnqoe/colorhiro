@@ -316,3 +316,9 @@ module Web
     end
   end
 end
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> d313a6a67e5fa8b2d8312cf20879394b624c5548

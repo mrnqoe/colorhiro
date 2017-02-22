@@ -1,7 +1,11 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+<<<<<<< HEAD
 require_relative '../lib/colorhiro'
+=======
+require_relative '../lib/example2'
+>>>>>>> d313a6a67e5fa8b2d8312cf20879394b624c5548
 require_relative '../apps/web/application'
 
 Hanami.configure do
@@ -14,9 +18,15 @@ Hanami.configure do
     # Available options:
     #
     #  * SQL adapter
+<<<<<<< HEAD
     #    adapter :sql, 'sqlite://db/colorhiro_development.sqlite3'
     #    adapter :sql, 'postgresql://localhost/colorhiro_development'
     #    adapter :sql, 'mysql://localhost/colorhiro_development'
+=======
+    #    adapter :sql, 'sqlite://db/example2_development.sqlite3'
+    #    adapter :sql, 'postgresql://localhost/example2_development'
+    #    adapter :sql, 'mysql://localhost/example2_development'
+>>>>>>> d313a6a67e5fa8b2d8312cf20879394b624c5548
     #
     adapter :sql, ENV['DATABASE_URL']
 
@@ -28,7 +38,11 @@ Hanami.configure do
   end
 
   mailer do
+<<<<<<< HEAD
     root 'lib/colorhiro/mailers'
+=======
+    root 'lib/example2/mailers'
+>>>>>>> d313a6a67e5fa8b2d8312cf20879394b624c5548
 
     # See http://hanamirb.org/guides/mailers/delivery
     delivery :test
