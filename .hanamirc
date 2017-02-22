@@ -1,0 +1,4 @@
+project=colorhiro
+architecture=container
+test=minitest
+template=erb
