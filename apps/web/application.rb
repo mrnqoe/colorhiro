@@ -167,7 +167,7 @@ module Web
       #   * https://developer.mozilla.org/en-US/docs/Web/HTTP/X-Frame-Options
       #   * https://www.owasp.org/index.php/Clickjacking
       #
-      security.x_frame_options 'DENY'
+      # security.x_frame_options 'DENY'
 
       # X-Content-Type-Options prevents browsers from interpreting files as
       # something else than declared by the content type in the HTTP headers.
@@ -178,7 +178,7 @@ module Web
       #   * https://msdn.microsoft.com/en-us/library/gg622941%28v=vs.85%29.aspx
       #   * https://blogs.msdn.microsoft.com/ie/2008/09/02/ie8-security-part-vi-beta-2-update
       #
-      security.x_content_type_options 'nosniff'
+      # security.x_content_type_options 'nosniff'
 
       # X-XSS-Protection is a HTTP header to determine the behavior of the browser
       # in case an XSS attack is detected.
@@ -188,7 +188,7 @@ module Web
       #   * https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
       #   * https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#X-XSS-Protection
       #
-      security.x_xss_protection '1; mode=block'
+      # security.x_xss_protection '1; mode=block'
 
       # Content-Security-Policy (CSP) is a HTTP header supported by modern browsers.
       # It determines trusted sources of execution for dynamic contents
@@ -225,22 +225,22 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-      security.content_security_policy %{
-        form-action 'self';
-        frame-ancestors 'self';
-        base-uri 'self';
-        default-src 'none';
-        script-src 'self';
-        connect-src 'self';
-        img-src 'self' https: data:;
-        style-src 'self' 'unsafe-inline' https:;
-        font-src 'self';
-        object-src 'none';
-        plugin-types application/pdf;
-        child-src 'self';
-        frame-src 'self';
-        media-src 'self'
-      }
+      # security.content_security_policy %{
+      #   form-action 'self';
+      #   frame-ancestors 'self';
+      #   base-uri 'self';
+      #   default-src 'none';
+      #   script-src 'self';
+      #   connect-src 'self';
+      #   img-src 'self' https: data:;
+      #   style-src 'self' 'unsafe-inline' https:;
+      #   font-src 'self';
+      #   object-src 'none';
+      #   plugin-types application/pdf;
+      #   child-src 'self';
+      #   frame-src 'self';
+      #   media-src 'self'
+      # }
 
       ##
       # FRAMEWORKS

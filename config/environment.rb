@@ -37,6 +37,7 @@ Hanami.configure do
   environment :development do
     # See: http://hanamirb.org/guides/projects/logging
     logger level: :debug
+    # config.web_console.whitelisted_ips = ['10.0.2.0/24']
   end
 
   environment :production do
