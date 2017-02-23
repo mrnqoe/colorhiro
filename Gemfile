@@ -15,6 +15,7 @@ end
 group :test, :development do
   gem 'dotenv', '~> 2.0'
   gem 'hanami-router'
+  gem 'pg'
 end
 
 group :test do
