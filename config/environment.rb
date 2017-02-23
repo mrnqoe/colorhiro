@@ -17,9 +17,6 @@ Hanami.configure do
     #    adapter :sql, 'sqlite://db/colorhiro_development.sqlite3'
     #    adapter :sql, 'postgresql://localhost/colorhiro_development'
     #    adapter :sql, 'mysql://localhost/colorhiro_development'
-    #    adapter :sql, 'sqlite://db/example2_development.sqlite3'
-    #    adapter :sql, 'postgresql://localhost/example2_development'
-    #    adapter :sql, 'mysql://localhost/example2_development'
     #
     adapter :sql, ENV['DATABASE_URL']
 
