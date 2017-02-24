@@ -1,0 +1,37 @@
+h1 Loving Slim
+
+#content
+  p This example shows you how a basic Slim file looks.
+
+- if @posts.any?
+  table#posts
+    - for post in @posts
+      tr
+        td.name = post.title
+        td.price = post.body
+- else
+  p No posts found. Please add some inventory.
+    Thank you!
+
+h1 Vue.js Sample
+
+div#vue-table
+  input type="text" name="name" v-model="newName"
+  input type="text" name="age" v-model="newAge"
+  input type="text" name="age" v-model="newAddress"
+  button.btn.btn-default @click="addPerson" Add Person
+  h2
+  /   = "status: {{status}}"
+  / table.table
+  /   thead
+  /     tr
+  /       th v-for="field in fields"
+  /         = "{{field}}"
+  /   tbody
+  /     tr v-for="person in table"
+  /       td
+  /         = "{{person.name}}"
+  /       td
+  /         = "{{person.age}}"
+  /       td
+  /         = "{{person.address}}"
