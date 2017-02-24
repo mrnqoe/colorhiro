@@ -1,6 +1,6 @@
 $(window).load(function() {
 
-    init();
+    // init();
     animate();
 });
 

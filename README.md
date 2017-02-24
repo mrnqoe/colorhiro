@@ -8,6 +8,6 @@ Delivered via sinatra, to use:
 
 Will pull in the deps as usual and
 
-    % bundle exec ruby app.rb
+    % bundle exec ruby app.rb -o 0.0.0.0 -p 3000
 
-gives you the webserver on ```http://localhost:4567```
+gives you the webserver on ```http://localhost:3000```
