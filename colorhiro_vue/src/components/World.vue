@@ -1,6 +1,8 @@
 <template>
   <div class="world">
     <h1>{{ msg }}</h1>
+    <button v-on:click="counter += 100">Add more</button>
+    <p>The button above has been clicked {{ counter }} times.</p>
   </div>
 </template>
 
@@ -9,7 +11,8 @@ export default {
   name: 'world',
   data () {
     return {
-      msg: 'Welcome to My World'
+      msg: 'Welcome to My World',
+      counter: 0
     }
   }
 }
