@@ -1,5 +1,5 @@
 # this has to come first, or settings isn't built up for the bundler call.
-require 'sinatra'
+require 'sinatra/base'
 require 'json'
 require 'rubygems'
 require 'sinatra/activerecord'
@@ -7,19 +7,28 @@ require './environments'
 # require 'json/ext' # required for .to_json
 # require 'bundler'
 # Bundler.require(:default, settings.environment)
-class Post < ActiveRecord::Base
-end
 
-class App < Sinatra::Application
+class App < Sinatra::Base
+  pid = Process.spawn('./node_modules/.bin/webpack-dev-server')
+  Process.detach(pid)
+  puts "webpack dev server pid: #{pid}"
+
   get '/' do
     # File.read(File.join('public', 'getting_started.html'))
-    @posts = Post.order("created_at DESC")
+    postsout = []
+    @posts = Post.all
     @title = "Welcome."
-    slim :index
+        slim :index
   end
 
-  get '/application.js' do
-    coffee :application
+  get '/application' do
+    @posts.each do |i|
+      postsout << {
+          name: "Post #{i.title}",
+          id: i.body
+      }
+    end
+    json :postsout => posts
   end
 
   #
