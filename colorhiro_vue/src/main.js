@@ -11,3 +11,7 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+Vue.component('dude', {
+  template: '<div>Cool story!</div>'
+})
