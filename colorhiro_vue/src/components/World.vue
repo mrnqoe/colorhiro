@@ -15,6 +15,11 @@
           v-model="color"
         />
     </div>
+    <div v-if="submit">
+      <p>{{newColor}}
+      </p>
+
+    </div>
   </div>
 </template>
 
@@ -25,32 +30,24 @@ export default {
     return {
       msg: 'Welcome to My World',
       counter: 0,
-      color: 'Blue'
+      color: '',
+      newColor: ''
     }
   },
   methods: {
     submit: function(event) {
-      console.log(event.key)
+      // console.log(event.key)
       if(event.key === "Enter") {
-        console.log('the id of the input was:' + event.currentTarget.id);
-        console.log("enter key was pressed!");
-        var fake = this.$faker().name.findName();
+        // console.log('the id of the input was:' + event.currentTarget.id);
+        // console.log("enter key was pressed!");
+        var fake = this.$faker().commerce.color();
         console.log(fake);
-        this.color = fake;
-        // this.color = $faker().name.findName();
-        // console.log("COLOR:",this.color);
+        this.newColor = ("Yuck maybe try is one: " + fake);
       }
     }
   }
+// math.random [adasfdsf]
 
-  //   updateMessage: function () {
-  //     this.color = this.$faker().name.findName()
-  //     console.log(this.$name.textContent)
-  //     this.$nextTick(function () {
-  //       console.log(this.$name.textContent)
-  //     })
-  //   }
-  // }
 }
 
 </script>
