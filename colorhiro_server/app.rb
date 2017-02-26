@@ -3,32 +3,36 @@ require 'sinatra/base'
 require 'json'
 require 'rubygems'
 require 'sinatra/activerecord'
+require 'sinatra/json'
 require './environments'
 # require 'json/ext' # required for .to_json
 # require 'bundler'
 # Bundler.require(:default, settings.environment)
+class Post < ActiveRecord::Base
+end
 
-class App < Sinatra::Base
-  pid = Process.spawn('./node_modules/.bin/webpack-dev-server')
-  Process.detach(pid)
-  puts "webpack dev server pid: #{pid}"
+class App < Sinatra::Application
+  # pid = Process.spawn('./node_modules/.bin/webpack-dev-server')
+  # Process.detach(pid)
+  # puts "webpack dev server pid: #{pid}"
 
   get '/' do
     # File.read(File.join('public', 'getting_started.html'))
-    postsout = []
     @posts = Post.all
     @title = "Welcome."
-        slim :index
+    slim :index
   end
 
-  get '/application' do
+  get '/posts' do
+    postsout = []
+    @posts = Post.all
     @posts.each do |i|
       postsout << {
           name: "Post #{i.title}",
           id: i.body
       }
     end
-    json :postsout => posts
+    json :posts => postsout
   end
 
   #

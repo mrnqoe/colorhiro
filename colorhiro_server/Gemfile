@@ -12,6 +12,7 @@ source 'https://rubygems.org'
 
 # Added by Nico
   gem 'sinatra'
+  gem 'sinatra-contrib'
   gem 'shotgun'
   gem 'byebug'
   gem 'slim'

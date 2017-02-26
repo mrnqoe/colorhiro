@@ -1,8 +1,11 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Hello from 'components/Hello'
-import World from 'components/World'
+import Vue from           'vue'
+import Router from        'vue-router'
+import VueResource from   'vue-resource'
+import Hello from         'components/Hello'
+import World from         'components/World'
+import Posts from         'components/Posts'
 
+Vue.use(VueResource)
 Vue.use(Router)
 
 export default new Router({
@@ -16,6 +19,11 @@ export default new Router({
       path: '/world',
       name: 'World',
       component: World
+    },
+    {
+      path: '/posts',
+      name: 'Posts',
+      component: Posts
     }
   ]
 })
