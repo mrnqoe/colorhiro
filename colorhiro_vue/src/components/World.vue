@@ -15,10 +15,8 @@
           v-model="color"
         />
     </div>
-    <div v-if="submit">
-      <p>{{newColor}}
-      </p>
-
+    <div>
+      <p>{{newColor}}</p>
     </div>
   </div>
 </template>
@@ -36,10 +34,7 @@ export default {
   },
   methods: {
     submit: function(event) {
-      // console.log(event.key)
       if(event.key === "Enter") {
-        // console.log('the id of the input was:' + event.currentTarget.id);
-        // console.log("enter key was pressed!");
         var fake = this.$faker().commerce.color();
         console.log(fake);
         this.newColor = ("Yuck maybe try is one: " + fake);
