@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from 'components/Hello'
 import World from 'components/World'
+import Color from 'components/Color'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/world',
       name: 'World',
       component: World
+    },
+     {
+      path: '/color',
+      name: 'Color',
+      component: Color
     }
   ]
 })

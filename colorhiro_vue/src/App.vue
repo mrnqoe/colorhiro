@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import color from '../src/components/Color.vue'
+
 export default {
   name: 'app'
 }
