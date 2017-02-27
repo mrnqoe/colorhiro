@@ -16,6 +16,14 @@ class App < Sinatra::Application
   # Process.detach(pid)
   # puts "webpack dev server pid: #{pid}"
 
+  before do
+   content_type :json
+   headers 'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+  end
+
+  set :protection, false
+
   get '/' do
     # File.read(File.join('public', 'getting_started.html'))
     @posts = Post.all
@@ -32,6 +40,7 @@ class App < Sinatra::Application
           id: i.body
       }
     end
+    response['Access-Control-Allow-Origin'] = 'http://whatever.org'
     json :posts => postsout
   end
 

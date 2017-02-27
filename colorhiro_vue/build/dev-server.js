@@ -29,7 +29,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true,
   watchOptions: {
-     aggregateTimeout: 3000,
+     aggregateTimeout: 5000,
      poll: true
   }
 })

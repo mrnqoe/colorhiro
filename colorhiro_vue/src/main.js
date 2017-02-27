@@ -4,10 +4,27 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// Vue.http.get('http://localhost:3000/posts').then(response => {
+//   return true;
+// }, response => {
+//   return false
+// })
 /* eslint-disable no-new */
-new Vue({
+// Vue.component('child', {
+//   props: ['posts'],
+//   template: <Posts/>
+// })
+
+var vm = new Vue({
   el: '#app',
   router,
+  data: {foo: 'Foo Bar'},
   template: '<App/>',
   components: {App}
 })
+
+console.log(vm);
+// new Vue({
+//   el: 'posts',
+//   template: '<Posts/>'
+// })

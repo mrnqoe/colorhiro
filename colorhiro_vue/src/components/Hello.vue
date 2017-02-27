@@ -1,6 +1,7 @@
 <template>
-  <div class="hello">
+  <div class="hello" msg='INSIDE'>
     <h1>{{ msg }}</h1>
+    <!-- <h1>{{ message }}</h1> -->
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -22,12 +23,7 @@
 
 <script>
 export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to the App'
-    }
-  }
+  name: 'hello'
 }
 </script>
 

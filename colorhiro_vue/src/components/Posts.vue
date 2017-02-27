@@ -1,23 +1,23 @@
 <template>
   <div class="posts">
-    <p>{{ posts }}</p>
+    <div class="loading" v-if="loading">
+      Loading...
+    </div>
+
+    <div v-if="error" class="error">
+      {{ error }}
+    </div>
+
+    <div v-if="post" class="content">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+    </div>
   </div>
 </template>
 
 <script>
-// var postsin;
-// this.$http.get('localhost:3000/application').then(response => {
-//   postsin = response.body;
-// }, response => {
-//   postsin = 'error'
-// });
 export default {
-  name: 'posts',
-  data () {
-    return {
-      posts: 'postsin'
-    }
-  }
+  name: 'posts'
 }
 </script>
 

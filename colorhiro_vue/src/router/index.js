@@ -7,12 +7,17 @@ import Posts from         'components/Posts'
 
 Vue.use(VueResource)
 Vue.use(Router)
+Hello.paramAttributes = ['foo', 'bar']
+Hello.data = function(){
+  return {message: 'bar'}
+}
 
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'Hello',
+      props: {msg: 'hello'},
       component: Hello
     },
     {
