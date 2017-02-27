@@ -17,6 +17,14 @@ import router from './router'
 
 var vm = new Vue({
   el: '#app',
+  // data: {
+  //   data1: []
+  // },
+  // ready: function () {
+  //   this.$http.get('localhost:3000/application').then(function (response) {
+  //     this.data1 = response.data
+  //   })
+  // },
   router,
   data: {foo: 'Foo Bar'},
   template: '<App/>',

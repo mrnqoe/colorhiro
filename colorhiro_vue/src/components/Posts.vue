@@ -1,4 +1,7 @@
 <template>
+  <!-- <div class="posts" :item='fetchData'>
+      {{ item }}
+  </div> -->
   <div class="posts">
     <div class="loading" v-if="loading">
       Loading...
@@ -17,8 +20,26 @@
 
 <script>
 export default {
-  name: 'posts'
-}
+  name: 'posts',
+  data() {
+    return {
+    item: this.fetchData()
+  }
+  },
+  created: function() {
+      this.fetchData();
+  },
+  methods: {
+    fetchData: function () {
+      this.$http.jsonp('http://localhost:3000/posts').then(response => {
+        /*this.items = response.body;*/
+        console.log(response.body)
+        this.item = response.body
+      }).catch(error => {
+        this.item = error
+      });
+    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
