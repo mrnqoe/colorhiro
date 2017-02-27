@@ -1,6 +1,7 @@
 <template>
   <div class="posts">
-    <p>{{ posts }}</p>
+    <div item in items></div>
+      {{ item }}
   </div>
 </template>
 
@@ -15,10 +16,46 @@ export default {
   name: 'posts',
   data () {
     return {
-      posts: 'postsin'
+      items: []
+    }
+  },
+  created: function() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData: function () {
+      this.$http.jsonp('localhost:3000/', function(data) {
+        this.items = data;
+        console.log(data)
+      });
     }
   }
+  // computed: {
+  //   jsonObj: function() {
+  //     this.$http.get('localhost:3000/application').then(response => {
+  //     postsin = response.body;
+  //     }, response => {
+  //       postsin = 'error'
+  //     });
+  //   }
+  // }
 }
+// name: 'world',
+//   data () {
+//     return {
+//       msg: 'Welcome to My World',
+//       counter: 0,
+//       color: '',
+//       newColor: ''
+//     }
+//   },
+//   methods: {
+//     submit: function(event) {
+//       if(event.key === "Enter") {
+//         var fake = this.$faker().commerce.color();
+//         console.log(fake);
+//         this.newColor = ("Yuck maybe try is one: " + fake);
+//       }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
