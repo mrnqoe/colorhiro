@@ -4,7 +4,7 @@
   </div> -->
   <div class="posts">
       <!-- <h2>{{ item[0].name }}</h2> -->
-      <p>{{ item.posts }}</p>
+      <p>{{ item }}</p>
     </div>
 </template>
 
