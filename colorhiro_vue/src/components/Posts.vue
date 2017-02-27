@@ -1,8 +1,11 @@
 <template>
-  <div class="posts">
-    <div item in items></div>
+  <!-- <div class="posts" :item='fetchData'>
       {{ item }}
-  </div>
+  </div> -->
+  <div class="posts">
+      <!-- <h2>{{ item[0].name }}</h2> -->
+      <p>{{ item.posts }}</p>
+    </div>
 </template>
 
 <script>
@@ -14,22 +17,28 @@
 // });
 export default {
   name: 'posts',
-  data () {
+  data() {
     return {
-      items: []
-    }
+    item: this.fetchData()
+  }
   },
   created: function() {
-    this.fetchData();
+      this.fetchData();
   },
   methods: {
     fetchData: function () {
-      this.$http.jsonp('localhost:3000/', function(data) {
-        this.items = data;
-        console.log(data)
+      this.$http.jsonp('http://localhost:3000/posts').then(response => {
+        /*this.items = response.body;*/
+        console.log(response.body)
+        this.item = response.body
+      }).catch(error => {
+        this.item = error
       });
     }
   }
+  // created: function() {
+  //   this.fetchData();
+  // },
   // computed: {
   //   jsonObj: function() {
   //     this.$http.get('localhost:3000/application').then(response => {

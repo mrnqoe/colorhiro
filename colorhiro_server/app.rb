@@ -3,7 +3,7 @@ require 'sinatra/base'
 require 'json'
 require 'rubygems'
 require 'sinatra/activerecord'
-require 'sinatra/json'
+require 'sinatra/jsonp'
 require './environments'
 # require 'json/ext' # required for .to_json
 # require 'bundler'
@@ -32,7 +32,7 @@ class App < Sinatra::Application
           id: i.body
       }
     end
-    json :posts => postsout
+    jsonp :posts => postsout
   end
 
   #
