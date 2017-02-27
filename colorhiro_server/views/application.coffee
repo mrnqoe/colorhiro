@@ -30,5 +30,5 @@ new Vue({
         self.status = json.status
         self.table = json.table
       $.post '/table', JSON.stringify(data), callback, 'json'
-  },
+  }
 })
