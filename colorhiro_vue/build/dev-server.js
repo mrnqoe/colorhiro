@@ -28,7 +28,6 @@ var compiler = webpack(webpackConfig)
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true,
-<<<<<<< HEAD
   watchOptions: {
      aggregateTimeout: 1000,
      poll: true

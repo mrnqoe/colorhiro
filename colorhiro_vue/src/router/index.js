@@ -25,6 +25,11 @@ export default new Router({
       name: 'Posts',
       props: ['item'],
       component: Posts
+    },
+    {
+      path: '/color',
+      name: 'Color',
+      component: Color
     }
   ]
 })
