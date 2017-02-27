@@ -1,19 +1,8 @@
 <template>
-  <!-- <div class="posts" :item='fetchData'>
-      {{ item }}
-  </div> -->
-  <div class="posts">
-    <div class="loading" v-if="loading">
-      Loading...
-    </div>
-
-    <div v-if="error" class="error">
-      {{ error }}
-    </div>
-
-    <div v-if="post" class="content">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.body }}</p>
+  <div v-if="items" class="posts">
+      <!-- <h2>{{ item[0].name }}</h2> -->
+    <div v-for="item in items">
+      <p>{{ item.id }}</p>
     </div>
   </div>
 </template>
@@ -23,7 +12,7 @@ export default {
   name: 'posts',
   data() {
     return {
-    item: this.fetchData()
+    items: this.fetchData()
   }
   },
   created: function() {
@@ -34,9 +23,12 @@ export default {
       this.$http.jsonp('http://localhost:3000/posts').then(response => {
         /*this.items = response.body;*/
         console.log(response.body)
-        this.item = response.body
+        // console.log()
+        this.items = response.body["posts"]
+
+
       }).catch(error => {
-        this.item = error
+        this.items = error
       });
     }
   }
