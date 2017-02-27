@@ -2,19 +2,16 @@
   <!-- <div class="posts" :item='fetchData'>
       {{ item }}
   </div> -->
-  <div class="posts">
+  <div v-if="items" class="posts">
       <!-- <h2>{{ item[0].name }}</h2> -->
-      <p>{{ item }}</p>
+    <div v-for="item in items">
+      <p>{{ item.posts[0].id }}</p>
     </div>
+  </div>
 </template>
 
 <script>
-// var postsin;
-// this.$http.get('localhost:3000/application').then(response => {
-//   postsin = response.body;
-// }, response => {
-//   postsin = 'error'
-// });
+
 export default {
   name: 'posts',
   data() {
@@ -36,18 +33,6 @@ export default {
       });
     }
   }
-  // created: function() {
-  //   this.fetchData();
-  // },
-  // computed: {
-  //   jsonObj: function() {
-  //     this.$http.get('localhost:3000/application').then(response => {
-  //     postsin = response.body;
-  //     }, response => {
-  //       postsin = 'error'
-  //     });
-  //   }
-  // }
 }
 // name: 'world',
 //   data () {
