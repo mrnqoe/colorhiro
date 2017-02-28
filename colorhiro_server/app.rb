@@ -38,18 +38,49 @@ class App < Sinatra::Application
     slim :index
   end
 
+  post '/users' do
+    @data_in = request.params
+    Session.create!(
+      share_key: @data_in['key'],
+      admin: @data_in['admin'],
+      init_color: @data_in['color']
+    )
+
+    @session = Session.last
+    puts @session.share_key
+    puts @session.init_color
+    puts @session.admin
+
+  end
+
+  post '/sessions' do
+    @data_in = request.params
+    Session.create!(
+      share_key: @data_in['key'],
+      admin: @data_in['admin'],
+      init_color: @data_in['color']
+    )
+
+    @session = Session.last
+    puts @session.share_key
+    puts @session.init_color
+    puts @session.admin
+
+  end
+
   get '/posts' do
     postsout = []
     @posts = Post.all
     @posts.each do |i|
       postsout << {
-          title: i.title,
-          body: i.body
+        title: i.title,
+        body: i.body
       }
     end
     response['Access-Control-Allow-Origin'] = '*'
     jsonp :posts => postsout
   end
+end
 
   #
   # get '/collections/?' do
@@ -142,4 +173,3 @@ class App < Sinatra::Application
   #     {:success => false}.to_json
   #   end
   # end
-end

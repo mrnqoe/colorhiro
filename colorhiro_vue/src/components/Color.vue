@@ -72,5 +72,3 @@ input {
 }
 
 </style>
-
-

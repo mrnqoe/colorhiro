@@ -4,14 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
-
-
-// var fetchdata = require('./components/helpers/helpers.js')
-import myMixin from './components/helpers/mixin.js'
+import myMixin from './mixins/queries.js'
 
 Vue.component('posts', {
   template:
-    '<div v-if="items"><div v-for="item in items"><p>{{ item[6].body }}</p></div></div>',
+    '<div v-if="items"><div v-for="item in items"><div v-for="quote in item"><h3> {{ quote.title }} :</h3><p>- {{ quote.body }} </p></div></div></div>',
   mixins: [myMixin],
   data: function(){
     return {
@@ -39,4 +36,3 @@ var vm = new Vue({
 })
 
 console.log(vm);
-

@@ -3,7 +3,7 @@ var myMixin = {
     fetchdata() {
       this.$http.jsonp('http://localhost:3000/posts').then(response => {
         this.items = response.body;
-        console.log(typeof(response.body));
+        console.log(response.body.inspect);
         return response.body;
       }).catch(error => {
         return error;
@@ -17,12 +17,6 @@ var myMixin = {
       }).catch(error => {
         return error;
       });
-    },
-    changeColor () {
-      var fake = this.$faker().commerce.color();
-      this.newColor = ('Yuck maybe try this one: ' + fake);
-      var bgcolor = $('div.color').prop("style");
-      document.querySelector("body").style = bgcolor;
     }
   }
 };

@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import myMixin from './components/helpers/mixin.js'
+import myMixin from './helpers/color.js'
 
 export default {
   name: 'app',
-  mixins: [myMixin],
+  mixins: [myColor],
   data: function(){
     return {
       color: 'blue',
