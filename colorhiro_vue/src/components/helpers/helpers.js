@@ -8,7 +8,7 @@
 //         return error;
 //       });
 //     }
-// };
+// }
 
 
 function fetchData () {

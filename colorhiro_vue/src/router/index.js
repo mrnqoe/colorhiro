@@ -23,12 +23,12 @@ export default new Router({
       name: 'World',
       component: World
     },
-    {
-      path: '/posts',
-      name: 'Posts',
-      props: ['item'],
-      component: Posts
-    },
+    // {
+    //   path: '/posts',
+    //   name: 'Posts',
+    //   props: ['item'],
+    //   component: Posts
+    // },
     {
       path: '/color',
       name: 'Color',

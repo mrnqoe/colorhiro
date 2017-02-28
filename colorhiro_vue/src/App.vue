@@ -1,28 +1,16 @@
 <template>
   <div id="app">
+  <posts></posts>
     <img src="./assets/logo.png">
-    <router-view></router-view>
+   <!--  <router-view></router-view> -->
   </div>
 </template>
 
 <script>
-// import color from './components/Color.vue'
-var data = require('./components/helpers/fetchData.js')
 
 export default {
-  name: 'app',
-  methods: {
-    fetchData: data
-    // fetchData: function () {
-    //   this.$http.jsonp('http://localhost:3000/posts').then(response => {
-    //     this.items = response.body;
-    //     console.log(typeof(response.body))
-    //     return response.body
-    //   }).catch(error => {
-    //     return error
-    //   });
-    // }
-  }
+  name: 'app'
+
 }
 </script>
 
