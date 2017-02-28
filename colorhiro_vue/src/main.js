@@ -5,27 +5,23 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 
-// Vue.http.get('http://localhost:3000/posts').then(response => {
-//   return true;
-// }, response => {
-//   return false
-// })
-/* eslint-disable no-new */
-// Vue.component('child', {
-//   props: ['posts'],
-//   template: <Posts/>
-// })
+
+// var fetchdata = require('./components/helpers/helpers.js')
+import myMixin from './components/helpers/mixin.js'
+
+Vue.component('posts', {
+  template:
+    '<div v-if="items"><div v-for="item in items"><p>{{ item[0].body }}</p></div></div>',
+  mixins: [myMixin],
+  data: function(){
+    return {
+      items: this.fetchdata()
+    };
+  }
+});
 
 var vm = new Vue({
   el: '#app',
-  // data: {
-  //   data1: []
-  // },
-  // ready: function () {
-  //   this.$http.get('localhost:3000/application').then(function (response) {
-  //     this.data1 = response.data
-  //   })
-  // },
   router,
   data: {foo: 'Foo Bar'},
   template: '<App/>',
@@ -33,7 +29,4 @@ var vm = new Vue({
 })
 
 console.log(vm);
-// new Vue({
-//   el: 'posts',
-//   template: '<Posts/>'
-// })
+

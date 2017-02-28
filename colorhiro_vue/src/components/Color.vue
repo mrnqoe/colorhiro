@@ -1,8 +1,10 @@
 <template>
   <div class="color" :style="{ 'background-color': color }">
   <h1>Type in a color</h1>
-  <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" />
+  <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" />
+  <h2>{{ newColor }}</h2>
   <h2>Press Enter!</h2>
+
   </div>
 </template>
 
@@ -11,13 +13,16 @@ export default {
   name: 'color',
     data () {
       return {
-        color: 'white'
+        color: 'white',
+        newColor: ''
         }
       },
   methods: {
     changeColor: function(){
+      var fake = this.$faker().commerce.color();
+      this.newColor = ('Yuck maybe try this one: ' + fake);
       var bgcolor = $('div.color').attr("style");
-      document.querySelector("body").style = bgcolor
+      document.querySelector("body").style = bgcolor;
     }
   }
 }
