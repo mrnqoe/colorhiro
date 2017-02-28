@@ -7,9 +7,7 @@ require 'sinatra/activerecord'
 require 'sinatra/jsonp'
 require 'faker'
 require './environments'
-# require 'json/ext' # required for .to_json
-# require 'bundler'
-# Bundler.require(:default, settings.environment)
+
 class Post < ActiveRecord::Base
 end
 
@@ -20,25 +18,43 @@ class User < ActiveRecord::Base
 end
 
 class App < Sinatra::Application
-  # pid = Process.spawn('./node_modules/.bin/webpack-dev-server')
-  # Process.detach(pid)
-  # puts "webpack dev server pid: #{pid}"
 
   before do
-   content_type :json
-   headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+    content_type :json
+    headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
   end
 
   set :protection, false
 
   get '/' do
-    # File.read(File.join('public', 'getting_started.html'))
+    postsout = []
     @posts = Post.all
-    @title = "Welcome."
-    slim :index
+    @posts.each do |i|
+      postsout << {
+        title: i.title,
+        body: i.body
+      }
+    end
+    response['Access-Control-Allow-Origin'] = '*'
+    json :posts => postsout
   end
 
   post '/users' do
+    @data_in = request.params
+    User.create!(
+      user_color: @data_in['color'],
+      name: @data_in['color'],
+      sessions_id: @data_in['name']
+    )
+
+    @user = User.last
+    puts @user.color
+    puts @user.name
+    puts @user.session
+
+  end
+
+  get '/sessions' do
     @data_in = request.params
     Session.create!(
       share_key: @data_in['key'],
@@ -68,18 +84,6 @@ class App < Sinatra::Application
 
   end
 
-  get '/posts' do
-    postsout = []
-    @posts = Post.all
-    @posts.each do |i|
-      postsout << {
-        title: i.title,
-        body: i.body
-      }
-    end
-    response['Access-Control-Allow-Origin'] = '*'
-    jsonp :posts => postsout
-  end
 end
 
   #

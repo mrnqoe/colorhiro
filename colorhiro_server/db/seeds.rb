@@ -25,7 +25,7 @@ User.destroy_all
   @name = Faker::StarWars.droid
   @color = Faker::Color.hex_color
   User.create!(
-    share_Key: @name,
+    name: @name,
     user_color: @color
   )
 end
