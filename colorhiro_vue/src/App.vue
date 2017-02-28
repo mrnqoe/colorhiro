@@ -22,8 +22,12 @@ export default {
       newColor: '',
       color: this.changeColor()
     }
+  },
+  methods: function(){
+    this.$http.post('/api/sessions', JSON.stringify(this))
   }
 }
+
 </script>
 
 <style>
