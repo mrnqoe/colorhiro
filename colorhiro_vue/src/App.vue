@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import myMixin from './helpers/color.js'
+import myColor from './helpers/color.js'
 
 export default {
   name: 'app',
