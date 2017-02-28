@@ -11,6 +11,7 @@
 
 <script>
 import myColor from './helpers/color.js'
+import postdata from './helpers/queries.js'
 
 export default {
   name: 'app',
@@ -20,7 +21,7 @@ export default {
       color: 'blue',
       newColor: '',
       color: this.changeColor()
-    };
+    }
   }
 }
 </script>
@@ -70,7 +71,6 @@ a {
 input {
   padding: 1em 1em;
   font-size: 2em;
-  background:white;
   border-style: black;
 
 }
