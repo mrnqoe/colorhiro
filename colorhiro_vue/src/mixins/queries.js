@@ -1,7 +1,7 @@
 var myMixin = {
   methods: {
-    fetchdata() {
-      this.$http.jsonp('http://localhost:3000/posts').then(response => {
+    fetchdata(url) {
+      this.$http.json(url).then(response => {
         this.items = response.body;
         console.log(response.body.inspect);
         return response.body;

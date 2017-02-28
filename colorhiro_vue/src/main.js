@@ -23,6 +23,7 @@ var vm = new Vue({
   data: {foo: 'Foo Bar'},
   template: '<App/>',
   components: {App}
+
 })
 
 console.log(vm);
