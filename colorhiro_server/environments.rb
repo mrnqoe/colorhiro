@@ -1,7 +1,7 @@
 configure :development do
   set :server, :puma
   set :show_exceptions, true
-  set :database, {adapter: "sqlite3", database: "db/colorhiro.sqlite3"}
+  set :database, {adapter: "sqlite3", database: ENV['DATABASE_URL']}
 end
 
 configure :production do

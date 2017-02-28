@@ -1,7 +1,8 @@
 require "rubygems"
 require "bundler"
-# require "puma-dev"
+require "dotenv"
 Bundler.require
+Dotenv.load
 
 require "./app"
 run App
