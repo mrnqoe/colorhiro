@@ -4,6 +4,9 @@ import VueResource from   'vue-resource'
 import Hello from         'components/Hello'
 import World from         'components/World'
 import Posts from         'components/Posts'
+import Color from         'components/Color'
+
+
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)
 Vue.use(Router)

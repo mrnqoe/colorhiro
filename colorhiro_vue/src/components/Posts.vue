@@ -5,7 +5,7 @@
   <div v-if="items" class="posts">
       <!-- <h2>{{ item[0].name }}</h2> -->
     <div v-for="item in items">
-      <p>{{ item.posts[0].id }}</p>
+      <p>{{ item.id }}</p>
     </div>
   </div>
 </template>
@@ -17,21 +17,23 @@ export default {
   data() {
     return {
     item: this.fetchData()
+
   }
   },
   created: function() {
       this.fetchData();
   },
   methods: {
-    fetchData: function () {
+    fetchData:  function () {
       this.$http.jsonp('http://localhost:3000/posts').then(response => {
         /*this.items = response.body;*/
         console.log(response.body)
-        this.item = response.body
+        this.item = response.body["posts"]
       }).catch(error => {
         this.item = error
-      });
-    }
+  });
+}
+
   }
 }
 // name: 'world',
