@@ -11,7 +11,7 @@ import myMixin from './components/helpers/mixin.js'
 
 Vue.component('posts', {
   template:
-    '<div v-if="items"><div v-for="item in items"><p>{{ item[0].body }}</p></div></div>',
+    '<div v-if="items"><div v-for="item in items"><div v-for="quote in item"><h3> {{ quote.title }} :</h3><p>- {{ quote.body }} </p></div></div></div>',
   mixins: [myMixin],
   data: function(){
     return {
