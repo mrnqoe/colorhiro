@@ -23,6 +23,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.4)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     i18n (0.8.1)
     method_source (0.8.2)
     minitest (5.10.1)
@@ -92,6 +94,7 @@ DEPENDENCIES
   activerecord
   byebug
   coffee-script
+  faker
   pg
   pry
   puma

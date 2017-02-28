@@ -2,7 +2,8 @@
   <div v-if="items" class="posts">
       <!-- <h2>{{ item[0].name }}</h2> -->
     <div v-for="item in items">
-      <p>{{ item.id }}</p>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.body }}</p>
     </div>
   </div>
 </template>
@@ -12,8 +13,8 @@ export default {
   name: 'posts',
   data() {
     return {
-    items: this.fetchData()
-  }
+      items: this.fetchData()
+    }
   },
   created: function() {
       this.fetchData();
@@ -32,6 +33,7 @@ export default {
       });
     }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

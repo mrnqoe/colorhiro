@@ -1,14 +1,22 @@
 # this has to come first, or settings isn't built up for the bundler call.
+require 'sinatra'
 require 'sinatra/base'
 require 'json'
 require 'rubygems'
 require 'sinatra/activerecord'
 require 'sinatra/jsonp'
+require 'faker'
 require './environments'
 # require 'json/ext' # required for .to_json
 # require 'bundler'
 # Bundler.require(:default, settings.environment)
 class Post < ActiveRecord::Base
+end
+
+class Session < ActiveRecord::Base
+end
+
+class User < ActiveRecord::Base
 end
 
 class App < Sinatra::Application
@@ -18,8 +26,7 @@ class App < Sinatra::Application
 
   before do
    content_type :json
-   headers 'Access-Control-Allow-Origin' => '*',
-            'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+   headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
   end
 
   set :protection, false
@@ -36,11 +43,11 @@ class App < Sinatra::Application
     @posts = Post.all
     @posts.each do |i|
       postsout << {
-          name: "Post #{i.title}",
-          id: i.body
+          title: i.title,
+          body: i.body
       }
     end
-    response['Access-Control-Allow-Origin'] = 'http://localhost:4000'
+    response['Access-Control-Allow-Origin'] = '*'
     jsonp :posts => postsout
   end
 
