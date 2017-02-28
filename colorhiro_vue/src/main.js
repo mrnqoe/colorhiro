@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import $ from 'jquery'
 
 // Vue.http.get('http://localhost:3000/posts').then(response => {
 //   return true;
