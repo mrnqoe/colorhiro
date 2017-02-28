@@ -11,7 +11,7 @@ import myMixin from './components/helpers/mixin.js'
 
 Vue.component('posts', {
   template:
-    '<div v-if="items"><div v-for="item in items"><p>{{ item[0].body }}</p></div></div>',
+    '<div v-if="items"><div v-for="item in items"><p>{{ item[6].body }}</p></div></div>',
   mixins: [myMixin],
   data: function(){
     return {
@@ -19,6 +19,16 @@ Vue.component('posts', {
     };
   }
 });
+
+// Vue.component('color', {
+//   template: '<div class="color" :style="{ 'background-color': color }"> <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" /> <h2>{{ newColor }}</h2> </div>',
+//   mixins: [myMixin],
+//   data: function () {
+//     return {
+//       items: this.changeColor()
+//     }
+//   }
+// })
 
 var vm = new Vue({
   el: '#app',
