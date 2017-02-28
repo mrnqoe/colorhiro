@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 var webpackConfig = require('./build/webpack.test.conf')
 
 module.exports = function (config) {
@@ -27,3 +30,4 @@ module.exports = function (config) {
     }
   })
 }
+
