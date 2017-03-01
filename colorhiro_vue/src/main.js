@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
-import myMixin from './mixins/queries.js'
+import myMixin from './helpers/queries.js'
 
 Vue.component('posts', {
   template:
@@ -16,6 +16,7 @@ Vue.component('posts', {
     };
   }
 });
+
 
 var vm = new Vue({
   el: '#app',
