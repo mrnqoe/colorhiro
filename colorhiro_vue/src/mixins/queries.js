@@ -21,7 +21,7 @@ var myMixin = {
         return error;
       });
 
-    },
+    }
     // tester(){
     //   this.$http.post('http://localhost:3000/sessions').then(function(response) {
     //   this.sessions.push(this.session);
@@ -31,7 +31,7 @@ var myMixin = {
     // });
 
     }
-  }
+
 }
 
 export default myMixin;
