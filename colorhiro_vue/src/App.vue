@@ -22,6 +22,15 @@ export default {
       newColor: '',
       color: this.changeColor()
     }
+  },
+  methods: {
+    submit: function(event) {
+      if(event.key === "Enter") {
+        var fake = this.$faker().commerce.color();
+        console.log(fake);
+        this.newColor = ("ok how bout this one " + fake);
+      }
+    }
   }
 }
 </script>
