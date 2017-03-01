@@ -8,7 +8,7 @@ var myColor = {
       this.newColor = ('Yuck maybe try this one: ' + fake);
       var bgcolor = $('div.color').prop("style");
       document.querySelector("body").style = bgcolor;
-      this.postdata();
+      this.tester();
     }
   }
 };
