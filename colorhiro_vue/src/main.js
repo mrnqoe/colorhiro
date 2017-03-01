@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
-import myMixin from './helpers/queries.js'
+import myMixin from './mixins/queries.js'
 
 Vue.component('posts', {
   template:
