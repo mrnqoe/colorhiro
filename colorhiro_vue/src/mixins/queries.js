@@ -21,10 +21,18 @@ var myMixin = {
         return error;
       });
     },
-    tester(){
-      console.log("I'm working");
+    // tester(){
+    //   this.$http.post('http://localhost:3000/sessions').then(function(response) {
+    //   this.sessions.push(this.session);
+    //   console.log("Event added!");
+    // }).error(function(error) {
+    //   console.log(error);
+    // });
+
+
+
     }
-  }
+
 };
 
 export default myMixin;
