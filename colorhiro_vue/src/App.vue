@@ -40,7 +40,7 @@ export default {
     },
     handleNameInput: function(ev){
       if(this.name){
-        let data_out = {color: this.color}
+        let data_out = {name: this.name}
         return post_data(this.$http, data_out)
       }
     }
