@@ -23,6 +23,16 @@ class App < Sinatra::Application
   before do
     content_type :json
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+    headers 'Access-Control-Allow-Origin' => '*'
+  end
+
+  options "*" do
+  response.headers["Allow"] = "HEAD,GET,PUT,DELETE,OPTIONS"
+
+  # Needed for AngularJS
+  response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+
+  halt 200
   end
 
   set :protection, false
@@ -36,7 +46,7 @@ class App < Sinatra::Application
         body: i.body
       }
     end
-    response['Access-Control-Allow-Origin'] = '*'
+
     json :posts => postsout
   end
 
