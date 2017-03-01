@@ -9,18 +9,18 @@
       v-model="session"
       v-on:keyup.enter="mksession"
       placeholder="ex: red" />
-    <h2>{{ newColor }}</h2>
-    <h1>{{ hello }}</h1>
+    <h2 :foo='newColor'>{{ foo }}</h2>
     <h2>Press Enter!</h2>
   </div>
 </template>
 
 <script>
-// import myColor from './mixins/color.js'
-// import postdata from './mixins/queries.js'
+import myColor  from './mixins/color.js'
+import postdata from './mixins/queries.js'
 
 export default {
   name: 'app',
+  props: ['hello', 'foo'],
   data: function(){
     return {
       color: '',
@@ -28,6 +28,12 @@ export default {
       color: {share_key: '000000010101'}
     }
   },
+  // methods: {
+  //   mksession: function(){
+  //     console.log('hello from meth')
+  //     this.postdata()
+  //   }
+  // },
   directives: {
     hello: {
       function(){

@@ -4,12 +4,10 @@ require 'sinatra/base'
 require 'json'
 require 'rubygems'
 require 'sinatra/activerecord'
-require 'sinatra/jsonp'
 require 'faker'
 require './environments'
 
 class Post < ActiveRecord::Base
-
 end
 
 class Session < ActiveRecord::Base

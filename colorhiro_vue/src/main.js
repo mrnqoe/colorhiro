@@ -9,13 +9,10 @@ import queries from './mixins/queries.js'
 var vm = new Vue({
   el: '#app',
   router,
-  mixins: [queries],
   data: {
+    foo: 'bar',
     session: {color: '',share_key: ''},
     hello: 'HELLO'
-  },
-  ready: function() {
-    console.log(this.queries);
   },
   template: '<App/>',
   components: {App}
