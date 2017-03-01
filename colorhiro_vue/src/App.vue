@@ -1,10 +1,13 @@
 <template>
-  <div id="app" :style="{ 'background-color': color }">
+  <div class="app" :style="{ 'background-color': color }">
     <img src="./assets/logo.png">
-    <!--   -->
-    <posts></posts>
     <h1>Type in a color</h1>
-    <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" />
+    <input
+      type="text"
+      style="{ 'color': color }"
+      v-model="color"
+      v-on:keyup.enter="changeColor"
+      placeholder="ex: red" />
     <h2>{{ newColor }}</h2>
     <h2>Press Enter!</h2>
   </div>
@@ -12,18 +15,28 @@
 
 <script>
 import myColor from './mixins/color.js'
-import postdata from './mixins/queries.js'
+import myMixin from './mixins/queries.js'
 
 export default {
   name: 'app',
-  mixins: [myColor, postdata],
+  mixins: [myColor,myMixin],
   data: function(){
     return {
       color: 'blue',
       newColor: '',
-      color: this.changeColor()
+      color: this.changeColor(),
+      newColor: this.postdata()
     }
   }
+  // methods:{
+  //   addColor: function(){
+  //     var color = this.newColor;
+  //     this.newColor = '';
+  //     this.$http.post('http://localhost:3000/sessions', {init_color: color}).then((response) => {
+  //           console.log(response.message);
+  //       });
+  //     }
+  // }
 }
 
 </script>

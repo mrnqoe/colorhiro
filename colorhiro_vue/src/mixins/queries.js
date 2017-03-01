@@ -1,7 +1,10 @@
 var myMixin = {
+  // created: function () {
+  //   this.fetchdata()
+  // },
   methods: {
     fetchdata(url) {
-    this.$http.get(url).then(response => {
+      this.$http.get(url).then(response => {
         this.items = response.body;
         console.log(response.body.inspect);
         return response.body;
@@ -22,4 +25,3 @@ var myMixin = {
 };
 
 export default myMixin;
-

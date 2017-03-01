@@ -1,4 +1,4 @@
-import myMixin from './queries.js';
+import myMixin from '../mixins/queries.js';
 
 var myColor = {
   mixins:[myMixin],
@@ -8,8 +8,15 @@ var myColor = {
       this.newColor = ('Yuck maybe try this one: ' + fake);
       var bgcolor = $('div.color').prop("style");
       document.querySelector("body").style = bgcolor;
-      this.postdata();
     }
+    // ,
+    // addsession () {
+    //   var color = this.newColor;
+    //   this.$http.post('api/sessions').then((response) => {
+    //     console.log(response.message);
+    //   });
+    // }
+
   }
 };
 
