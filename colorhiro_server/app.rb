@@ -7,8 +7,12 @@ require 'sinatra/activerecord'
 require 'sinatra/jsonp'
 require 'faker'
 require './environments'
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 class Post < ActiveRecord::Base
+
 end
 
 class Session < ActiveRecord::Base
@@ -37,14 +41,37 @@ class App < Sinatra::Application
     end
     response['Access-Control-Allow-Origin'] = '*'
     json :posts => postsout
+<<<<<<< Updated upstream
+=======
   end
 
   post '/users' do
     @data_in = request.params
     User.create!(
       user_color: @data_in['color'],
+      sessions_id: @data_in['name'],
+      sessions_id: @data_in['session']
+    )
+
+    @user = User.last
+    puts @user.color
+    puts @user.name
+    puts @user.session
+
+>>>>>>> Stashed changes
+  end
+
+  post '/users' do
+    @data_in = request.params
+    User.create!(
+      user_color: @data_in['color'],
+<<<<<<< Updated upstream
       name: @data_in['color'],
       sessions_id: @data_in['name']
+=======
+      sessions_id: @data_in['name'],
+      sessions_id: @data_in['session']
+>>>>>>> Stashed changes
     )
 
     @user = User.last

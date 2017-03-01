@@ -1,6 +1,10 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 require('dotenv').config()
+<<<<<<< Updated upstream
+=======
+const PORT = process.env.PORT
+>>>>>>> Stashed changes
 
 module.exports = {
   build: {
