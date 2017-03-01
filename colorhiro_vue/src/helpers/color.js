@@ -1,4 +1,4 @@
-import myMixin from './queries.js';
+import myMixin from '../mixins/queries.js';
 
 var myColor = {
   mixins:[myMixin],

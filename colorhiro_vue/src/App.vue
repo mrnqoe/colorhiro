@@ -12,7 +12,7 @@
 
 <script>
 import myColor from './helpers/color.js'
-import postdata from './helpers/queries.js'
+import postdata from './mixins/queries.js'
 
 export default {
   name: 'app',
@@ -22,15 +22,6 @@ export default {
       color: 'blue',
       newColor: '',
       color: this.changeColor()
-    }
-  },
-  methods: {
-    submit: function(event) {
-      if(event.key === "Enter") {
-        var fake = this.$faker().commerce.color();
-        console.log(fake);
-        this.newColor = ("ok how bout this one " + fake);
-      }
     }
   }
 }
