@@ -9,6 +9,7 @@ require 'faker'
 require './environments'
 
 class Post < ActiveRecord::Base
+
 end
 
 class Session < ActiveRecord::Base
