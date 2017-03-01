@@ -21,22 +21,22 @@ export default new Router({
       name: 'Hello',
       props: {msg: 'hello'},
       component: Hello
-    },
-    {
-      path: '/world',
-      name: 'World',
-      component: World
-    },
-    // {
-    //   path: '/posts',
-    //   name: 'Posts',
-    //   props: ['item'],
-    //   component: Posts
-    // },
-    {
-      path: '/color',
-      name: 'Color',
-      component: Color
     }
+    // {
+    //   path: '/world',
+    //   name: 'World',
+    //   component: World
+    // },
+    // // {
+    // //   path: '/posts',
+    // //   name: 'Posts',
+    // //   props: ['item'],
+    // //   component: Posts
+    // // },
+    // {
+    //   path: '/color',
+    //   name: 'Color',
+    //   component: Color
+    // }
   ]
 })

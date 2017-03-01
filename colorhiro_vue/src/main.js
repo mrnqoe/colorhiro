@@ -17,6 +17,7 @@ Vue.component('posts', {
   }
 });
 
+
 var vm = new Vue({
   el: '#app',
   router,
