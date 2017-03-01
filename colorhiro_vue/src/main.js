@@ -4,16 +4,29 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
-import queries from './mixins/queries.js'
-import color from './mixins/color.js'
+import myMixins from './mixins/queries.js'
 
 
 var vm = new Vue({
   el: '#app',
   router,
-  mixins: [queries, color],
+
+  mixins: [myMixins],
+  data: {
+    session: {init_color: ''},
+    sessions: []
+   },
   template: '<App/>',
   components: {App}
+  // ,
+  // methods: {
+  //   postdata: function(){
+  //     if(this.session.init_color){
+  //       this.sessions.push(this.session);
+  //       this.session = {init_color:''};
+  //     }
+  //   }
+  // }
 })
 
 
