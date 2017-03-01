@@ -1,17 +1,21 @@
 <template>
-  <div id="app" :style="{ 'background-color': color }">
+  <div class="app" :style="{ 'background-color': color }">
     <img src="./assets/logo.png">
     <router-view></router-view>
-    <posts></posts>
     <h1>Type in a color</h1>
-    <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" />
+    <input
+      type="text"
+      style="{ 'color': color }"
+      v-model="color"
+      v-on:keyup.enter="changeColor"
+      placeholder="ex: red" />
     <h2>{{ newColor }}</h2>
     <h2>Press Enter!</h2>
   </div>
 </template>
 
 <script>
-import myColor from './helpers/color.js'
+import myColor from './mixins/color.js'
 import postdata from './mixins/queries.js'
 
 export default {

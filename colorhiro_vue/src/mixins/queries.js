@@ -1,8 +1,10 @@
 var myMixin = {
+  created: function () {
+    this.fetchdata()
+  },
   methods: {
     fetchdata(url) {
-      this.$http.json('http://localhost:3000/sessions').then(response => {
-        dev:colorhiro_vue/src/mixins/queries.js
+      this.$http.get(url).then(response => {
         this.items = response.body;
         console.log(response.body.inspect);
         return response.body;
@@ -19,13 +21,10 @@ var myMixin = {
         return error;
       });
     },
-
     tester(){
       console.log("I'm working");
     }
-
   }
 };
 
 export default myMixin;
-
