@@ -1,4 +1,4 @@
-/db/*.sqlite
+colorhiro_server/db/*.sqlite3
 /public/assets*
 /tmp
 .DS_Store
