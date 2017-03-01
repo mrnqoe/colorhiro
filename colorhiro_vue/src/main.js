@@ -10,7 +10,6 @@ import myMixins from './mixins/queries.js'
 var vm = new Vue({
   el: '#app',
   router,
-
   mixins: [myMixins],
   data: {
     session: {init_color: ''},
@@ -28,7 +27,3 @@ var vm = new Vue({
   //   }
   // }
 })
-
-
-
-console.log(vm);

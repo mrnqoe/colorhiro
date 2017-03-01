@@ -12,14 +12,24 @@ var myMixin = {
         return error;
       });
     },
-    postdata() {
-      this.$http.post('http://localhost:3000/sessions').then(response => {
+    postdata(url) {
+      this.$http.post(url).then(response => {
         this.session = response.json();
         console.log(response.json());
         return this.session;
       }).catch(error => {
         return error;
       });
+
+    },
+    // tester(){
+    //   this.$http.post('http://localhost:3000/sessions').then(function(response) {
+    //   this.sessions.push(this.session);
+    //   console.log("Event added!");
+    // }).error(function(error) {
+    //   console.log(error);
+    // });
+
     }
   }
 }
