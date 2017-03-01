@@ -6,51 +6,35 @@
       type="text"
       style="{ 'color': color }"
       v-model="color"
-      v-on:keyup.enter = "handleColorChange"
-      placeholder="ex: red" />
-      <!-- v-bind:value="color" -->
-   <!--  <h2 :foo='newColor'>{{ foo }}</h2> -->
+      v-on:keyup.enter="handleColorInput"
+      placeholder="ex: Lavender blue" />
     <h2>Press Enter!</h2>
   </div>
 </template>
 
 <script>
-import myColor from './mixins/color.js'
-import myMixin from './mixins/queries.js'
-import {tester} from './helpers/tester.js'
-import {changecolor} from './helpers/tester.js'
+import {changeColor}  from './helpers/color.js'
+// import fetchdata from './helpers/queries.js'
+import {tester}       from './helpers/tester.js'
+
 
 export default {
   name: 'app',
-  mixins: [myColor, myMixin],
   data: function(){
     return {
-      color: 'blue',
-      newColor: ''
-      // ,
-      // color: this.changeColor()
+      color: ''
+      // color: changeColor()
     }
   },
   methods: {
-    sumbit: function() {
-      tester(this.$http, this.session).then(function(json){
-        console.log("sumbited tot he server")
-        // this.sessions.push
-      })
-    },
-
-    handleColorChange: function(){
-      console.log("eventHandler entered");
-      }
-    },
+    handleColorInput: function(ev){
+      let data_out = {color: this.color}
+      return tester(this.$http, data_out)
+    }
+  },
   watch: {
-    handleColorChange: function(newhandleColorChange){
-      sumbit();
-      tester(this.$http, this.session).then(function(json){
-        console.log("sumbited tot he server")
-
-      });
-      this.handleColorChange();
+    color: function(){
+      changeColor()
     }
   }
 }

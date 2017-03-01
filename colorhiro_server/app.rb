@@ -19,7 +19,7 @@ end
 class App < Sinatra::Application
 
   before do
-    content_type :json
+    content_type 'application/json'
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
     headers 'Access-Control-Allow-Origin' => '*'
   end
@@ -70,23 +70,15 @@ class App < Sinatra::Application
       init_color: @data_in['color']
     )
     @session = Session.last
-
     json :posts => postsout
   end
 
   post '/sessions' do
     @data_in = request.params
+    puts @data_in
     Session.create!(
-      share_key: @data_in['key'],
-      admin: @data_in['admin'],
       init_color: @data_in['color']
     )
-
-    @session = Session.last
-    puts @session.share_key
-    puts @session.init_color
-    puts @session.admin
-
   end
 
 end

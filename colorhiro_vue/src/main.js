@@ -8,6 +8,7 @@ import myMixins from './mixins/queries.js'
 
 
 var vm = new Vue({
+
   el: '#app',
   router,
   mixins: [myMixins],
@@ -17,13 +18,5 @@ var vm = new Vue({
    },
   template: '<App/>',
   components: {App}
-  // ,
-  // methods: {
-  //   postdata: function(){
-  //     if(this.session.init_color){
-  //       this.sessions.push(this.session);
-  //       this.session = {init_color:''};
-  //     }
-  //   }
-  // }
+
 })
