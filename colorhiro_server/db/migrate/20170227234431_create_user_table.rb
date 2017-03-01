@@ -1,9 +1,9 @@
 class CreateUserTable < ActiveRecord::Migration[5.0]
   def self.up
     create_table :users do |t|
-      t.belongs_to :sessions, index:true
+      t.belongs_to :sessions
       t.string :user_color
-      t.string :share_Key
+      t.string :name
       t.timestamps
     end
   end
