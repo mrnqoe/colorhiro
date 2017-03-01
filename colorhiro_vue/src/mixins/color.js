@@ -9,6 +9,14 @@ var myColor = {
       var bgcolor = $('div.color').prop("style");
       document.querySelector("body").style = bgcolor;
     }
+    // ,
+    // addsession () {
+    //   var color = this.newColor;
+    //   this.$http.post('api/sessions').then((response) => {
+    //     console.log(response.message);
+    //   });
+    // }
+
   }
 };
 

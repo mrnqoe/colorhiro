@@ -5,15 +5,13 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 import queries from './mixins/queries.js'
+import color from './mixins/color.js'
+
 
 var vm = new Vue({
   el: '#app',
   router,
-  data: {
-    foo: 'bar',
-    session: {color: '',share_key: ''},
-    hello: 'HELLO'
-  },
+  mixins: [queries, color],
   template: '<App/>',
   components: {App}
 })

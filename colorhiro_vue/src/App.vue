@@ -1,7 +1,6 @@
 <template>
   <div class="app" :style="{ 'background-color': color }">
     <img src="./assets/logo.png">
-    <router-view></router-view>
     <h1>Type in a color</h1>
     <input
       type="text"
@@ -15,32 +14,17 @@
 </template>
 
 <script>
-import myColor  from './mixins/color.js'
-import postdata from './mixins/queries.js'
+import queries from './heplpers/queries'
 
 export default {
   name: 'app',
-  props: ['hello', 'foo'],
   data: function(){
     return {
-      color: '',
-      newColor: 'GREEN',
-      color: {share_key: '000000010101'}
+      color: 'blue',
+      newColor: ''
     }
   },
-  // methods: {
-  //   mksession: function(){
-  //     console.log('hello from meth')
-  //     this.postdata()
-  //   }
-  // },
-  directives: {
-    hello: {
-      function(){
-        console.log('hello');
-      }
-    }
-  }
+  watch:
 }
 
 </script>
