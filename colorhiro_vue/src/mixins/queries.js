@@ -1,11 +1,9 @@
 var myMixin = {
   methods: {
     fetchdata(url) {
-<<<<<<< HEAD:colorhiro_vue/src/mixins/queries.js
+      HEAD:colorhiro_vue/src/mixins/queries.js
       this.$http.json(url).then(response => {
-=======
-      this.$http.jsonp(url).then(response => {
->>>>>>> devPostScott:colorhiro_vue/src/helpers/queries.js
+
         this.items = response.body;
         console.log(response.body.inspect);
         return response.body;
