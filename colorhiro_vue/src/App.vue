@@ -8,32 +8,49 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
+      <input
+        type="text"
+        v-model="name"
+        v-on:keyup.enter="handleNameInput"
+        placeholder="ex: Peter" />
     <h2>Press Enter!</h2>
   </div>
 </template>
 
 <script>
-import {changeColor}  from './helpers/color.js'
+import {changeColor, changeName}  from './helpers/color.js'
 // import fetchdata from './helpers/queries.js'
-import {tester}       from './helpers/tester.js'
+import {post_data, get_data}       from './helpers/tester.js'
 
 export default {
   name: 'app',
   data: function(){
     return {
-      color: ''
+      color : '',
+      name  : ''
       // color: changeColor()
     }
   },
   methods: {
     handleColorInput: function(ev){
-      let data_out = {color: this.color}
-      return tester(this.$http, data_out)
+      if(this.color){
+        let data_out = {color: this.color}
+        return post_data(this.$http, data_out)
+      }
+    },
+    handleNameInput: function(ev){
+      if(this.name){
+        let data_out = {color: this.color}
+        return post_data(this.$http, data_out)
+      }
     }
   },
   watch: {
     color: function(){
       changeColor()
+    },
+    name: function(){
+      changeName(this.name)
     }
   }
 }
