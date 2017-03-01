@@ -5,10 +5,11 @@
     <input
       type="text"
       style="{ 'color': color }"
-      v-bind:value="color"
-      v-on:keyup = "handleColorChange"
+      v-model="color"
+      v-on:keyup.enter = "handleColorChange"
       placeholder="ex: red" />
-    <h2 :foo='newColor'>{{ foo }}</h2>
+      <!-- v-bind:value="color" -->
+   <!--  <h2 :foo='newColor'>{{ foo }}</h2> -->
     <h2>Press Enter!</h2>
   </div>
 </template>
@@ -17,6 +18,7 @@
 import myColor from './mixins/color.js'
 import myMixin from './mixins/queries.js'
 import {tester} from './helpers/tester.js'
+import {changecolor} from './helpers/tester.js'
 
 export default {
   name: 'app',
@@ -24,8 +26,9 @@ export default {
   data: function(){
     return {
       color: 'blue',
-      newColor: '',
-      color: this.changeColor()
+      newColor: ''
+      // ,
+      // color: this.changeColor()
     }
   },
   methods: {
@@ -36,21 +39,20 @@ export default {
       })
     },
 
-    handleColorChange: function(ev){
-      console.log(this);
-      if (ev.code === "Enter") {
-        this.submit()
-        this.changeColor()
+    handleColorChange: function(){
+      console.log("eventHandler entered");
       }
+    },
+  watch: {
+    handleColorChange: function(newhandleColorChange){
+      sumbit();
+      tester(this.$http, this.session).then(function(json){
+        console.log("sumbited tot he server")
+
+      });
+      this.handleColorChange();
     }
   }
-
-  // watch: {
-  //   color : function(newColor){
-  //     this.sumbit()
-  //     this.changeColor()
-  //   }
-  // }
 }
 
 </script>
