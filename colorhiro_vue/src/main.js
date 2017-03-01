@@ -10,9 +10,13 @@ var vm = new Vue({
   el: '#app',
   router,
   mixins: [queries],
-  data: {foo: 'Foo Bar'},
+  data: {
+    session: {color: '',share_key: ''},
+    hello: 'HELLO'
+  },
+  ready: function() {
+    console.log(this.queries);
+  },
   template: '<App/>',
   components: {App}
 })
-
-console.log(vm);

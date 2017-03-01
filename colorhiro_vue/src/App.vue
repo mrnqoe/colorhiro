@@ -6,26 +6,33 @@
     <input
       type="text"
       style="{ 'color': color }"
-      v-model="color"
-      v-on:keyup.enter="changeColor"
+      v-model="session"
+      v-on:keyup.enter="mksession"
       placeholder="ex: red" />
     <h2>{{ newColor }}</h2>
+    <h1>{{ hello }}</h1>
     <h2>Press Enter!</h2>
   </div>
 </template>
 
 <script>
-import myColor from './mixins/color.js'
-import postdata from './mixins/queries.js'
+// import myColor from './mixins/color.js'
+// import postdata from './mixins/queries.js'
 
 export default {
   name: 'app',
-  mixins: [myColor],
   data: function(){
     return {
-      color: 'blue',
-      newColor: '',
-      color: this.changeColor()
+      color: '',
+      newColor: 'GREEN',
+      color: {share_key: '000000010101'}
+    }
+  },
+  directives: {
+    hello: {
+      function(){
+        console.log('hello');
+      }
     }
   }
 }
