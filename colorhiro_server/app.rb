@@ -23,6 +23,7 @@ class App < Sinatra::Application
   before do
     content_type :json
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+    response['Access-Control-Allow-Origin'] = '*'
   end
 
   set :protection, false
@@ -36,7 +37,6 @@ class App < Sinatra::Application
         body: i.body
       }
     end
-    response['Access-Control-Allow-Origin'] = '*'
     json :posts => postsout
   end
 
