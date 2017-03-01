@@ -14,9 +14,9 @@ var myMixin = {
     },
     postdata() {
       this.$http.post('http://localhost:3000/sessions').then(response => {
-        this.items = response.body;
-        console.log(typeof(response.body));
-        return response.body;
+        this.session = response.json();
+        console.log(response.json());
+        return this.session;
       }).catch(error => {
         return error;
       });

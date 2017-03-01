@@ -25,7 +25,7 @@ export default {
     return {
       color: 'blue',
       newColor: '',
-      color: this.changeColor()
+      color: this.postdata()
     }
   }
 }
