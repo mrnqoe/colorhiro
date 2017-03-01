@@ -1,10 +1,9 @@
 <template>
   <div class="color" :style="{ 'background-color': color }">
-  <h1>Type in a color</h1>
-  <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" />
-  <h2>{{ newColor }}</h2>
-  <h2>Press Enter!</h2>
-
+    <h1>Type in a color</h1>
+    <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" />
+    <h2>{{ newColor }}</h2>
+    <h2>Press Enter!</h2>
   </div>
 </template>
 

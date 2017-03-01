@@ -1,6 +1,5 @@
 <template>
   <div class="hello" msg='INSIDE'>
-    <posts></posts>
   </div>
 </template>
 
