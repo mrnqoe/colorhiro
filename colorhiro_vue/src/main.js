@@ -12,7 +12,7 @@ Vue.component('posts', {
   mixins: [myMixin],
   data: function(){
     return {
-      items: this.fetchdata()
+      items: this.fetchdata('http://localhost:3000/sessions')
     };
   }
 });

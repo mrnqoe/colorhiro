@@ -1,7 +1,7 @@
 <template>
   <div id="app" :style="{ 'background-color': color }">
     <img src="./assets/logo.png">
-    <!-- <router-view></router-view> -->
+    <!--   -->
     <posts></posts>
     <h1>Type in a color</h1>
     <input type="text" style="{ 'color': color }" v-model="color"  v-on:keyup.enter="changeColor" placeholder="ex: red" />
@@ -16,16 +16,13 @@ import postdata from './mixins/queries.js'
 
 export default {
   name: 'app',
-  mixins: [myColor],
+  mixins: [myColor, postdata],
   data: function(){
     return {
       color: 'blue',
       newColor: '',
       color: this.changeColor()
     }
-  },
-  methods: function(){
-    this.$http.post('/api/sessions', JSON.stringify(this))
   }
 }
 
