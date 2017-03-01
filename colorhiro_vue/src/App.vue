@@ -8,7 +8,6 @@
       v-bind:value="color"
       v-on:keyup = "handleColorChange"
       placeholder="ex: red" />
-    <h2 :foo='newColor'>{{ foo }}</h2>
     <h2>Press Enter!</h2>
   </div>
 </template>
