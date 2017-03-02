@@ -4,7 +4,7 @@ import VueResource from   'vue-resource'
 import Hello from         'components/Hello'
 import Room from          'components/Room'
 import Home from          'components/Home'
-import Color from         'components/Color'
+import Spec from         'components/Spec'
 
 
 Vue.use(require('vue-faker'))
@@ -20,23 +20,25 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      props: ['color']
+
     },
     {
       path: '/room/:share_key',
       name: 'room',
       component: Room
-    }
+    },
     // // {
     // //   path: '/posts',
     // //   name: 'Posts',
     // //   props: ['item'],
     // //   component: Posts
     // // },
-    // {
-    //   path: '/color',
-    //   name: 'Color',
-    //   component: Color
-    // }
+    {
+      path: '/spec',
+      name: 'spec',
+      component: Spec
+    }
   ]
 })
