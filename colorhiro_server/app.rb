@@ -1,11 +1,14 @@
 # this has to come first, or settings isn't built up for the bundler call.
 require 'sinatra'
 require 'sinatra/base'
+require 'sinatra-websocket'
 require 'json'
 require 'rubygems'
 require 'sinatra/activerecord'
 require 'faker'
 require './environments'
+
+set :sockets, []
 
 class Post < ActiveRecord::Base
 end
@@ -47,6 +50,18 @@ class App < Sinatra::Application
     json :posts => postsout
   end
 
+  get '/:share_key' do
+    postsout = []
+    @posts = Post.all
+    @posts.each do |i|
+      postsout << {
+        title: i.title,
+        body: i.body
+      }
+    end
+    json :posts => postsout
+  end
+
   post '/users' do
     @data_in = request.params
     User.create!(
@@ -77,7 +92,7 @@ class App < Sinatra::Application
     @data_in = request.params
     puts @data_in
     Session.create!(
-      init_color: @data_in['color']
+      init_color: @data_in['color'],
       admin: @data_in['name']
     )
   end
