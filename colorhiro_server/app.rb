@@ -78,6 +78,7 @@ class App < Sinatra::Application
     puts @data_in
     Session.create!(
       init_color: @data_in['color']
+      admin: @data_in['name']
     )
   end
 
