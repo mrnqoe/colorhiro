@@ -1,18 +1,26 @@
 <template>
-  <div v-if="items" class="posts">
+  <div class="room">
+    <h1>ROOM</h1>
+    <h2>{{ key }}</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'posts'
+  name: 'room',
+  // key: this.$route.params.share_key
+  data: function () {
+    return {
+      key: this.$route.params['share_key']
+    }
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  color: black;
 }
 
 ul {

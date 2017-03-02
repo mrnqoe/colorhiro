@@ -8,7 +8,7 @@ require 'sinatra/activerecord'
 require 'faker'
 require './environments'
 
-set :sockets, []
+# set :sockets, []
 
 class Post < ActiveRecord::Base
 end
@@ -38,28 +38,47 @@ class App < Sinatra::Application
 
   set :protection, false
 
+  # get '/' do
+  #   postsout = []
+  #   @posts = Post.all
+  #   @posts.each do |i|
+  #     postsout << {
+  #       title: i.title,
+  #       body: i.body
+  #     }
+  #   end
+  #   json :posts => postsout
+  # end
+
   get '/' do
-    postsout = []
-    @posts = Post.all
-    @posts.each do |i|
-      postsout << {
-        title: i.title,
-        body: i.body
+    @key = request.params[:share_key]
+    sessions0 = []
+    @sessions = Session.all
+    @sessions.each do |i|
+      sessions0 << {
+        admin: i.admin,
+        share_key: i.share_key,
+        init_color: i.init_color
       }
     end
-    json :posts => postsout
+    json :sessions => sessions0
+    # puts @key
   end
 
   get '/:share_key' do
-    postsout = []
-    @posts = Post.all
-    @posts.each do |i|
-      postsout << {
-        title: i.title,
-        body: i.body
-      }
-    end
-    json :posts => postsout
+    @session = Session.find_by(share_key: params[:share_key])
+    json :sessions => @session
+    # sessions0 = []
+    # @sessions = Session.find(@key)
+    # @sessions.each do |i|
+    #   sessions0 << {
+    #     admin: i.admin,
+    #     share_key: i.share_key,
+    #     init_color: i.init_color
+    #   }
+    # end
+    # json :sessions => sessions0
+    # puts @key
   end
 
   post '/users' do
