@@ -12,7 +12,10 @@ var vm = new Vue({
   router,
   mixins: [myMixins],
   data: {
-    session: {init_color: ''},
+    session: {
+      init_color: '',
+      share_key: ''
+    },
     sessions: []
    },
   template: '<App/>',

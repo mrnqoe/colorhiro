@@ -1,19 +1,38 @@
 <template>
   <div class="room">
     <h1>ROOM</h1>
-    <h2>{{ key }}</h2>
+    <p>import</p>
+    <i  v-show="loading" class="fa fa-spinner fa-spin"></i>
   </div>
 </template>
 
 <script>
+
+import {post_data, get_data}        from '../helpers/queries.js'
+
 export default {
   name: 'room',
-  // key: this.$route.params.share_key
-  data: function () {
+  data: function() {
     return {
-      key: this.$route.params['share_key']
+      loading: false
     }
+  },
+
+  ready: function() {
+    this.loading = true;
+    let data_out = {color: this.color, share_key: this.share_key}
+      get_data(this.$http, {share_key: 'ehCVe5'})
+      console.log(this.$http)
   }
+  // created: function () {
+  //   this.get_data()
+  // },
+  // methods: {
+  //   importShareKey: function(){
+  //       let data_in = {share_key: share_key}
+  //       return get_data(this.$http, data_in)
+  //   }
+  // }
 }
 </script>
 

@@ -6,18 +6,13 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
-    <input
-      type="text"
-      v-model="name"
-      v-on:keyup.enter="handleNameInput"
-      placeholder="ex: Peter" />
     <h2>Press Enter!</h2>
   </div>
 </template>
 
 <script>
 import {changeColor, changeName}    from '../helpers/color.js'
-// import fetchdata from './helpers/queries.js'
+import {generateRandomString}       from '../helpers/share_key.js'
 import {post_data, get_data}        from '../helpers/queries.js'
 
 export default {
@@ -26,19 +21,14 @@ export default {
     return {
       // color : '',
       name  : '',
-      color: changeColor()
+      color: changeColor(),
+      share_key: generateRandomString(6)
     }
   },
   methods: {
     handleColorInput: function(ev){
       if(this.color){
-        let data_out = {color: this.color}
-        return post_data(this.$http, data_out)
-      }
-    },
-    handleNameInput: function(ev){
-      if(this.name){
-        let data_out = {color: this.color}
+        let data_out = {color: this.color, share_key: this.share_key}
         return post_data(this.$http, data_out)
       }
     }
@@ -46,10 +36,10 @@ export default {
   watch: {
     color: function(){
       changeColor(this.color)
-    },
-    name: function(){
-      changeName(this.name)
     }
+    // name: function(){
+    //   changeName(this.name)
+    // }
   }
 }
 
