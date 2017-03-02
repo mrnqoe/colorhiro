@@ -4,14 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
-import myMixins from './mixins/queries.js'
+
 
 
 var vm = new Vue({
 
   el: '#app',
   router,
-  mixins: [myMixins],
   data: {
     session: {init_color: ''},
     sessions: []
