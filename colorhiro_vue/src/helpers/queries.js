@@ -18,8 +18,7 @@ export function post_data(http, data){
   })
 }
 
-export function get_data(http, data){
-  console.log(data);
+export function get_data(http, url){
   new Promise(function(resolve){
     http.get('http://localhost:3000/posts')
       .then(function(response){

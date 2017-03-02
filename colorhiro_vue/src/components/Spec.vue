@@ -1,8 +1,7 @@
 <template>
   <div class="spec">
    <h1> Here is your color specification </h1>
-   <h2>{{ spec.title }}</h2>
-   <p> {{spec.body}}</p>
+   <h2>{{ colors.hex }}</h2>
    <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
   </div>
 </template>
@@ -14,6 +13,7 @@
 import { Slider } from 'vue-color'
 import Home from './Home.vue'
 import {post_data, get_data} from '../helpers/queries.js'
+import {changeColor, changeName}    from '../helpers/color.js'
 
 
 
@@ -51,23 +51,21 @@ export default {
       }
     }
   },
-  created(){
-    this.fetchdata()
+
+  watch: {
+  color: function(){
+    changeColor(this.color)
+
+  }
   },
   methods: {
     onChange: function(val) {
       this.colors = val
     },
-
     fetchColors: function(){
-      this.$http.get('http://localhost:3000/sessions').success(function(theseColors) {
-      this.$data.colors = theseColors;
-      }).error(function(error) {
-      });
-    },
-
-
-}
+      return get_data(this.$http, 'http://localhost:3000/sessions')
+    }
+  }
 }
 
 

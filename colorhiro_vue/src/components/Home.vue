@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { Slider } from 'vue-color'
 import {changeColor, changeName}    from '../helpers/color.js'
 // import fetchdata from './helpers/queries.js'
 import {post_data, get_data}        from '../helpers/queries.js'
@@ -42,6 +43,11 @@ export default {
         return post_data(this.$http, data_out)
       }
     }
+    // ,
+    // save(){
+    //   let colorRef = this.color
+    //   getColorSpecs(vue-color,this.color)
+    // }
   },
   watch: {
     color: function(){
