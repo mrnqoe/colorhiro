@@ -1,6 +1,6 @@
-export function changeColor(){
-  var bgcolor = $('div.color').prop("style");
-  document.querySelector("body").style = bgcolor;
+export function changeColor(color){
+  document.querySelector("body").style.backgroundColor = color;
+  console.log(color);
 }
 
 export function changeName(name){

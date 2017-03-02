@@ -2,7 +2,8 @@ import Vue from           'vue'
 import Router from        'vue-router'
 import VueResource from   'vue-resource'
 import Hello from         'components/Hello'
-import World from         'components/World'
+import Room from          'components/Room'
+import Home from          'components/Home'
 import Color from         'components/Color'
 
 
@@ -18,14 +19,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/room/:share_key',
+      name: 'room',
+      component: Room
     }
-    // {
-    //   path: '/',
-    //   name: 'World',
-    //   component: World
-    // }
     // // {
     // //   path: '/posts',
     // //   name: 'Posts',

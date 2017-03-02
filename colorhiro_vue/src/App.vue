@@ -1,60 +1,12 @@
 <template>
-  <div class="app" :style="{ 'background-color': color }">
-    <img src="./assets/logo.png">
-    <h1>Type in a color</h1>
-    <input
-      type="text"
-      style="{ 'color': color }"
-      v-model="color"
-      v-on:keyup.enter="handleColorInput"
-      placeholder="ex: Lavender blue" />
-      <input
-        type="text"
-        v-model="name"
-        v-on:keyup.enter="handleNameInput"
-        placeholder="ex: Peter" />
-    <h2>Press Enter!</h2>
+  <div class="app">
+    <img id='logo' src="./assets/logo.png">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import {changeColor, changeName}  from './helpers/color.js'
-// import fetchdata from './helpers/queries.js'
-import {post_data, get_data}       from './helpers/tester.js'
-
-export default {
-  name: 'app',
-  data: function(){
-    return {
-      color : '',
-      name  : ''
-      // color: changeColor()
-    }
-  },
-  methods: {
-    handleColorInput: function(ev){
-      if(this.color){
-        let data_out = {color: this.color}
-        return post_data(this.$http, data_out)
-      }
-    },
-    handleNameInput: function(ev){
-      if(this.name){
-        let data_out = {name: this.name}
-        return post_data(this.$http, data_out)
-      }
-    }
-  },
-  watch: {
-    color: function(){
-      changeColor()
-    },
-    name: function(){
-      changeName(this.name)
-    }
-  }
-}
-
+export default {name: 'app'}
 </script>
 
 <style>
@@ -65,6 +17,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#logo{
+  width: 100px;
+  height: 100px;
 }
 
 .color{

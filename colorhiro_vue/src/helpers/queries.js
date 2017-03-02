@@ -1,23 +1,32 @@
-export default function () {
-  methods: {
-      fetchdata(url) {
-        this.$http.get(url).then(response => {
-          this.items = response.body;
-          console.log(response.body.inspect);
-          return response.body;
-        }).catch(error => {
-          return error;
-        });
-      },
-      postdata(url) {
-        this.$http.post(url).then(response => {
-          this.session = response.json();
-          console.log(response.json());
-          return this.session;
-        }).catch(error => {
-          return error;
-        });
-      }
-    }
-  }
-};
+export function post_data(http, data){
+  console.log(data);
+  new Promise(function(resolve){
+    http.post('http://localhost:3000/sessions', data, {
+       emulateJSON: true
+     })
+      .then(function(response){
+        console.log(response);
+        return response.json()
+      })
+      .then(function(json) {
+        resolve(json);
+        console.log("Event added!");
+      }).catch(function(error) {
+        return error
+      console.log(error);
+    })
+  })
+}
+
+export function get_data(http, data){
+  console.log(data);
+  new Promise(function(resolve){
+    http.get('http://localhost:3000/posts')
+      .then(function(response){
+        return response.body
+      }).catch(function(error) {
+        return error
+      console.log(error);
+    })
+  })
+}
