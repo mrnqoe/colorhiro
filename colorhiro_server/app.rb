@@ -45,14 +45,12 @@ class App < Sinatra::Application
 
   # MAKE THIS PRIVATE AND AUTHENTICATED
   get '/' do
-    @key = request.params[:share_key]
     rooms = []
     @rooms = Room.all
     @rooms.each do |i|
       rooms << {
         admin: i.admin,
-        share_key: i.share_key,
-        init_color: i.init_color
+        key: i.key
       }
     end
     json :rooms => rooms
@@ -60,7 +58,7 @@ class App < Sinatra::Application
 
   # MAKE THIS SECUURE
   get '/room/:share_key' do
-    @room = Room.find_by(share_key: params[:share_key])
+    @room = Room.find_by(key: params[:share_key])
     json :room => @room
   end
 
@@ -74,7 +72,7 @@ class App < Sinatra::Application
     json :room => @room
   end
 
-  post '/color' do
+  post '/user' do
     @data_in = request.params
     puts @data_in
     @color = User.create!(
@@ -84,14 +82,15 @@ class App < Sinatra::Application
     json :color => @color
   end
 
-  get '/color' do
-    @data_in = request.params
-    puts @data_in
-    @color = User.create!(
-      color: @data_in['color'],
-      name: @data_in['name']
-    )
-    json :color => @color
+  get '/color/:name' do
+    @data_in = params[:name]
+    @color = Color.where("name LIKE ?", @data_in)
+    if (@color == nil)
+      json :color => Color.all
+    else
+      json :color => @color
+    end
+    # @color = Color.all
   end
 
 end

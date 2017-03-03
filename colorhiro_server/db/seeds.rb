@@ -23,7 +23,7 @@ end
 Room.destroy_all
 (0..100).each do |n|
   @admin = Faker::StarWars.droid
-  @share_key = Faker::Crypto.sha256
+  @key = Faker::Crypto.sha256
   Room.create!(
     key: @key,
     admin: @admin
