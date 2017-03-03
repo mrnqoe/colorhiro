@@ -54,7 +54,7 @@ class App < Sinatra::Application
         init_color: i.init_color
       }
     end
-    json :rooms => rooms
+    json :rooms => @rooms
   end
 
   get '/room/:share_key' do
@@ -65,9 +65,9 @@ class App < Sinatra::Application
   post '/room' do
     @data_in = request.params
     puts @data_in
-    Room.create!(
-      init_color: @data_in['color'],
-      admin: @data_in['name']
+    @room = Room.create!(
+      key: @data_in['share_key'],
+      admin: @data_in['admin']
     )
     json :room => @room
   end
