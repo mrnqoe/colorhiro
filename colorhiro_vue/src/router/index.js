@@ -4,16 +4,14 @@ import VueResource from   'vue-resource'
 import Hello from         'components/Hello'
 import Room from          'components/Room'
 import Home from          'components/Home'
-import Spec from         'components/Spec'
+import Spec from          'components/Spec'
 
+var VueMaterial = require('vue-material')
 
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)
 Vue.use(Router)
-// Hello.paramAttributes = ['foo', 'bar']
-// Hello.data = function(){
-//   return {message: 'bar'}
-// }
+Vue.use(VueMaterial)
 
 export default new Router({
   routes: [
