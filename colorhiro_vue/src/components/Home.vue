@@ -18,9 +18,10 @@
 </template>
 
 <script>
-import { Slider }                               from 'vue-color'
+import { Swatches }                               from 'vue-color'
 import { Material }                             from 'vue-color'
-import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
+import { Slider } from 'vue-color'
+import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
