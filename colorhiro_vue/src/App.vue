@@ -34,13 +34,13 @@ export default {
 
 }
 
-.home{
+/*.home{
   text-align: center;
 }
 
 .spec{
   text-align: center;
-}
+}*/
 
 h1{
   font-weight: bold;
@@ -60,11 +60,10 @@ h2{
   padding: 1em 5em;
 }
 
-.spec .vue-color__material{
+.spec .col-xs-6 .col-md-6 .text-center .vue-color__swatches{
   position: relative;
   width: auto;
-  padding: 1em 5em;
-  text-align: center;
+  height: auto;
 }
 
 ul {

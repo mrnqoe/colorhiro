@@ -1,17 +1,19 @@
 <template>
   <main>
     <div class="home row">
-      <div class="col-xs-12 col-md-12">Type in a color</div>
+      <div class="col-xs-12 col-md-12 text-center">
+        <h1>Type in a color</h1>
+      </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-12">
+      <div class="col-xs-12 col-md-12 text-center">
         <input
           type="text"
           v-model="color"
           v-on:keyup.enter="handleColorInput"
           placeholder="ex: Lavender blue" />
 
-          <h2>Press Enter!</h2>
+          <h3>Press Enter!</h3>
       </div>
     </div>
     <spec v-if="test" v-bind:colorCode="color"></spec>

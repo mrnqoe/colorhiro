@@ -2,23 +2,21 @@
   <div class="spec">
     <div class="row">
       <div class="col-xs-6 col-md-6">
-        <h1> Here is your color specification </h1>
-        <h1>Color Name: {{ colorName }}  Hex code: {{ colorHex }}</h1>
-        <br><br><br><br>
-        <h2>If you wish to see other colors sepcs {{ colors.hex }} </h2>
-      </div>
-      <div class="col-xs-6 col-md-6">
-        <material-picker v-model="colors" @change-color="onChange"></material-picker>
+        <h3> Here is your color specification </h3>
+        <h3>Color Name: {{ colorName }}  Hex code: {{ colorHex }}</h3>
         <br><br>
-        <h2> More colors with names {{ colorsName }}</h2>
+        <h3>If you wish to see other colors sepcs {{ colors.hex }} </h3>
+      </div>
+      <div class="col-xs-6 col-md-6 text-center">
+        <h3> More colors with names {{ colorsName }}</h3>
         <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
         <br><br>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-12">
+      <div class="col-xs-12 col-md-12 text-center">
         <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
-        <p> If you wish to share your favourite color with amigos here is your link! </p>
+        <h4> If you wish to share your favourite color with amigos here is your link! </h4>
       </div>
     </div>
   </div>
@@ -96,6 +94,29 @@ export default {
 </script>
 
 <style>
+
+.spec .vue-color__slider{
+  position: relative;
+  width: auto;
+  padding: 1em 5em;
+  box-shadow: 0;
+}
+
+.spec .vue-color__swatches{
+  position: relative;
+  width: auto;
+  height: auto;
+  background-color: rgba(0, 0, 0, .12);
+}
+
+.spec .vue-color__slider__hue-warp{
+  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
+}
+
+.spec .vue-color__slider__swatch{
+  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
+}
+
 /*
 .color{
   padding: 3em;
