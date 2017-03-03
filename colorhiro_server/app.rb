@@ -84,4 +84,14 @@ class App < Sinatra::Application
     json :color => @color
   end
 
+  get '/color' do
+    @data_in = request.params
+    puts @data_in
+    @color = User.create!(
+      color: @data_in['color'],
+      name: @data_in['name']
+    )
+    json :color => @color
+  end
+
 end
