@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="home" >
+  <!-- <transition-group name="fade"> -->
     <h1>Type in a color</h1>
     <div>
     <md-spinner :md-size="20" md-indeterminate class="md-accent"></md-spinner>
@@ -9,20 +10,19 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
-    <h2>Press Enter!</h2>
+    <button v-on:click="show = !show"> Submmit </button>
+    <!-- </transition-group> -->
     <spec v-if="test" v-bind:colorCode="color"></spec>
   </div>
 </template>
 
 <script>
-import { Swatches }                               from 'vue-color'
-import { Material }                             from 'vue-color'
+import { Swatches, Material, Slider }           from 'vue-color'
 import {generateRandomString}                   from '../helpers/share_key.js'
-import { Slider } from 'vue-color'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
-import Materials from     'vue-materials'
+
 
 export default {
   name: 'home',
@@ -31,11 +31,12 @@ export default {
   },
   data: function(){
     return {
-      // color : '',
       name  : '',
       color: changeColor(),
       test: false,
-      colorCode: ''
+      show: true,
+      colorCode: '',
+      submit: "Press Enter!"
     }
   },
   methods: {
@@ -44,7 +45,7 @@ export default {
         let data_out = {color: this.color}
         this.test = true
         this.colorCode = colorToHex(this.color)
-      // console.log(colorToHex(this.color))
+        this.submit = ''
         return post_data(this.$http, data_out)
       }
     },
@@ -68,6 +69,13 @@ export default {
 </script>
 
 <style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
