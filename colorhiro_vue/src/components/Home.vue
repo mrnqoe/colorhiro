@@ -19,10 +19,11 @@
 </template>
 
 <script>
-import { Slider }                               from 'vue-color'
+import { Swatches }                               from 'vue-color'
 import { Material }                             from 'vue-color'
-import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
 import {generateRandomString}                   from '../helpers/share_key.js'
+import { Slider } from 'vue-color'
+import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
 
@@ -45,7 +46,7 @@ export default {
       if(this.color){
         let data_out = {color: this.color}
         this.test = true
-        this.colorCode = this.color
+        this.colorCode = colorToHex(this.color)
       // console.log(colorToHex(this.color))
         return post_data(this.$http, data_out)
       }

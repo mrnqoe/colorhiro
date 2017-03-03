@@ -40,3 +40,114 @@ export function colorToHex(color){
 }
 
 
+export function hexToColor(hexcode){
+
+
+  var colors = {
+"B71C1C": "Chilli Pepper",
+"D32F2F": "Lava Red",
+"F44336": "Grapefruit",
+"E57373": "Valentine Red",
+"FFCDD2": "Flamingo Pink",
+"880E4F": "Plum Velvet",
+"C2185B": "Burn Pink",
+"E91E63": "Pink Lemonade",
+"F06292": "Pink Cupcake",
+"F8BBD0": "Cadillac Pink",
+"4A148C": "Indigo",
+"7B1FA2": "Dark Orchid",
+"9C27B0": "Dark magenta",
+"BA68C8": "Purple Flower",
+"E1BEE7": "Mauve",
+"311B92": "Dark blue",
+"512DA8": "Pueple Haze",
+"673AB7": "Violet",
+"9575CD": "Medium Purple",
+"D1C4E9": "Periwinkle",
+"1A237E": "Dark blue",
+"303F9F": "Blue Whale",
+"3F51B5": "Free Speech Blue",
+"7986CB": "Wild Blue Yonder",
+"C5CAE9": "Slate BLue",
+"0D47A1": "Lapis Blue",
+"1976D2": "Shapphire Blue",
+"2196F3": "Dodger BLue",
+"64B5F6": "Maya Blue",
+"BBDEFB": "Pale Cornflower Blue",
+"827717": "Pesto",
+"AFB42B": "Acovado Green",
+"CDDC39": "Pistachio Green",
+"DCE775": "Mindaro",
+"F0F4C3": "Saltpan",
+"33691E": "Green House",
+"689F38": "Seaweed Green",
+"8BC34A": "Atlantis",
+"AED581": "Feijoa",
+"DCEDC8": "Frog Green",
+"1B5E20": "San Felix",
+"388E3C": "Japanese Laurel",
+"4CAF50": "Fruit Salad",
+"81C784": "De York",
+"C8E6C9": "Granny Apple",
+"B2DFDB": "Scandal",
+"4DB6AC": "Puerto Rico",
+"009688": "Dark Cyan",
+"00796B": "Pine Green",
+"004D40": "Cyprus",
+"006064": "Mosque",
+"0097A7": "Bondi Blue",
+"00BCD4": "Iris Blue",
+"4DD0E1": "Medium Turquoise",
+"B2EBF2": "Pale Turquoise",
+"B3E5FC": "Columbia Blue",
+"4FC3F7": "Malibu",
+"03A9F4": "Deep Sky Blue",
+"0288D1": "Pacific BLue",
+"01579B": "Cobalt",
+"F57F17": "Pumpkin",
+"FBC02D": "Saffron",
+"FFEB3B": "Gorse",
+"FFF176": "Witch Haze",
+"FFF9C4": "Lemon Chiffon",
+"FF6F00": "Safety Orange",
+"FFC107": "Amber",
+"FFD54F": "Kournikova",
+"FFECB3": "Banana Mania",
+"E65100": "Persimmon",
+"F57C00": "Tangerine",
+"FF9800": "Orange Peel",
+"FFB74D": "Koromiko",
+"FFE0B2": "Navajo White",
+"FFCCBC": "Your Pink",
+"FF8A65": "Atomic Tangerine",
+"FF5722": "Outrageous Orange",
+"E64A19": "Cinnabar",
+"BF360C": "Harley Davidson Orange",
+"3E2723": "Brown Pod",
+"5D4037": "Very Dark Brown",
+"795548": "Ironstone",
+"A1887F": "Almond Frost",
+"D7CCC8": "Swiss Coffee",
+"263238": "Oxford Blue",
+"455A64": "San Juan",
+"607D8B": "Hoki",
+"90A4AE": "Botticelli",
+"CFD8DC": "Pattens Blue"
+
+};
+
+    // for (var colorName in colors){
+      console.log(colors[hexcode.slice(1)], hexcode.slice(1));
+    //   if (colors[colorName] == hexcode.toLowerCase()){
+
+
+    //     return colorName;
+    //   }
+    // }
+
+  if (typeof colors[hexcode.slice(1)] != 'undefined')
+      return colors[hexcode.slice(1)];
+
+  return false;
+}
+

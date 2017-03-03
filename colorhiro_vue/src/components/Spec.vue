@@ -1,53 +1,56 @@
 <template>
-
   <div class="spec">
     <div class="row">
       <div class="col-xs-6 col-md-6">
-       <h1> Here is your color specification </h1>
-       <h2>{{ colors.hex }}</h2>
-       <h1>{{ colorname }}</h1>
+        <h1> Here is your color specification </h1>
+        <h1>Color Name: {{ colorName }}  Hex code: {{ colorHex }}</h1>
+        <br><br><br><br>
+        <h2>If you wish to see other colors sepcs {{ colors.hex }} </h2>
       </div>
       <div class="col-xs-6 col-md-6">
         <material-picker v-model="colors" @change-color="onChange"></material-picker>
+        <br><br>
+        <h2> More colors with names {{ colorsName }}</h2>
+        <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+        <br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-12">
         <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+        <p> If you wish to share your favourite color with amigos here is your link! </p>
       </div>
     </div>
   </div>
-
 </template>
 
-
-
-
 <script>
+import { Swatches } from 'vue-color'
 import { Slider } from 'vue-color'
 import { Material } from 'vue-color'
 import Home from './Home.vue'
 import {post_data, get_data} from '../helpers/queries.js'
-import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
+import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import ntc from '../helpers/ntc.js'
-
-
 
 export default {
 
   name: 'spec',
   props: ['colorCode'],
   components: {
-    'slider-picker': Slider,
+    'swatches-picker': Swatches,
     'material-picker': Material,
+    'slider-picker': Slider
   },
 
   data: function(){
     return {
-      colorname: this.colorCode,
+      colorName: this.colorCode,
+      colorHex: colorToHex(this.colorCode),
+
       colors: {
         // hex: this.colorCode,
-        hex: '#194d33',
+        hex: colorToHex(this.colorCode),
         hsl: {
           h: 150,
           s: 0.5,
@@ -68,11 +71,13 @@ export default {
         },
         a: 1
       },
+      colorsName: ''
     }
   },
 
   watch: {
     colors: function(newColor){
+      this.colorsName = hexToColor(newColor.hex)
       console.log("i'm watching")
 
     }
