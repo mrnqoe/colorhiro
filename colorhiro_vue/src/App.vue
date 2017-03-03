@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+
     <router-view></router-view>
   </div>
 </template>
@@ -34,16 +35,38 @@ export default {
 
 }
 
+.home{
+  text-align: center;
+}
+
+.spec{
+  text-align: center;
+}
+
 h1{
   font-weight: bold;
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.2px;
+  text-align: center;
 }
 h2{
   font-weight: bold;
   color: white;
+  text-align: center;
 }
 
+.spec .vue-color__slider{
+  position: relative;
+  width: auto;
+  padding: 1em 5em;
+}
+
+.spec .vue-color__material{
+  position: relative;
+  width: auto;
+  padding: 1em 5em;
+  text-align: center;
+}
 
 ul {
   list-style-type: none;
@@ -65,4 +88,3 @@ input {
   border-style: black;
 
 }
-</style>

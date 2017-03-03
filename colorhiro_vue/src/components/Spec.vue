@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style>
-
+/*
 .color{
   padding: 3em;
   border-style: black 1em;
@@ -122,6 +122,6 @@ input {
   background:white;
   border-style: black;
 
-}
+}*/
 
 </style>

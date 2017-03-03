@@ -1,8 +1,10 @@
 <template>
   <div class="home input-field">
     <h1>Type in a color</h1>
-    <v-text-input
-      id="color"
+    <div>
+    <md-spinner :md-size="20" md-indeterminate class="md-accent"></md-spinner>
+    </div>
+    <input
       type="text"
       v-model="color"
       v-on:keyup.enter="handleColorInput"
@@ -20,6 +22,7 @@ import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
 import {generateRandomString}                   from '../helpers/share_key.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
+import Materials from     'vue-materials'
 
 export default {
   name: 'home',
