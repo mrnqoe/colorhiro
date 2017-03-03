@@ -13,7 +13,7 @@
       v-on:keyup.enter="handleNameInput"
       placeholder="ex: Peter" />
     <h2>Press Enter!</h2>
-    <spec v-if="test" v-bind:color="colorCode"></spec>
+    <spec v-if="test" v-bind:colorCode="color"></spec>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
       if(this.color){
         let data_out = {color: this.color}
         this.test = true
-        this.colorCode = this.color
+        this.colorCode = colorToHex(this.color)
       // console.log(colorToHex(this.color))
         return post_data(this.$http, data_out)
       }

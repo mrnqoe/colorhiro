@@ -1,19 +1,12 @@
 <template>
-
   <div class="spec">
    <h1> Here is your color specification </h1>
-
    <h2>{{ colors.hex }}</h2>
    <h1>{{ colorname }}</h1>
    <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
    <material-picker v-model="colors" @change-color="onChange"></material-picker>
-
   </div>
-
 </template>
-
-
-
 
 <script>
 import { Slider } from 'vue-color'
@@ -22,8 +15,6 @@ import Home from './Home.vue'
 import {post_data, get_data} from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
 import ntc from '../helpers/ntc.js'
-
-
 
 export default {
 
@@ -36,10 +27,10 @@ export default {
 
   data: function(){
     return {
-      colorname: this.colorCode,
+      colorname: colorToHex(this.colorCode),
       colors: {
         // hex: this.colorCode,
-        hex: '#194d33',
+        hex: this.colorCode,
         hsl: {
           h: 150,
           s: 0.5,
