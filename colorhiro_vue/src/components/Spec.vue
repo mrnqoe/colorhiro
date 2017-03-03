@@ -74,10 +74,10 @@ export default {
   created: function(){
     console.log("ready to load")
     var _this = this
-    unsplash.search.photos(this.colorCode, 1)
+    unsplash.search.photos(this.colorCode, 1, 4)
       .then(toJson)
       .then(json => {
-        _this.unsplashPhotos = json
+        _this.unsplashPhotos = json.results
         console.log("yes")
         // Your code
       });
