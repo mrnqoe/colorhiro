@@ -25,12 +25,10 @@ import {post_data, get_data}              from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import ntc                                from '../helpers/ntc.js'
 import Unsplash, { toJson }               from 'unsplash-js'
+import { unsplashCred } from '../helpers/variable.js'
 
-const unsplash = new Unsplash({
-  applicationId: "174b7819cd507924a5a49d38b70be3d5cc1ef8f0d44b8caa62fee58ce00cea4a",
-  secret: "55bd0f46b2f94b608b0ef8ecd06c1d0c55da8fbe09865e87676ef81e3bfad249",
-  callbackUrl: "{CALLBACK_URL}"
-});
+
+const unsplash = new Unsplash(unsplashCred());
 
 export default {
 
