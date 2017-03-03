@@ -1,11 +1,13 @@
 <template>
-  <div class="home">
+  <div class="home input-field">
     <h1>Type in a color</h1>
-    <input
+    <v-text-input
+      id="color"
       type="text"
       v-model="color"
       v-on:keyup.enter="handleColorInput"
-      placeholder="ex: Lavender blue" />
+      placeholder="ex: Lavender blue" /></v-text-input>
+      <label for="color">Type a Color</label>
     <h2>Press Enter!</h2>
     <spec v-if="test" v-bind:colorCode="color"></spec>
   </div>
