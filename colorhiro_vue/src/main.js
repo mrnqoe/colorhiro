@@ -12,7 +12,10 @@ var vm = new Vue({
   el: '#app',
   router,
   data: {
-    session: {init_color: ''},
+    session: {
+      init_color: '',
+      share_key: ''
+    },
     sessions: []
    },
   template: '<App/>',

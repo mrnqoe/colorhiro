@@ -9,16 +9,6 @@ Post.destroy_all
 end
 
 Session.destroy_all
-(0..100).each do |n|
-  @init_color = Faker::Color.hex_color
-  @admin = Faker::StarWars.droid
-  @share_key = Faker::Crypto.sha256
-  Session.create!(
-    share_key: @share_key,
-    admin: @admin,
-    init_color: @init_color
-  )
-end
 
 User.destroy_all
 (0..100).each do |n|
@@ -27,5 +17,15 @@ User.destroy_all
   User.create!(
     name: @name,
     user_color: @color
+  )
+end
+
+Room.destroy_all
+(0..100).each do |n|
+  @admin = Faker::StarWars.droid
+  @share_key = Faker::Crypto.sha256
+  Room.create!(
+    key: @share_key,
+    admin: @admin
   )
 end

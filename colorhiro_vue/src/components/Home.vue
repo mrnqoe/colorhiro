@@ -6,12 +6,6 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
-
-    <input
-      type="text"
-      v-model="name"
-      v-on:keyup.enter="handleNameInput"
-      placeholder="ex: Peter" />
     <h2>Press Enter!</h2>
     <spec v-if="test" v-bind:color="colorCode"></spec>
   </div>
@@ -21,10 +15,9 @@
 import { Slider }                               from 'vue-color'
 import { Material }                             from 'vue-color'
 import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
-
+import {generateRandomString}       from '../helpers/share_key.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
-
 
 export default {
   name: 'home',
@@ -38,7 +31,6 @@ export default {
       color: changeColor(),
       test: false,
       colorCode: ''
-
     }
   },
   methods: {
@@ -61,10 +53,10 @@ export default {
   watch: {
     color: function(){
       changeColor(this.color)
-    },
-    name: function(){
-      changeName(this.name)
     }
+    // name: function(){
+    //   changeName(this.name)
+    // }
   }
 }
 

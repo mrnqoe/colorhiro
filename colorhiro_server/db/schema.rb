@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20170227234431) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.string   "key"
+    t.string   "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string   "share_key"
     t.string   "init_color"
@@ -28,12 +35,12 @@ ActiveRecord::Schema.define(version: 20170227234431) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "sessions_id"
+    t.integer  "rooms_id"
     t.string   "user_color"
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["sessions_id"], name: "index_users_on_sessions_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rooms_id"], name: "index_users_on_rooms_id"
   end
 
 end
