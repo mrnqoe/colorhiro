@@ -1,6 +1,7 @@
 <template>
   <div class="home" >
-  <!-- <transition-group name="fade"> -->
+  <transition name="fade">
+  <div v-if="show">
     <h1>Type in a color</h1>
     <div>
     <md-spinner :md-size="20" md-indeterminate class="md-accent"></md-spinner>
@@ -10,8 +11,9 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
-    <button v-on:click="show = !show"> Submmit </button>
-    <!-- </transition-group> -->
+    <!-- <button v-on:click="show = !show"> Submmit </button> -->
+    </div>
+    </transition>
     <spec v-if="test" v-bind:colorCode="color"></spec>
   </div>
 </template>
@@ -46,6 +48,7 @@ export default {
         this.test = true
         this.colorCode = colorToHex(this.color)
         this.submit = ''
+        this.show = false
         return post_data(this.$http, data_out)
       }
     },

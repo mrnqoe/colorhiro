@@ -12,6 +12,9 @@
     {{ colorsName }}
       <br><br>
       <p> If you wish to share your favourite color with amigos here is your link! </p>
+      <br><br>
+      <h1> Photos from Unsplash </h1>
+      {{ unsplashPhotos }}
   </div>
 </template>
 
@@ -21,6 +24,13 @@ import Home                               from './Home.vue'
 import {post_data, get_data}              from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import ntc                                from '../helpers/ntc.js'
+import Unsplash, { toJson }               from 'unsplash-js'
+
+const unsplash = new Unsplash({
+  applicationId: "174b7819cd507924a5a49d38b70be3d5cc1ef8f0d44b8caa62fee58ce00cea4a",
+  secret: "55bd0f46b2f94b608b0ef8ecd06c1d0c55da8fbe09865e87676ef81e3bfad249",
+  callbackUrl: "{CALLBACK_URL}"
+});
 
 export default {
 
@@ -36,7 +46,7 @@ export default {
     return {
       colorName: this.colorCode,
       colorHex: colorToHex(this.colorCode),
-
+      unsplashPhotos: [],
       colors: {
         // hex: this.colorCode,
         hex: colorToHex(this.colorCode),
@@ -62,6 +72,17 @@ export default {
       },
       colorsName: ''
     }
+  },
+  created: function(){
+    console.log("ready to load")
+    var _this = this
+    unsplash.search.photos(this.colorCode, 1)
+      .then(toJson)
+      .then(json => {
+        _this.unsplashPhotos = json
+        console.log("yes")
+        // Your code
+      });
   },
 
   watch: {
