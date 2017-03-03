@@ -9,6 +9,8 @@ require 'faker'
 require './environments'
 
 # set :sockets, []
+class Room < ActiveRecord::Base
+end
 
 class Post < ActiveRecord::Base
 end
@@ -38,47 +40,24 @@ class App < Sinatra::Application
 
   set :protection, false
 
-  # get '/' do
-  #   postsout = []
-  #   @posts = Post.all
-  #   @posts.each do |i|
-  #     postsout << {
-  #       title: i.title,
-  #       body: i.body
-  #     }
-  #   end
-  #   json :posts => postsout
-  # end
-
   get '/' do
     @key = request.params[:share_key]
-    sessions0 = []
-    @sessions = Session.all
-    @sessions.each do |i|
-      sessions0 << {
+    rooms0 = []
+    @rooms = Room.all
+    @rooms.each do |i|
+      rooms0 << {
         admin: i.admin,
         share_key: i.share_key,
         init_color: i.init_color
       }
     end
-    json :sessions => sessions0
+    json :rooms => rooms0
     # puts @key
   end
 
   get '/:share_key' do
-    @session = Session.find_by(share_key: params[:share_key])
-    json :sessions => @session
-    # sessions0 = []
-    # @sessions = Session.find(@key)
-    # @sessions.each do |i|
-    #   sessions0 << {
-    #     admin: i.admin,
-    #     share_key: i.share_key,
-    #     init_color: i.init_color
-    #   }
-    # end
-    # json :sessions => sessions0
-    # puts @key
+    @session = Room.find_by(share_key: params[:share_key])
+    json :rooms => @session
   end
 
   post '/users' do
@@ -86,7 +65,7 @@ class App < Sinatra::Application
     User.create!(
       user_color: @data_in['color'],
       name: @data_in['color'],
-      sessions_id: @data_in['name']
+      rooms_id: @data_in['name']
     )
 
     @user = User.last
@@ -96,21 +75,21 @@ class App < Sinatra::Application
 
   end
 
-  get '/sessions' do
+  get '/rooms' do
     @data_in = request.params
-    Session.create!(
+    Room.create!(
       share_key: @data_in['key'],
       admin: @data_in['admin'],
       init_color: @data_in['color']
     )
-    @session = Session.last
+    @session = Room.last
     json :posts => postsout
   end
 
-  post '/sessions' do
+  post '/rooms' do
     @data_in = request.params
     puts @data_in
-    Session.create!(
+    Room.create!(
       init_color: @data_in['color'],
       admin: @data_in['name']
     )
