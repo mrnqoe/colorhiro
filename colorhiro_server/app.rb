@@ -21,6 +21,9 @@ end
 class User < ActiveRecord::Base
 end
 
+class Color < ActiveRecord::Base
+end
+
 class App < Sinatra::Application
 
   before do
@@ -55,17 +58,28 @@ class App < Sinatra::Application
   end
 
   get '/room/:share_key' do
-    @session = Room.find_by(share_key: params[:share_key])
-    json :rooms => @session
+    @room = Room.find_by(share_key: params[:share_key])
+    json :room => @room
   end
 
-  post '/rooms' do
+  post '/room' do
     @data_in = request.params
     puts @data_in
     Room.create!(
       init_color: @data_in['color'],
       admin: @data_in['name']
     )
+    json :room => @room
+  end
+
+  post '/color' do
+    @data_in = request.params
+    puts @data_in
+    @color = Color.create!(
+      init_color: @data_in['color'],
+      admin: @data_in['name']
+    )
+    json :color => @color
   end
 
 end
