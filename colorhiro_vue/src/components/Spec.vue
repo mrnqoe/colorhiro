@@ -1,13 +1,21 @@
 <template>
 
   <div class="spec">
-   <h1> Here is your color specification </h1>
-
-   <h2>{{ colors.hex }}</h2>
-   <h1>{{ colorname }}</h1>
-   <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
-   <material-picker v-model="colors" @change-color="onChange"></material-picker>
-
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+       <h1> Here is your color specification </h1>
+       <h2>{{ colors.hex }}</h2>
+       <h1>{{ colorname }}</h1>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <material-picker v-model="colors" @change-color="onChange"></material-picker>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+      </div>
+    </div>
   </div>
 
 </template>

@@ -1,17 +1,21 @@
 <template>
-  <div class="home">
-    <h1>Type in a color</h1>
-    <div>
-    <md-spinner :md-size="20" md-indeterminate class="md-accent"></md-spinner>
+  <main>
+    <div class="home row">
+      <div class="col-xs-12 col-md-12">Type in a color</div>
     </div>
-    <input
-      type="text"
-      v-model="color"
-      v-on:keyup.enter="handleColorInput"
-      placeholder="ex: Lavender blue" />
-    <h2>Press Enter!</h2>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <input
+          type="text"
+          v-model="color"
+          v-on:keyup.enter="handleColorInput"
+          placeholder="ex: Lavender blue" />
+
+          <h2>Press Enter!</h2>
+      </div>
+    </div>
     <spec v-if="test" v-bind:colorCode="color"></spec>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -21,7 +25,6 @@ import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
 import {generateRandomString}                   from '../helpers/share_key.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
-import Materials from     'vue-materials'
 
 export default {
   name: 'home',
