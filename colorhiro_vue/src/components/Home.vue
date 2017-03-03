@@ -7,7 +7,7 @@
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
     <h2>Press Enter!</h2>
-    <spec v-if="test" v-bind:color="colorCode"></spec>
+    <spec v-if="test" v-bind:colorCode="color"></spec>
   </div>
 </template>
 
@@ -15,7 +15,7 @@
 import { Slider }                               from 'vue-color'
 import { Material }                             from 'vue-color'
 import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
-import {generateRandomString}       from '../helpers/share_key.js'
+import {generateRandomString}                   from '../helpers/share_key.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
 
