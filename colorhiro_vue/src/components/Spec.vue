@@ -1,9 +1,15 @@
 <template>
+
   <div class="spec">
    <h1> Here is your color specification </h1>
+
    <h2>{{ colors.hex }}</h2>
+   <h1>{{ colorname }}</h1>
    <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+   <material-picker v-model="colors" @change-color="onChange"></material-picker>
+
   </div>
+
 </template>
 
 
@@ -11,23 +17,28 @@
 
 <script>
 import { Slider } from 'vue-color'
+import { Material } from 'vue-color'
 import Home from './Home.vue'
 import {post_data, get_data} from '../helpers/queries.js'
-import {changeColor, changeName}    from '../helpers/color.js'
+import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
+import ntc from '../helpers/ntc.js'
 
 
 
 export default {
-  name: 'spec',
 
+  name: 'spec',
+  props: ['colorCode'],
   components: {
-    'slider-picker': Slider
+    'slider-picker': Slider,
+    'material-picker': Material,
   },
 
   data: function(){
     return {
-      msg : {},
+      colorname: this.colorCode,
       colors: {
+        // hex: this.colorCode,
         hex: '#194d33',
         hsl: {
           h: 150,
@@ -48,22 +59,22 @@ export default {
           a: 1
         },
         a: 1
-      }
+      },
     }
   },
 
   watch: {
-  color: function(){
-    changeColor(this.color)
+    colors: function(newColor){
+      console.log("i'm watching")
 
-  }
+    }
   },
   methods: {
     onChange: function(val) {
       this.colors = val
     },
     fetchColors: function(){
-      return get_data(this.$http, 'http://localhost:3000/sessions')
+      return get_data(this.$http, 'http://localhost:3000/')
     }
   }
 }
@@ -87,7 +98,7 @@ h1{
 }
 h2{
   font-weight: bold;
-  color: white;
+  color: black;
 }
 
 

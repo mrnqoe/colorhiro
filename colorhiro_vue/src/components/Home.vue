@@ -6,34 +6,48 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
+
     <input
       type="text"
       v-model="name"
       v-on:keyup.enter="handleNameInput"
       placeholder="ex: Peter" />
     <h2>Press Enter!</h2>
+    <spec v-if="test" v-bind:color="colorCode"></spec>
   </div>
 </template>
 
 <script>
-import { Slider } from 'vue-color'
-import {changeColor, changeName}    from '../helpers/color.js'
-// import fetchdata from './helpers/queries.js'
-import {post_data, get_data}        from '../helpers/queries.js'
+import { Slider }                               from 'vue-color'
+import { Material }                             from 'vue-color'
+import {changeColor, changeName, colorToHex}    from '../helpers/color.js'
+
+import {post_data, get_data}                    from '../helpers/queries.js'
+import spec                                     from './Spec.vue'
+
 
 export default {
   name: 'home',
+  components: {
+    'spec' : spec
+  },
   data: function(){
     return {
       // color : '',
       name  : '',
-      color: changeColor()
+      color: changeColor(),
+      test: false,
+      colorCode: ''
+
     }
   },
   methods: {
     handleColorInput: function(ev){
       if(this.color){
         let data_out = {color: this.color}
+        this.test = true
+        this.colorCode = this.color
+      // console.log(colorToHex(this.color))
         return post_data(this.$http, data_out)
       }
     },
@@ -43,11 +57,6 @@ export default {
         return post_data(this.$http, data_out)
       }
     }
-    // ,
-    // save(){
-    //   let colorRef = this.color
-    //   getColorSpecs(vue-color,this.color)
-    // }
   },
   watch: {
     color: function(){

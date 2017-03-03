@@ -38,6 +38,7 @@ export default new Router({
       path: '/spec',
       name: 'spec',
       component: Spec
+
     }
   ]
 })
