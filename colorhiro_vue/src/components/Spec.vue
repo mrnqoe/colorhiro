@@ -95,7 +95,10 @@ export default {
       this.colors = val
     },
     fetchColors: function(){
-      return get_data(this.$http, 'http://localhost:3000/')
+      var url = "localhost:3000/color";
+      return colorToHex(this.colorCode,()=>{
+       get_data(this.$http, url, this.colorCode)
+      })
     }
   }
 }
