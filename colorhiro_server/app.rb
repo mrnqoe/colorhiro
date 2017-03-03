@@ -87,7 +87,7 @@ class App < Sinatra::Application
   get '/color' do
     @data_in = request.params
     puts @data_in
-    @color = User.create!(
+    @color = Color.find_by(
       color: @data_in['color'],
       name: @data_in['name']
     )
