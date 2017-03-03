@@ -23,7 +23,6 @@ import { Slider } from 'vue-color'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
-import Materials from     'vue-materials'
 
 export default {
   name: 'home',
