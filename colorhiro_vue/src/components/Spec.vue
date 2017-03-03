@@ -8,8 +8,9 @@
         <h3>If you wish to see other colors sepcs {{ colors.hex }} </h3>
       </div>
       <div class="col-xs-6 col-md-6 text-center">
-        <h3> More colors with names {{ colorsName }}</h3>
+        <h3>COLOR PALETTES</h3>
         <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+        {{ colorsName }}
         <br><br>
       </div>
     </div>
@@ -18,18 +19,27 @@
         <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
         <h4> If you wish to share your favourite color with amigos here is your link! </h4>
       </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          <h3> Photos from Unsplash </h3>
+          {{ unsplashPhotos }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Swatches } from 'vue-color'
-import { Slider } from 'vue-color'
-import { Material } from 'vue-color'
-import Home from './Home.vue'
-import {post_data, get_data} from '../helpers/queries.js'
+import { Swatches, Slider, Material }     from 'vue-color'
+import Home                               from './Home.vue'
+import {post_data, get_data}              from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-import ntc from '../helpers/ntc.js'
+import ntc                                from '../helpers/ntc.js'
+import Unsplash, { toJson }               from 'unsplash-js'
+import { unsplashCred } from '../helpers/variable.js'
+
+
+const unsplash = new Unsplash(unsplashCred());
 
 export default {
 
@@ -45,7 +55,7 @@ export default {
     return {
       colorName: this.colorCode,
       colorHex: colorToHex(this.colorCode),
-
+      unsplashPhotos: [],
       colors: {
         // hex: this.colorCode,
         hex: colorToHex(this.colorCode),
@@ -71,6 +81,17 @@ export default {
       },
       colorsName: ''
     }
+  },
+  created: function(){
+    console.log("ready to load")
+    var _this = this
+    unsplash.search.photos(this.colorCode, 1)
+      .then(toJson)
+      .then(json => {
+        _this.unsplashPhotos = json
+        console.log("yes")
+        // Your code
+      });
   },
 
   watch: {

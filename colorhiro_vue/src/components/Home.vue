@@ -1,33 +1,50 @@
 <template>
   <main>
     <div class="home row">
-      <div class="col-xs-12 col-md-12 text-center">
-        <h1>Type in a color</h1>
+      <transition name="fade">
+      <div v-if="show">
+        <div class="col-xs-12 col-md-12 text-center">
+          <h1>Type in a color</h1>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-12 text-center">
-        <input
-          type="text"
-          v-model="color"
-          v-on:keyup.enter="handleColorInput"
-          placeholder="ex: Lavender blue" />
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          <input
+            type="text"
+            v-model="color"
+            v-on:keyup.enter="handleColorInput"
+            placeholder="ex: Lavender blue" />
 
-          <h3>Press Enter!</h3>
+            <h3>Press Enter!</h3>
+        </div>
       </div>
+      </transition>
     </div>
+<!-- =======
+  <div class="home" >
+  <transition name="fade">
+  <div v-if="show">
+    <h1>Type in a color</h1>
+    <input
+      type="text"
+      v-model="color"
+      v-on:keyup.enter="handleColorInput"
+      placeholder="ex: Lavender blue" />
+    <button v-on:click="show = !show"> Submmit </button>
+    </div>
+    </transition>
+>>>>>>> devPostSara -->
     <spec v-if="test" v-bind:colorCode="color"></spec>
   </main>
 </template>
 
 <script>
-import { Swatches }                               from 'vue-color'
-import { Material }                             from 'vue-color'
+import { Swatches, Material, Slider }           from 'vue-color'
 import {generateRandomString}                   from '../helpers/share_key.js'
-import { Slider } from 'vue-color'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import {post_data, get_data}                    from '../helpers/queries.js'
 import spec                                     from './Spec.vue'
+
 
 export default {
   name: 'home',
@@ -36,11 +53,12 @@ export default {
   },
   data: function(){
     return {
-      // color : '',
       name  : '',
       color: changeColor(),
       test: false,
-      colorCode: ''
+      show: true,
+      colorCode: '',
+      submit: "Press Enter!"
     }
   },
   methods: {
@@ -49,7 +67,8 @@ export default {
         let data_out = {color: this.color}
         this.test = true
         this.colorCode = colorToHex(this.color)
-      // console.log(colorToHex(this.color))
+        this.submit = ''
+        this.show = false
         return post_data(this.$http, data_out)
       }
     },
@@ -73,6 +92,13 @@ export default {
 </script>
 
 <style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
