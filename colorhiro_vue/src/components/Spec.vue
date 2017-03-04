@@ -12,9 +12,6 @@
     {{ colorsName }}
       <br><br>
       <p> If you wish to share your favourite color with amigos here is your link! </p>
-      <br><br>
-      <h1> Photos from Unsplash </h1>
-      {{ unsplashPhotos }}
   </div>
 </template>
 
@@ -23,12 +20,16 @@ import { Swatches, Slider, Material }                       from 'vue-color'
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
+<<<<<<< HEAD
 import ntc                                                  from '../helpers/ntc.js'
 import Unsplash, { toJson }                                 from 'unsplash-js'
 import { unsplashCred }                                     from '../helpers/variable.js'
 
 
 const unsplash = new Unsplash(unsplashCred());
+=======
+import ntc                                from '../helpers/ntc.js'
+>>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
 
 export default {
 
@@ -43,8 +44,13 @@ export default {
   data: function(){
     return {
       colorName: this.colorCode,
+<<<<<<< HEAD
       colorHex: this.colorCode,
       unsplashPhotos: [],
+=======
+      colorHex: colorToHex(this.colorCode),
+
+>>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
       colors: {
         // hex: this.colorCode,
         hex: "F00000",
@@ -71,6 +77,7 @@ export default {
       colorsName: ''
     }
   },
+<<<<<<< HEAD
   created: function(){
     console.log("ready to load")
     var _this = this
@@ -82,6 +89,8 @@ export default {
         // Your code
       });
   },
+=======
+>>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
 
   watch: {
     colors: function(newColor){
