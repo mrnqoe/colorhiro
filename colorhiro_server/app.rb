@@ -95,7 +95,7 @@ class App < Sinatra::Application
     else
       json :color => @color
     end
-    # @color = Color.all
+
   end
 
 end
