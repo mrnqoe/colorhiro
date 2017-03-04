@@ -85,10 +85,10 @@ export default {
   created: function(){
     console.log("ready to load")
     var _this = this
-    unsplash.search.photos(this.colorCode, 1)
+    unsplash.search.photos(this.colorCode, 1, 4)
       .then(toJson)
       .then(json => {
-        _this.unsplashPhotos = json
+        _this.unsplashPhotos = json.results
         console.log("yes")
         // Your code
       });
@@ -106,7 +106,10 @@ export default {
       this.colors = val
     },
     fetchColors: function(){
-      return get_data(this.$http, 'http://localhost:3000/')
+      var url = "localhost:3000/color";
+      return colorToHex(this.colorCode,()=>{
+       get_data(this.$http, url, this.colorCode)
+      })
     }
   }
 }

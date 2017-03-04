@@ -1,7 +1,7 @@
-export function post_data(http, data){
+export function post_data(http, url, data){
   console.log(data);
   new Promise(function(resolve){
-    http.post('http://localhost:3000/sessions', data, {
+    http.post(url, data, {
        emulateJSON: true
      })
       .then(function(response){
@@ -18,9 +18,9 @@ export function post_data(http, data){
   })
 }
 
-export function get_data(http, url){
+export function get_data(http, url, data){
   new Promise(function(resolve){
-    http.get('http://localhost:3000/sessions', data, {
+    http.get(url, data, {
        emulateJSON: true
      })
       .then(function(response){
