@@ -5,8 +5,6 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 
-
-
 var vm = new Vue({
 
   el: '#app',

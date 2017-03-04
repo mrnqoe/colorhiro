@@ -1,4 +1,5 @@
 <template>
+
   <div class="home" >
   <transition name="fade">
   <div v-if="show">
@@ -11,9 +12,9 @@
       v-model="color"
       v-on:keyup.enter="handleColorInput"
       placeholder="ex: Lavender blue" />
-    <!-- <button v-on:click="show = !show"> Submmit </button> -->
     </div>
     </transition>
+
     <spec v-if="test" v-bind:colorCode="color"></spec>
   </div>
 </template>
