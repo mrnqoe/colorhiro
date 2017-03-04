@@ -27,11 +27,11 @@ var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true,
-  watchOptions: {
-    aggregateTimeout: 10000,
-    poll: 12000
-  }
+  quiet: true
+  // watchOptions: {
+  //   aggregateTimeout: 10000,
+  //   poll: 12000
+  // }
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {

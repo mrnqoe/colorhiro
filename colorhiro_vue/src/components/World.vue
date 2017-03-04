@@ -3,7 +3,13 @@
     <div v-if="loading">
       loading ... {{ loading }}
     </div>
-    <div v-else>{{ colorData }}</div>
+    <div v-else>
+      <ul>
+        <li v-for="color in colorData">
+          {{ color.name }} : {{ color.hex }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
