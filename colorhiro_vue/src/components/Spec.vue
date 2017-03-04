@@ -26,7 +26,7 @@ import {post_data, get_data}                                from '../helpers/que
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import ntc                                                  from '../helpers/ntc.js'
 import Unsplash, { toJson }                                 from 'unsplash-js'
-import { unsplashCred } from '../helpers/variable.js'
+import { unsplashCred }                                     from '../helpers/variable.js'
 
 
 const unsplash = new Unsplash(unsplashCred());

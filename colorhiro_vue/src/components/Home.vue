@@ -48,10 +48,10 @@ export default {
       if(this.color){
         let data_out = {color: this.color}
         this.test = true
-        this.colorCode = colorToHex(this.color)
+        // this.colorCode = colorToHex(this.color)
         this.submit = ''
         this.show = false
-        this.temp = fetchColors()
+        // this.temp = fetchColors()
         return post_data(this.$http, data_out)
       }
     },
