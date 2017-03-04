@@ -50,8 +50,6 @@ export default {
     }
   }
 }
-
-
 </script>
 
 <style>
@@ -60,8 +58,8 @@ export default {
   padding: 3em;
   border-style: black 1em;
   border-radius: 0.5em;
-
 }
+
 
 h1{
   font-weight: bold;
@@ -97,3 +95,4 @@ input {
 }*/
 
 </style>
+
