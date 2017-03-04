@@ -11,28 +11,30 @@
           placeholder="ex: Lavender blue" />
       </div>
     </transition>
-
-    <spec v-if="submitted" v-bind:colorCode="data_in"></spec>
+    <world v-bind:colorName="color"></world>
+    <!-- <spec v-if="submitted" v-bind:colorName="color"></spec> -->
   </div>
 </template>
 
 <script>
 import { Swatches, Material, Slider }                       from 'vue-color'
-import {generateRandomString}                               from '../helpers/share_key.js'
-import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-import {post_data, get_data}                                from '../helpers/queries.js'
+import { generateRandomString }                             from '../helpers/share_key.js'
+import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
+import { post_data, get_data }                              from '../helpers/queries.js'
 import spec                                                 from './Spec.vue'
+import world                                                from './World.vue'
 
 
 export default {
   name: 'home',
   components: {
-    'spec' : spec
+    'spec' : spec,
+    'world' : world
   },
   data: function(){
     return {
       name  : '',
-      color: changeColor(),
+      color: '',
       submitted: false,
       show: true,
       colorCode: '',
@@ -41,14 +43,12 @@ export default {
   },
   methods: {
     handleColorInput: function(ev){
-      var url = "http://localhost:3000/user"
-      console.log(ev);
       if(this.color){
-        let data_out = {color: this.color}
-        this.data_in = post_data(this.$http, url, data_out)
-        // this.submitted = true
-        // this.colorCode = colorToHex(this.color)
+        this.submitted = true
         // this.show = false
+        this.colorCode = this.color
+        console.log(this.color);
+        console.log(this.colorCode);
         return null
       }
     },
@@ -66,9 +66,6 @@ export default {
   watch: {
     color: function(){
       changeColor(this.color)
-    },
-    data_in: function(){
-      handleColorInput(this.color)
     }
   }
 }

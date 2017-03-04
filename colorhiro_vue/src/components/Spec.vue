@@ -1,7 +1,7 @@
 <template>
   <div class="spec">
     <h1> Here is your color specification </h1>
-    <h3>Color Name: {{ colorName }} /  Hex code: {{ colorHex }}</h3>
+    <h3>Color Name: {{ colorData }} /  Hex code: {{ colorHex }}</h3>
       <br><br><br><br>
     <h3> How about little more details? on your {{ colors.hex }} </h3>
     <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
@@ -9,7 +9,7 @@
       <br><br>
     <h2> COLOR PALETTES</h2>
     <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
-    {{ colorsName }}
+    {{ paletteName }}
       <br><br>
       <p> If you wish to share your favourite color with amigos here is your link! </p>
       <br><br>
@@ -33,20 +33,24 @@ const unsplash = new Unsplash(unsplashCred());
 export default {
 
   name: 'spec',
-  props: ['colorCode'],
+  props: ['colorName'],
   components: {
     'swatches-picker': Swatches,
     'material-picker': Material,
     'slider-picker': Slider
   },
-
+  created: function() {
+    var url = "http://localhost:3000/user"
+    this.colorData = post_data(this.$http, url, {color: this.colorName})
+  },
   data: function(){
     return {
-      colorName: this.colorCode,
-      colorHex: this.colorCode,
+      colorData: null,
+      // colorName: this.colorName,
+      colorHex: "this.colorName",
       unsplashPhotos: [],
       colors: {
-        // hex: this.colorCode,
+        // hex: this.colorName,
         hex: "F00000",
         hsl: {
           h: 150,
@@ -68,24 +72,24 @@ export default {
         },
         a: 1
       },
-      colorsName: ''
+      paletteName: ''
     }
   },
-  created: function(){
-    console.log("ready to load")
-    var _this = this
-    unsplash.search.photos(this.colorCode, 1, 4)
-      .then(toJson)
-      .then(json => {
-        _this.unsplashPhotos = json.results
-        console.log("yes")
-        // Your code
-      });
-  },
+  // created: function(){
+  //   console.log("ready to load")
+  //   var _this = this
+  //   unsplash.search.photos(this.colorName, 1, 4)
+  //     .then(toJson)
+  //     .then(json => {
+  //       _this.unsplashPhotos = json.results
+  //       console.log("yes")
+  //       // Your code
+  //     });
+  // },
 
   watch: {
     colors: function(newColor){
-      this.colorsName = hexToColor(newColor.hex)
+      this.paletteName = hexToColor(newColor.hex)
       console.log("i'm watching")
 
     }
@@ -96,7 +100,7 @@ export default {
     },
     // fetchColors: function(){
     //   var url = "localhost:3000/color";
-    //   return colorToHex(this.colorCode,(c)=>{
+    //   return colorToHex(this.colorName,(c)=>{
     //    get_data(this.$http, url, c)
     //   })
     // }
