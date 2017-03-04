@@ -1,8 +1,7 @@
 <template>
   <div class="world">
-    <!-- <h3>{{ getColorData() }}</h3> -->
     <div v-if="loading">
-      loading ...
+      loading ... {{ loading }}
     </div>
     <div v-else>{{ colorData }}</div>
   </div>
@@ -12,27 +11,43 @@
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
+
 export default {
   name: 'world',
   props: ['colorName'],
   data: function(){
     return {
-      colorData: this.colorName,
+      colorData: null,
       loading: true
       // colorHex: this.colorData,
     }
   },
+  created: function () {
+    this.getColorData();
+  },
+  // ready: function () {
+  //   this.getColorData();
+  // },
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/user"
-      post_data(this.$http, url, {color: this.colorName})
-    },
-    // fetchColors: function(){
-    //   var url = "localhost:3000/color";
-    //   return colorToHex(this.colorName,(c)=>{
-    //    get_data(this.$http, url, c)
-    //   })
-    // }
+      this.$http.post(url, {color:this.colorName}, {
+         emulateJSON: true
+       })
+        .then(function(response){
+          console.log('response');
+          return response
+        })
+        .then(function(json) {
+          this.colorData = json.body.color
+          this.loading = false
+          console.log("Event added!");
+          resolve(json);
+        }).catch(function(error) {
+          return error
+        console.log(error);
+      })
+    }
   }
 }
 </script>
@@ -44,6 +59,8 @@ export default {
   border-style: black 1em;
   border-radius: 0.5em;
 }
+
+
 h1{
   font-weight: bold;
   -webkit-text-stroke: black;
@@ -53,21 +70,29 @@ h2{
   font-weight: bold;
   color: black;
 }
+
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 input {
   padding: 1em 1em;
   font-size: 2em;
   background:white;
   border-style: black;
+
 }*/
+
 </style>
+

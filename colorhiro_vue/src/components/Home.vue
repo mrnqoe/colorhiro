@@ -11,7 +11,7 @@
       </div>
     </transition>
     <world v-if="submitted" v-bind:colorName="color"></world>
-    <spec v-if="submitted" v-bind:colorName="color"></spec>
+    <!-- <spec v-if="submitted" v-bind:colorName="color"></spec> -->
   </div>
 </template>
 
@@ -19,9 +19,9 @@
 import { Swatches, Material, Slider }                       from 'vue-color'
 import { generateRandomString }                             from '../helpers/share_key.js'
 import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
-import { post_data, get_data }                              from '../helpers/queries.js'
 import spec                                                 from './Spec.vue'
 import world                                                from './World.vue'
+
 
 export default {
   name: 'home',
@@ -49,16 +49,6 @@ export default {
         console.log(this.colorCode);
         return null
       }
-    },
-    handleNameInput: function(ev){
-      if(this.name){
-        let data_out = {color: this.color}
-        return post_data(this.$http, data_out)
-      }
-    },
-    fetchColors: function(c){
-      var url = "http://localhost:3000/color"
-      return get_data(this.$http, url, c)
     }
   },
   watch: {

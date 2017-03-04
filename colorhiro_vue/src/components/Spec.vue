@@ -1,26 +1,20 @@
 <template>
   <div class="spec">
-    <div v-if='loading'>
-      loading ...
-    </div>
-    <div v-else>
-      <h1> Here is your color specification </h1>
-      <h1>{{ colorData }}</h1>
-      <h3>Color Name: {{ colorData.name }} /  Hex code: {{ colorData.hex }}</h3>
-        <br><br><br><br>
-      <!-- <h3> How about little more details? on your {{ colors.hex }} </h3>
-      <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
-      <material-picker v-model="colors" @change-color="onChange"></material-picker>
-        <br><br>
-      <h2> COLOR PALETTES</h2>
-      <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
-      {{ paletteName }}
-        <br><br>
-        <p> If you wish to share your favourite color with amigos here is your link! </p>
-        <br><br>
-        <h1> Photos from Unsplash </h1>
-        {{ unsplashPhotos }} -->
-      </div>
+    <h1> Here is your color specification </h1>
+    <h3>Color Name: {{ colorData }} /  Hex code: {{ colorHex }}</h3>
+      <br><br><br><br>
+    <h3> How about little more details? on your {{ colors.hex }} </h3>
+    <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+    <material-picker v-model="colors" @change-color="onChange"></material-picker>
+      <br><br>
+    <h2> COLOR PALETTES</h2>
+    <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+    {{ paletteName }}
+      <br><br>
+      <p> If you wish to share your favourite color with amigos here is your link! </p>
+      <br><br>
+      <h1> Photos from Unsplash </h1>
+      {{ unsplashPhotos }}
   </div>
 </template>
 
@@ -42,16 +36,15 @@ export default {
     'material-picker': Material,
     'slider-picker': Slider
   },
-  /*created: function() {
+  created: function() {
     var url = "http://localhost:3000/user"
-    this.colorData = post_data(this.$http, url, {color: this.colorName})*/
-  /*},*/
+    this.colorData = post_data(this.$http, url, {color: this.colorName})
+  },
   data: function(){
     return {
       colorData: null,
-      loading: true,
       // colorName: this.colorName,
-      colorHex: this.colorName,
+      colorHex: "this.colorName",
       unsplashPhotos: [],
       colors: {
         // hex: this.colorName,
@@ -79,17 +72,17 @@ export default {
       paletteName: ''
     }
   },
-  created: function(){
-    /*var _this = this
-    unsplash.search.photos(this.colorName, 1, 4)
-      .then(toJson)
-      .then(json => {
-        _this.unsplashPhotos = json.results
-        console.log("yes")
-        console.log(_this.unsplashPhotos)
-      });*/
-    this.fetchColors()
-  },
+  // created: function(){
+  //   console.log("ready to load")
+  //   var _this = this
+  //   unsplash.search.photos(this.colorName, 1, 4)
+  //     .then(toJson)
+  //     .then(json => {
+  //       _this.unsplashPhotos = json.results
+  //       console.log("yes")
+  //       // Your code
+  //     });
+  // },
   watch: {
     colors: function(newColor){
       this.paletteName = hexToColor(newColor.hex)

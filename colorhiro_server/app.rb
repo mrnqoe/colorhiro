@@ -78,7 +78,7 @@ class App < Sinatra::Application
       color: @data_in['color'],
       name: @data_in['name']
     )
-    @color = Color.find_by(name: @data_in['color'])
+    @color = Color.where("name LIKE ?", "%#{@user.color}%")
     json :color => @color
   end
 
