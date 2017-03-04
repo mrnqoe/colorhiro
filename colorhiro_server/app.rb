@@ -82,10 +82,15 @@ class App < Sinatra::Application
     json :color => @color
   end
 
+  get '/color' do
+    json :color => Color.all
+    # @color = Color.all
+  end
+
   get '/color/:name' do
     @data_in = params[:name]
-    @color = Color.where("name LIKE ?", @data_in)
-    if (@color == nil)
+    @color = Color.where("name LIKE ?", "%#{@data_in}%")
+    if (@color.count < 1)
       json :color => Color.all
     else
       json :color => @color
