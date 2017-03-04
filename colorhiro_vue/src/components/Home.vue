@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import { Swatches, Material, Slider }           from 'vue-color'
-import {generateRandomString}                   from '../helpers/share_key.js'
+import { Swatches, Material, Slider }                       from 'vue-color'
+import {generateRandomString}                               from '../helpers/share_key.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-import {post_data, get_data}                    from '../helpers/queries.js'
-import spec                                     from './Spec.vue'
+import {post_data, get_data}                                from '../helpers/queries.js'
+import spec                                                 from './Spec.vue'
 
 
 export default {
