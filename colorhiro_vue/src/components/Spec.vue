@@ -1,17 +1,26 @@
 <template>
   <div class="spec">
-    <h1> Here is your color specification </h1>
-    <h3>Color Name: {{ colorName }} /  Hex code: {{ colorHex }}</h3>
-      <br><br><br><br>
-    <h3> How about little more details? on your {{ colors.hex }} </h3>
-    <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
-    <material-picker v-model="colors" @change-color="onChange"></material-picker>
-      <br><br>
-    <h2> COLOR PALETTES</h2>
-    <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
-    {{ colorsName }}
-      <br><br>
-      <p> If you wish to share your favourite color with amigos here is your link! </p>
+    <div v-if='loading'>
+      loading ...
+    </div>
+    <div v-else>
+      <h1> Here is your color specification </h1>
+      <h1>{{ colorData }}</h1>
+      <h3>Color Name: {{ colorData.name }} /  Hex code: {{ colorData.hex }}</h3>
+        <br><br><br><br>
+      <!-- <h3> How about little more details? on your {{ colors.hex }} </h3>
+      <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+      <material-picker v-model="colors" @change-color="onChange"></material-picker>
+        <br><br>
+      <h2> COLOR PALETTES</h2>
+      <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+      {{ paletteName }}
+        <br><br>
+        <p> If you wish to share your favourite color with amigos here is your link! </p>
+        <br><br>
+        <h1> Photos from Unsplash </h1>
+        {{ unsplashPhotos }} -->
+      </div>
   </div>
 </template>
 
@@ -20,39 +29,32 @@ import { Swatches, Slider, Material }                       from 'vue-color'
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-<<<<<<< HEAD
-import ntc                                                  from '../helpers/ntc.js'
-import Unsplash, { toJson }                                 from 'unsplash-js'
-import { unsplashCred }                                     from '../helpers/variable.js'
+/*import Unsplash, { toJson }                                 from 'unsplash-js'*/
+/*import { unsplashCred }                                     from '../helpers/variable.js'*/
 
-
-const unsplash = new Unsplash(unsplashCred());
-=======
-import ntc                                from '../helpers/ntc.js'
->>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
+/*const unsplash = new Unsplash(unsplashCred());*/
 
 export default {
-
   name: 'spec',
-  props: ['colorCode'],
+  props: ['colorName'],
   components: {
     'swatches-picker': Swatches,
     'material-picker': Material,
     'slider-picker': Slider
   },
-
+  /*created: function() {
+    var url = "http://localhost:3000/user"
+    this.colorData = post_data(this.$http, url, {color: this.colorName})*/
+  /*},*/
   data: function(){
     return {
-      colorName: this.colorCode,
-<<<<<<< HEAD
-      colorHex: this.colorCode,
+      colorData: null,
+      loading: true,
+      // colorName: this.colorName,
+      colorHex: this.colorName,
       unsplashPhotos: [],
-=======
-      colorHex: colorToHex(this.colorCode),
-
->>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
       colors: {
-        // hex: this.colorCode,
+        // hex: this.colorName,
         hex: "F00000",
         hsl: {
           h: 150,
@@ -74,45 +76,58 @@ export default {
         },
         a: 1
       },
-      colorsName: ''
+      paletteName: ''
     }
   },
-<<<<<<< HEAD
   created: function(){
-    console.log("ready to load")
-    var _this = this
-    unsplash.search.photos(this.colorCode, 1, 4)
+    /*var _this = this
+    unsplash.search.photos(this.colorName, 1, 4)
       .then(toJson)
       .then(json => {
         _this.unsplashPhotos = json.results
         console.log("yes")
-        // Your code
-      });
+        console.log(_this.unsplashPhotos)
+      });*/
+    this.fetchColors()
   },
-=======
->>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
-
   watch: {
     colors: function(newColor){
-      this.colorsName = hexToColor(newColor.hex)
+      this.paletteName = hexToColor(newColor.hex)
       console.log("i'm watching")
-
     }
   },
   methods: {
     onChange: function(val) {
       this.colors = val
     },
+    fetchColors: function () {
+      var url = 'http://localhost:3000/user'
+      this.$http.post(url, {name: this.colorName}, {
+         emulateJSON: true
+       })
+        .then(function(response){
+          console.log(response);
+          return response
+        })
+        .then(function(json) {
+          this.colorData = json
+          this.loading = false
+          resolve(json);
+          console.log("Event added!");
+        }).catch(function(error) {
+          return error
+        console.log(error);
+      })
+    }
+
     // fetchColors: function(){
     //   var url = "localhost:3000/color";
-    //   return colorToHex(this.colorCode,(c)=>{
+    //   return colorToHex(this.colorName,(c)=>{
     //    get_data(this.$http, url, c)
     //   })
     // }
   }
 }
-
-
 </script>
 
 <style>
@@ -121,9 +136,7 @@ export default {
   padding: 3em;
   border-style: black 1em;
   border-radius: 0.5em;
-
 }
-
 h1{
   font-weight: bold;
   -webkit-text-stroke: black;
@@ -133,28 +146,21 @@ h2{
   font-weight: bold;
   color: black;
 }
-
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
 }
-
 a {
   color: #42b983;
 }
-
 input {
   padding: 1em 1em;
   font-size: 2em;
   background:white;
   border-style: black;
-
 }*/
-
 </style>

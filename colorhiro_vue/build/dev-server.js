@@ -29,13 +29,8 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true,
   watchOptions: {
-<<<<<<< HEAD
-    aggregateTimeout: 5000,
-    poll: 10000
-=======
-    aggregateTimeout: 2500,
-    poll: 5000
->>>>>>> parent of 5412d9f... added transition for the input from Home component, started playing with unsplash api
+    aggregateTimeout: 10000,
+    poll: 12000
   }
 })
 
