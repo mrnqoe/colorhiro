@@ -85,6 +85,7 @@
     "vue-mixins": "^0.3.6",
     "vue-style-loader": "^2.0.3",
     "vue-template-compiler": "^2.1.10",
+    "vue-websocket": "^0.2.2",
     "webpack": "^2.2.1",
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",

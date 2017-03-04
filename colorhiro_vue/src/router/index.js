@@ -6,6 +6,7 @@ import Room from          'components/Room'
 import Home from          'components/Home'
 import Spec from          'components/Spec'
 import World from         'components/World'
+import socketTest from    'components/socketTest'
 
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)
@@ -17,6 +18,12 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+
+    },
+    {
+      path: '/sockets',
+      name: 'socketTest',
+      component: socketTest
 
     },
     {
