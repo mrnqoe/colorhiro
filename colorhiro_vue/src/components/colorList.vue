@@ -1,12 +1,12 @@
 <template>
-  <div class="world">
+  <div class="colorList">
     <div v-if="loading">
       loading ... {{ loading }}
     </div>
     <div v-else>
       <ul>
         <li v-for="color in colorData">
-          {{ color.name }} : {{ color.hex }}
+          <span> {{ color.name }} </span>
         </li>
       </ul>
     </div>
@@ -19,7 +19,7 @@ import {post_data, get_data}                                from '../helpers/que
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 
 export default {
-  name: 'world',
+  name: 'colorList',
   props: ['colorName'],
   data: function(){
     return {
