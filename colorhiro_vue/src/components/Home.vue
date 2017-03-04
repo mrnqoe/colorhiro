@@ -7,9 +7,10 @@
             <h1>Type in a color</h1>
           </div>
         </div>
-        <div class="row">
+        <div class="row form-group">
           <div class="col-xs-12 col-md-12 text-center">
             <input
+              class="form-control"
               type="text"
               v-model="color"
               v-on:keyup.enter="handleColorInput"
