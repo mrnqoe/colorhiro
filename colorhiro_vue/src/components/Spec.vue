@@ -10,6 +10,7 @@
     <h2> COLOR PALETTES</h2>
     <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
     {{ colorsName }}
+    <h1>FETCH COLORS {{ temp }}</h1>
       <br><br>
       <p> If you wish to share your favourite color with amigos here is your link! </p>
       <br><br>
@@ -43,6 +44,7 @@ export default {
   data: function(){
     return {
       colorName: this.colorCode,
+      temp: fetchColors(),
       colorHex: colorToHex(this.colorCode),
       unsplashPhotos: [],
       colors: {
@@ -96,8 +98,8 @@ export default {
     },
     fetchColors: function(){
       var url = "localhost:3000/color";
-      return colorToHex(this.colorCode,()=>{
-       get_data(this.$http, url, this.colorCode)
+      return colorToHex(this.colorCode,(c)=>{
+       get_data(this.$http, url, c)
       })
     }
   }

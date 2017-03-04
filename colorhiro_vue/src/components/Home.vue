@@ -4,8 +4,8 @@
   <transition name="fade">
   <div v-if="show">
     <h1>Type in a color</h1>
+    <h1>FETCH COLORS {{ temp }}</h1>
     <div>
-    <md-spinner :md-size="20" md-indeterminate class="md-accent"></md-spinner>
     </div>
     <input
       type="text"
@@ -35,6 +35,7 @@ export default {
   data: function(){
     return {
       name  : '',
+      temp: '',
       color: changeColor(),
       test: false,
       show: true,
@@ -50,6 +51,7 @@ export default {
         this.colorCode = colorToHex(this.color)
         this.submit = ''
         this.show = false
+        this.temp = fetchColors()
         return post_data(this.$http, data_out)
       }
     },
@@ -58,6 +60,12 @@ export default {
         let data_out = {color: this.color}
         return post_data(this.$http, data_out)
       }
+    },
+    fetchColors: function(){
+      var url = "localhost:3000/color"+this.color;
+      return colorToHex(this.color,(c)=>{
+       get_data(this.$http, url, c)
+      })
     }
   },
   watch: {
