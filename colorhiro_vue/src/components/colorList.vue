@@ -1,9 +1,15 @@
 <template>
-  <div class="world">
+  <div class="colorList">
     <div v-if="loading">
       loading ... {{ loading }}
     </div>
-    <div v-else>{{ colorData }}</div>
+    <div v-else>
+      <ul>
+        <li v-for="color in colorData">
+          <span> {{ color.name }} </span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -13,7 +19,7 @@ import {post_data, get_data}                                from '../helpers/que
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 
 export default {
-  name: 'world',
+  name: 'colorList',
   props: ['colorName'],
   data: function(){
     return {
@@ -50,8 +56,6 @@ export default {
     }
   }
 }
-
-
 </script>
 
 <style>
@@ -60,8 +64,8 @@ export default {
   padding: 3em;
   border-style: black 1em;
   border-radius: 0.5em;
-
 }
+
 
 h1{
   font-weight: bold;
@@ -97,3 +101,4 @@ input {
 }*/
 
 </style>
+

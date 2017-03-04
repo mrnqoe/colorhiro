@@ -5,8 +5,8 @@ import Hello from         'components/Hello'
 import Room from          'components/Room'
 import Home from          'components/Home'
 import Spec from          'components/Spec'
-import World from         'components/World'
 import socketTest from    'components/socketTest'
+import colorList from     'components/colorList'
 
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)
