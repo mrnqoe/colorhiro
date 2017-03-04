@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
+import VueWebsocket from "vue-websocket";
+
+Vue.use(VueWebsocket, "ws://localhost:5000");
 
 var vm = new Vue({
 

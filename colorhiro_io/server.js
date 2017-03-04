@@ -1,5 +1,7 @@
 const app = require('express')();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-io.on('connection', function(){  });
+io.on('connection', function(){
+  console.log('socket server up'); 
+});
 server.listen(5000);
