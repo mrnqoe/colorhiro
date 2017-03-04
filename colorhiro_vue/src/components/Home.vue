@@ -10,7 +10,7 @@
           placeholder="ex: Lavender blue" />
       </div>
     </transition>
-    <world v-if="submitted" v-bind:colorName="color"></world>
+    <colorList v-if="submitted" v-bind:colorName="color"></colorList>
     <!-- <spec v-if="submitted" v-bind:colorName="color"></spec> -->
   </div>
 </template>
@@ -20,14 +20,14 @@ import { Swatches, Material, Slider }                       from 'vue-color'
 import { generateRandomString }                             from '../helpers/share_key.js'
 import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
 import spec                                                 from './Spec.vue'
-import world                                                from './World.vue'
+import colorList                                            from './colorList.vue'
 
 
 export default {
   name: 'home',
   components: {
     'spec' : spec,
-    'world' : world
+    'colorList' : colorList
   },
   data: function(){
     return {
