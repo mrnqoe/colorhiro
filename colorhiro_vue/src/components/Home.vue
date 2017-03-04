@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <main>
     <transition name="fade">
     <div v-if="show">
@@ -21,48 +22,44 @@
         <div class="ball1"></div>
     </div>
     </transition>
-    <spec v-if="test" v-bind:colorCode="color"></spec>
+    <world v-if="submitted" v-bind:colorName="color"></world>
+    <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
   </main>
 </template>
 
 <script>
-import { Swatches, Material, Slider }           from 'vue-color'
-import {generateRandomString}                   from '../helpers/share_key.js'
-import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-import {post_data, get_data}                    from '../helpers/queries.js'
-import spec                                     from './Spec.vue'
+import { Swatches, Material, Slider }                       from 'vue-color'
+import { generateRandomString }                             from '../helpers/share_key.js'
+import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
+import spec                                                 from './Spec.vue'
+import world                                                from './World.vue'
 
 
 export default {
   name: 'home',
   components: {
-    'spec' : spec
+    'spec' : spec,
+    'world' : world
   },
   data: function(){
     return {
       name  : '',
-      color: changeColor(),
-      test: false,
+      color: '',
+      submitted: false,
       show: true,
       colorCode: '',
-      submit: "Press Enter!"
+      data_in: null
     }
   },
   methods: {
     handleColorInput: function(ev){
       if(this.color){
-        let data_out = {color: this.color}
-        this.test = true
-        this.colorCode = colorToHex(this.color)
-        this.submit = ''
-        this.show = false
-        return post_data(this.$http, data_out)
-      }
-    },
-    handleNameInput: function(ev){
-      if(this.name){
-        let data_out = {color: this.color}
-        return post_data(this.$http, data_out)
+        this.submitted = true
+        // this.show = false
+        this.colorCode = this.color
+        console.log(this.color);
+        console.log(this.colorCode);
+        return null
       }
     }
   },
@@ -70,9 +67,6 @@ export default {
     color: function(){
       changeColor(this.color)
     }
-    // name: function(){
-    //   changeName(this.name)
-    // }
   }
 }
 
@@ -144,75 +138,4 @@ input {
 
 }
 
-.ball {
-    background-color: rgba(0,0,0,0);
-    border: 5px solid rgba(0,183,229,0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0,0,0,0);
-    border-left: 5px solid rgba(0,0,0,0);
-    border-radius: 50px;
-    box-shadow: 0 0 35px #2187e7;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto;
-    -moz-animation: spin .5s infinite linear;
-    -webkit-animation: spin .5s infinite linear;
-}
-
-.ball1 {
-    background-color: rgba(0,0,0,0);
-    border: 5px solid rgba(0,183,229,0.9);
-    opacity: .9;
-    border-top: 5px solid rgba(0,0,0,0);
-    border-left: 5px solid rgba(0,0,0,0);
-    border-radius: 50px;
-    box-shadow: 0 0 15px #2187e7;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
-    position: relative;
-    top: -50px;
-    -moz-animation: spinoff .5s infinite linear;
-    -webkit-animation: spinoff .5s infinite linear;
-}
-
-@-moz-keyframes spin {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    };
-}
-
-@-moz-keyframes spinoff {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(-360deg);
-    };
-}
-
-@-webkit-keyframes spin {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    };
-}
-
-@-webkit-keyframes spinoff {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(-360deg);
-    };
-}
 </style>

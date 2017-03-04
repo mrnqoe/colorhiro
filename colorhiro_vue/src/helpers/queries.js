@@ -5,8 +5,8 @@ export function post_data(http, url, data){
        emulateJSON: true
      })
       .then(function(response){
-        console.log(response);
-        return response.json()
+        console.log('response');
+        return response
       })
       .then(function(json) {
         resolve(json);
@@ -15,6 +15,7 @@ export function post_data(http, url, data){
         return error
       console.log(error);
     })
+    self.loading = false
   })
 }
 

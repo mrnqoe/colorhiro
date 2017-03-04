@@ -13,6 +13,7 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
 
 html {
 
@@ -20,6 +21,9 @@ html {
 
 body #app {
   font-family: 'Ranga', cursive;
+}
+
+#app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

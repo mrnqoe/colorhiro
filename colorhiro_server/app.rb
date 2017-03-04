@@ -74,11 +74,11 @@ class App < Sinatra::Application
 
   post '/user' do
     @data_in = request.params
-    puts @data_in
-    @color = User.create!(
+    @user = User.create!(
       color: @data_in['color'],
       name: @data_in['name']
     )
+    @color = Color.where("name LIKE ?", "%#{@user.color}%")
     json :color => @color
   end
 
@@ -95,7 +95,7 @@ class App < Sinatra::Application
     else
       json :color => @color
     end
-    # @color = Color.all
+
   end
 
 end

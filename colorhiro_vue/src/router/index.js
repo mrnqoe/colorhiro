@@ -6,6 +6,7 @@ import Room from          'components/Room'
 import Home from          'components/Home'
 import Spec from          'components/Spec'
 import BootstrapVue from  'bootstrap-vue'
+import World from         'components/World'
 
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)
@@ -24,11 +25,6 @@ export default new Router({
       path: '/room/:share_key',
       name: 'room',
       component: Room
-    },
-    {
-      path: '/spec',
-      name: 'spec',
-      component: Spec
     },
     {
       path: '/spec',
