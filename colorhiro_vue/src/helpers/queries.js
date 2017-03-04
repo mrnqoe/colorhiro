@@ -15,6 +15,7 @@ export function post_data(http, url, data){
         return error
       console.log(error);
     })
+    self.loading = false
   })
 }
 

@@ -24,12 +24,6 @@ export default new Router({
       name: 'room',
       component: Room
     },
-    // // {
-    // //   path: '/posts',
-    // //   name: 'Posts',
-    // //   props: ['item'],
-    // //   component: Posts
-    // // },
     {
       path: '/spec',
       name: 'spec',

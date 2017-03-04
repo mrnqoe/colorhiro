@@ -1,8 +1,7 @@
 <template>
   <div class="world">
-    <h3>{{ getColorData() }}</h3>
     <div v-if="loading">
-      loading ...
+      loading ... {{ loading }}
     </div>
     <div v-else>{{ colorData }}</div>
   </div>
@@ -18,35 +17,37 @@ export default {
   props: ['colorName'],
   data: function(){
     return {
-      colorData: this.colorName,
+      colorData: null,
       loading: true
       // colorHex: this.colorData,
     }
   },
+  created: function () {
+    this.getColorData();
+  },
+  // ready: function () {
+  //   this.getColorData();
+  // },
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/user"
-      post_data(this.$http, url, {color: this.colorName})
-      .then(function(response){
-        this.colorData = response
-        this.loading = false
-        return response
-      })
-      .then(function(json) {
-        resolve(json);
-        console.log("Event added!");
-      })
-      .catch(function(error) {
-        return error
+      this.$http.post(url, {color:this.colorName}, {
+         emulateJSON: true
+       })
+        .then(function(response){
+          console.log('response');
+          return response
+        })
+        .then(function(json) {
+          this.colorData = json.body.color
+          this.loading = false
+          console.log("Event added!");
+          resolve(json);
+        }).catch(function(error) {
+          return error
         console.log(error);
       })
-    },
-    // fetchColors: function(){
-    //   var url = "localhost:3000/color";
-    //   return colorToHex(this.colorName,(c)=>{
-    //    get_data(this.$http, url, c)
-    //   })
-    // }
+    }
   }
 }
 
