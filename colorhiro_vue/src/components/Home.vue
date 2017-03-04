@@ -1,39 +1,23 @@
 <template>
   <main>
-    <div class="home row">
-      <transition name="fade">
-      <div v-if="show">
-        <div class="col-xs-12 col-md-12 text-center">
-          <h1>Type in a color</h1>
+    <transition name="fade">
+    <div v-if="show">
+      <div class="home row">
+          <div class="col-xs-12 col-md-12 text-center">
+            <h1>Type in a color</h1>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-md-12 text-center">
-          <input
-            type="text"
-            v-model="color"
-            v-on:keyup.enter="handleColorInput"
-            placeholder="ex: Lavender blue" />
-
-            <h3>Press Enter!</h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-12 text-center">
+            <input
+              type="text"
+              v-model="color"
+              v-on:keyup.enter="handleColorInput"
+              placeholder="Color" />
+          </div>
         </div>
-      </div>
-      </transition>
-    </div>
-<!-- =======
-  <div class="home" >
-  <transition name="fade">
-  <div v-if="show">
-    <h1>Type in a color</h1>
-    <input
-      type="text"
-      v-model="color"
-      v-on:keyup.enter="handleColorInput"
-      placeholder="ex: Lavender blue" />
-    <button v-on:click="show = !show"> Submmit </button>
     </div>
     </transition>
->>>>>>> devPostSara -->
     <spec v-if="test" v-bind:colorCode="color"></spec>
   </main>
 </template>
