@@ -1,21 +1,18 @@
 <template>
 
   <div class="home" >
-  <transition name="fade">
-  <div v-if="show">
-    <h1>Type in a color</h1>
-    <h1>FETCH COLORS {{ temp }}</h1>
-    <div>
-    </div>
-    <input
-      type="text"
-      v-model="color"
-      v-on:keyup.enter="handleColorInput"
-      placeholder="ex: Lavender blue" />
-    </div>
+    <transition name="fade">
+      <div v-if="show">
+        <h1>Type in a color</h1>
+        <input
+          type="text"
+          v-model="color"
+          v-on:keyup.enter="handleColorInput"
+          placeholder="ex: Lavender blue" />
+      </div>
     </transition>
 
-    <spec v-if="test" v-bind:colorCode="color"></spec>
+    <spec v-if="submitted" v-bind:colorCode="data_in"></spec>
   </div>
 </template>
 
@@ -35,24 +32,24 @@ export default {
   data: function(){
     return {
       name  : '',
-      temp: '',
       color: changeColor(),
-      test: false,
+      submitted: false,
       show: true,
       colorCode: '',
-      submit: "Press Enter!"
+      data_in: null
     }
   },
   methods: {
     handleColorInput: function(ev){
+      var url = "http://localhost:3000/user"
+      console.log(ev);
       if(this.color){
         let data_out = {color: this.color}
-        this.test = true
+        this.data_in = post_data(this.$http, url, data_out)
+        // this.submitted = true
         // this.colorCode = colorToHex(this.color)
-        this.submit = ''
-        this.show = false
-        // this.temp = fetchColors()
-        return post_data(this.$http, data_out)
+        // this.show = false
+        return null
       }
     },
     handleNameInput: function(ev){
@@ -61,20 +58,18 @@ export default {
         return post_data(this.$http, data_out)
       }
     },
-    fetchColors: function(){
-      var url = "localhost:3000/color"+this.color;
-      return colorToHex(this.color,(c)=>{
-       get_data(this.$http, url, c)
-      })
+    fetchColors: function(c){
+      var url = "http://localhost:3000/color"
+      return get_data(this.$http, url, c)
     }
   },
   watch: {
     color: function(){
       changeColor(this.color)
+    },
+    data_in: function(){
+      handleColorInput(this.color)
     }
-    // name: function(){
-    //   changeName(this.name)
-    // }
   }
 }
 

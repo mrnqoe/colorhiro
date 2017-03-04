@@ -6,7 +6,7 @@ export function post_data(http, url, data){
      })
       .then(function(response){
         console.log(response);
-        return response.json()
+        return response
       })
       .then(function(json) {
         resolve(json);
