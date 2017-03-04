@@ -13,8 +13,13 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+html {
+
+}
+
+body #app {
+  font-family: 'Ranga', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -23,8 +28,8 @@ export default {
 }
 
 #logo{
-  width: 100px;
-  height: 100px;
+  width: 20px;
+  height: 20px;
 }
 
 .color{
@@ -43,13 +48,13 @@ export default {
 }*/
 
 h1{
-  font-weight: bold;
+  /*font-weight: bold;*/
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.2px;
   text-align: center;
 }
 h2{
-  font-weight: bold;
+  /*font-weight: bold;*/
   color: white;
   text-align: center;
 }

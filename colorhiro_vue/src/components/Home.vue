@@ -7,7 +7,7 @@
             <h1>Type in a color</h1>
           </div>
         </div>
-        <div class="row form-group">
+        <div class="row form-group form-group-lg">
           <div class="col-xs-12 col-md-12 text-center">
             <input
               class="form-control"
@@ -17,6 +17,8 @@
               placeholder="Color" />
           </div>
         </div>
+        <div class="ball"></div>
+        <div class="ball1"></div>
     </div>
     </transition>
     <spec v-if="test" v-bind:colorCode="color"></spec>
@@ -110,6 +112,16 @@ h2{
   color: white;
 }
 
+.form-group {
+    margin-bottom: 15px;
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.form-group-lg .form-control {
+  text-align: -webkit-center;
+}
 
 ul {
   list-style-type: none;
@@ -130,5 +142,77 @@ input {
   font-size: 2em;
   border-style: black;
 
+}
+
+.ball {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0 0 35px #2187e7;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    -moz-animation: spin .5s infinite linear;
+    -webkit-animation: spin .5s infinite linear;
+}
+
+.ball1 {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-top: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0 0 15px #2187e7;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+    top: -50px;
+    -moz-animation: spinoff .5s infinite linear;
+    -webkit-animation: spinoff .5s infinite linear;
+}
+
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-moz-keyframes spinoff {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(-360deg);
+    };
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes spinoff {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(-360deg);
+    };
 }
 </style>
