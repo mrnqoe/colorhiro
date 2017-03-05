@@ -5,12 +5,14 @@ import Hello from         'components/Hello'
 import Room from          'components/Room'
 import Home from          'components/Home'
 import Spec from          'components/Spec'
+import BootstrapVue from  'bootstrap-vue'
 import colorList from     'components/colorList'
 import colorPreview from  'components/colorPreview'
 
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)
 Vue.use(Router)
+Vue.use(BootstrapVue)
 
 export default new Router({
   routes: [
