@@ -21,13 +21,15 @@ import { generateRandomString }                             from '../helpers/sha
 import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
 import spec                                                 from './Spec.vue'
 import colorList                                            from './colorList.vue'
+import colorPreview                                         from './colorPreview.vue'
 
 
 export default {
   name: 'home',
   components: {
     'spec' : spec,
-    'colorList' : colorList
+    'colorList' : colorList,
+    'colorPreview' : colorPreview
   },
   data: function(){
     return {
@@ -50,12 +52,12 @@ export default {
         return null
       }
     }
-  },
-  watch: {
-    color: function(){
-      changeColor(this.color)
-    }
   }
+  // watch: {
+  //   color: function(){
+  //     changeColor(this.color)
+  //   }
+  // }
 }
 </script>
 
