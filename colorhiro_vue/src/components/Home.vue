@@ -1,30 +1,27 @@
 <template>
-<<<<<<< HEAD
-  <main>
+  <div>
     <transition name="fade">
-    <div v-if="show">
+    <div v-if="show" class="center-page">
       <div class="home row">
-          <div class="col-xs-12 col-md-12 text-center">
-            <h1>Type in a color</h1>
-          </div>
+        <div class="col-xs-12 col-md-12 text-center">
+          <h1>Type in a color</h1>
         </div>
-        <div class="row form-group form-group-lg">
-          <div class="col-xs-12 col-md-12 text-center">
-            <input
-              class="form-control"
-              type="text"
-              v-model="color"
-              v-on:keyup.enter="handleColorInput"
-              placeholder="Color" />
-          </div>
+      </div>
+      <div class="row form-group form-group-lg">
+        <div class="col-xs-12 col-md-12 text-center">
+          <input
+            class="form-control"
+            type="text"
+            v-model="color"
+            v-on:keyup.enter="handleColorInput"
+            placeholder="Color" />
         </div>
-        <div class="ball"></div>
-        <div class="ball1"></div>
+      </div>
     </div>
     </transition>
     <world v-if="submitted" v-bind:colorName="color"></world>
     <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
-  </main>
+  </div>
 </template>
 
 <script>
@@ -93,7 +90,6 @@ export default {
   padding: 3em;
   border-style: black 1em;
   border-radius: 0.5em;
-
 }
 
 h1{
@@ -106,15 +102,29 @@ h2{
   color: white;
 }
 
+.center-page {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
 .form-group {
-    margin-bottom: 15px;
-    padding-top: 50px;
-    padding-left: 200px;
-    padding-right: 200px;
+  position: auto;
+  margin-bottom: 15px;
+  padding-top: 50px;
+  padding-left: 200px;
+  padding-right: 200px;
+
 }
 
 .form-group-lg .form-control {
   text-align: -webkit-center;
+  width: auto;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
 }
 
 ul {
@@ -136,6 +146,13 @@ input {
   font-size: 2em;
   border-style: black;
 
+}
+
+.navbar-fixed-bottom, .navbar-fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
 }
 
 </style>

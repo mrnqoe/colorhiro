@@ -34,7 +34,6 @@ import { Swatches, Slider, Material }                       from 'vue-color'
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-import ntc                                                  from '../helpers/ntc.js'
 import Unsplash, { toJson }                                 from 'unsplash-js'
 import { unsplashCred }                                     from '../helpers/variable.js'
 
