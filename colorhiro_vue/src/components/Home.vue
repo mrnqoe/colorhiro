@@ -17,7 +17,7 @@
     </transition>
     <div class="progress progress-striped">
       <div class="progress-bar" :style="progressWidth">
-        <span>{{ progess }}</span>
+        <span></span>
       </div>
     </div>
     <button class="btn btn-default" v-on:click="start" type="submit">Button</button>
@@ -50,7 +50,7 @@ export default {
       show: true,
       colorCode: '',
       data_in: null,
-      progress: 10
+      progress: 50
     }
   },
   computed: {
