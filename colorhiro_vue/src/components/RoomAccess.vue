@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     createKey: function(){
-      this.shareKey = true;
+      this.$root.$data.shareKey = '01010'
     }
   }
 }

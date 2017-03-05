@@ -46,7 +46,7 @@ export default {
         this.colorCode = this.color
         console.log(this.color);
         console.log(this.colorCode);
-        return null
+        console.log('MAIN VUE DATA:',this.$root.$data);
       }
     }
   },
