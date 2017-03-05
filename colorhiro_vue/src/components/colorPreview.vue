@@ -2,6 +2,7 @@
   <div class="colorPreview">
     <div class="thumbnail" :style="{ 'background-color': '#'+ pickedColor[0].hex }">
       <h1> {{ pickedColor[0]["name"] }}   #{{ pickedColor[0]["hex"] }}  </h1>
+
     </div>
   </div>
 </template>
