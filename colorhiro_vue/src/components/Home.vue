@@ -9,7 +9,9 @@
           type="text"
           v-model="color"
           v-on:keyup.enter="handleColorInput"
-          placeholder="Color" />
+          placeholder=""
+          autofocus
+          />
       </div>
     </div>
     </transition>
@@ -133,10 +135,9 @@ a {
 }
 
 input {
-  padding: 1em 1em;
-  font-size: 2em;
-  border-style: black;
-
+  outline: 0;
+  border-width: 0 0 2px 0;
+  border-color: blue
 }
 
 
