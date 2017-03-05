@@ -1,7 +1,12 @@
 <template>
   <div class="colorList">
-    <div v-if="loading">
+    <div v-if="loading" :duration="5000">
       loading ... {{ loading }}
+      <div class="progress progress-striped">
+        <div class="progress-bar" :style="progressWidth">
+          <span></span>
+        </div>
+      </div>
     </div>
     <div v-else>
 
@@ -41,10 +46,16 @@ export default {
       colorData: null,
       loading: true,
       clicked: false,
-      selectedItem: null
+      selectedItem: null,
+      progress: 50
 
 
       // colorHex: this.colorData,
+    }
+  },
+  computed: {
+    progressWidth: function(){
+      return "width:" + this.progress + "%";
     }
   },
   created: function () {
@@ -81,8 +92,10 @@ export default {
           return i
         }
       })
+    },
+    start: function(){
+      this.progress = 90
     }
-
   }
 }
 </script>

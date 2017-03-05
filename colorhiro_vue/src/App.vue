@@ -1,7 +1,8 @@
 <template>
   <div  class="site-wrapper">
+  <transition name="fade">
     <div class="site-wrapper-inner">
-      <div class="cover-container">
+      <div v-if="show" class="cover-container">
         <div class="app masthead clearfix">
           <div class="inner">
             <h3 class="masthead-brand">Colorhiro</h3>
@@ -10,48 +11,9 @@
         <div>
         <router-view></router-view>
         </div>
-        <!-- <footer>
-          <nav class="navbar navbar-default navbar-fixed-bottom">
-            <div class="container">
-              <ul class="bs-docs-footer-links">
-                <li>
-                  <a href="https://www.facebook.com/scott.farmer.35325">Facebook</a>
-                </li>
-                <li>
-                  <a href="https://github.com/scottfarmer2">Github</a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/ScottFarmerrrr">Twitter</a>
-                </li>
-              </ul>
-              <p>Our thanks to colorname for their unreal list of color names</p>
-            </div>
-          </nav>
-        </footer> -->
-       <!--  <footer>
-          <nav class="navbar navbar-default navbar-fixed-bottom">
-            <div class="container panel-footer clearfix">
-              <ul class="bs-docs-footer-links">
-                <li>
-                  <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/scott.farmer.35325">
-                    <span class="fa fa-facebook"></span>
-                  </a>
-                </li>
-                <li>
-                  <a class="btn btn-social-icon btn-github" href="https://github.com/scottfarmer2">
-                    <span class="fa fa-github"></span>
-                  </a>
-                </li>
-                <li>
-                  <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/ScottFarmerrrr">
-                    <span class="fa fa-twitter"></span>
-                  </a>
-                </li>
-            </div>
-          </nav>
-        </footer> -->
       </div>
     </div>
+  </transition>
   </div>
 </template>
 
@@ -61,7 +23,8 @@ export default {
   name: 'app',
   data: function () {
     return {
-      share_key: null
+      share_key: null,
+      show: true
     }
   }
 }
@@ -70,8 +33,11 @@ export default {
 
 <style>
 
-html {
-
+.fade-leave-active {
+  transition: opacity .5s
+}
+.fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
 
 body #app {
