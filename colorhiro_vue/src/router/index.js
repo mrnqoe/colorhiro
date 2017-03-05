@@ -6,6 +6,7 @@ import Room from          'components/Room'
 import Home from          'components/Home'
 import Spec from          'components/Spec'
 import colorList from     'components/colorList'
+import colorPreview from  'components/colorPreview'
 
 Vue.use(require('vue-faker'))
 Vue.use(VueResource)

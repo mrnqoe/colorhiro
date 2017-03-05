@@ -4,11 +4,22 @@
       loading ... {{ loading }}
     </div>
     <div v-else>
-      <ul>
-        <li v-for="color in colorData">
-          <span> {{ color.name }} </span>
-        </li>
-      </ul>
+
+      <div v-if="selectedItem === null">
+        <div class="container">
+          <h5>Wait.. but which " {{ colorName }} " are you talking about? </h5>
+          <ul class="list-group" >
+            <li v-for="color in colorData" class="list-group-item" v-on:click="colorSelected($event.target.innerText)">
+              {{ color.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div v-else>
+        <colorPreview v-bind:pickedColor="selectedItem"></colorPreview>
+      </div>
+
     </div>
   </div>
 </template>
@@ -17,14 +28,22 @@
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
+import colorPreview                                         from './colorPreview.vue'
 
 export default {
   name: 'colorList',
+  components: {
+    'colorPreview' : colorPreview
+  },
   props: ['colorName'],
   data: function(){
     return {
       colorData: null,
-      loading: true
+      loading: true,
+      clicked: false,
+      selectedItem: null
+
+
       // colorHex: this.colorData,
     }
   },
@@ -41,24 +60,35 @@ export default {
          emulateJSON: true
        })
         .then(function(response){
-          console.log('response');
+          // console.log('response');
           return response
         })
         .then(function(json) {
           this.colorData = json.body.color
           this.loading = false
-          console.log("Event added!");
+          // console.log("Event added!");
           resolve(json);
         }).catch(function(error) {
           return error
-        console.log(error);
+        // console.log(error);
+      })
+    },
+
+    colorSelected: function(c){
+      this.selectedItem = this.colorData.filter(function(i){
+        if (i.name === c) {
+          console.log(i)
+          return i
+        }
       })
     }
+
   }
 }
 </script>
 
 <style>
+
 /*
 .color{
   padding: 3em;
