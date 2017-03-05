@@ -17,7 +17,7 @@
       </div>
 
       <div v-else>
-        <colorPreview v-bind:pickedColor="selectedItem"></colorPreview>
+        <colorPreview v-bind:pickedColor="selectedItem" v-on:click="back"></colorPreview>
       </div>
 
     </div>
@@ -81,6 +81,9 @@ export default {
           return i
         }
       })
+    },
+    back: function(){
+      this.show = false
     }
 
   }
