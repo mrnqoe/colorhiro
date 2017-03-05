@@ -34,14 +34,13 @@ import { Swatches, Slider, Material }                       from 'vue-color'
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
-import Unsplash, { toJson }                                 from 'unsplash-js'
-import { unsplashCred }                                     from '../helpers/variable.js'
+/*import Unsplash, { toJson }                                 from 'unsplash-js'*/
+/*import { unsplashCred }                                     from '../helpers/variable.js'*/
 
 
-const unsplash = new Unsplash(unsplashCred());
+/*const unsplash = new Unsplash(unsplashCred());*/
 
 export default {
-
   name: 'spec',
   props: ['colorName'],
   components: {
@@ -96,18 +95,36 @@ export default {
   //       // Your code
   //     });
   // },
-
   watch: {
     colors: function(newColor){
       this.paletteName = hexToColor(newColor.hex)
       console.log("i'm watching")
-
     }
   },
   methods: {
     onChange: function(val) {
       this.colors = val
     },
+    fetchColors: function () {
+      var url = 'http://localhost:3000/user'
+      this.$http.post(url, {name: this.colorName}, {
+         emulateJSON: true
+       })
+        .then(function(response){
+          console.log(response);
+          return response
+        })
+        .then(function(json) {
+          this.colorData = json
+          this.loading = false
+          resolve(json);
+          console.log("Event added!");
+        }).catch(function(error) {
+          return error
+        console.log(error);
+      })
+    }
+
     // fetchColors: function(){
     //   var url = "localhost:3000/color";
     //   return colorToHex(this.colorName,(c)=>{
@@ -116,8 +133,6 @@ export default {
     // }
   }
 }
-
-
 </script>
 
 <style>
@@ -149,9 +164,7 @@ export default {
   padding: 3em;
   border-style: black 1em;
   border-radius: 0.5em;
-
 }
-
 h1{
   font-weight: bold;
   -webkit-text-stroke: black;
@@ -161,28 +174,21 @@ h2{
   font-weight: bold;
   color: black;
 }
-
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
 }
-
 a {
   color: #42b983;
 }
-
 input {
   padding: 1em 1em;
   font-size: 2em;
   background:white;
   border-style: black;
-
 }*/
-
 </style>

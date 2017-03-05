@@ -21,7 +21,7 @@
       </div>
     </div>
     <button class="btn btn-default" v-on:click="start" type="submit">Button</button>
-    <!-- <world v-if="submitted" v-bind:colorName="color"></world> -->
+    <colorList v-if="submitted" v-bind:colorName="color"></colorList>
     <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
   </div>
 </template>
@@ -31,14 +31,16 @@ import { Swatches, Material, Slider }                       from 'vue-color'
 import { generateRandomString }                             from '../helpers/share_key.js'
 import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
 import spec                                                 from './Spec.vue'
-import world                                                from './World.vue'
+import colorList                                            from './colorList.vue'
+import colorPreview                                         from './colorPreview.vue'
 
 
 export default {
   name: 'home',
   components: {
     'spec' : spec,
-    'world' : world
+    'colorList' : colorList,
+    'colorPreview' : colorPreview
   },
   data: function(){
     return {
@@ -73,14 +75,13 @@ export default {
     start: function(){
       this.progress = 90
     }
-  },
-  watch: {
-    color: function(){
-      changeColor(this.color)
-    }
   }
+  // watch: {
+  //   color: function(){
+  //     changeColor(this.color)
+  //   }
+  // }
 }
-
 </script>
 
 <style>
@@ -90,7 +91,6 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
 }
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -99,13 +99,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 .color{
   padding: 3em;
   border-style: black 1em;
   border-radius: 0.5em;
 }
-
 h1{
   font-weight: bold;
   -webkit-text-stroke: black;
@@ -138,25 +136,24 @@ h2{
   border-bottom: 1px solid black;
 }
 
-ul {
+/*ul {
+
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
-}
+}*/
 
 a {
   color: #42b983;
 }
-
 input {
   outline: 0;
   border-width: 0 0 2px 0;
   border-color: blue
 }
 
-
 </style>
+
