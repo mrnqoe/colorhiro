@@ -1,6 +1,8 @@
 <template>
   <div class="spec">
-    <div class="row">
+    {{ colorName }}
+
+    <!-- <div class="row">
       <div class="col-xs-6 col-md-6">
         <h3> Here is your color specification </h3>
         <h3>Color Name: {{ colorData }} /  Hex code: {{ colorHex }}</h3>
@@ -25,7 +27,7 @@
           {{ unsplashPhotos }}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -34,6 +36,8 @@ import { Swatches, Slider, Material }                       from 'vue-color'
 import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
+import colorList                                            from './colorList.vue'
+import colorPreview                                         from './colorPreview.vue'
 /*import Unsplash, { toJson }                                 from 'unsplash-js'*/
 /*import { unsplashCred }                                     from '../helpers/variable.js'*/
 

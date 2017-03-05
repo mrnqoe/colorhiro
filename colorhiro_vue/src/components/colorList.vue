@@ -22,7 +22,7 @@
       </div>
 
       <div v-else>
-        <colorPreview v-bind:pickedColor="selectedItem"></colorPreview>
+        <colorPreview v-bind:pickedColor="selectedItem" v-on:click="back"></colorPreview>
       </div>
 
     </div>
@@ -73,7 +73,7 @@ export default {
         .then(function(response){
           // console.log('response');
           return response
-        })
+        } )
         .then(function(json) {
           this.colorData = json.body.color
           this.loading = false
@@ -93,11 +93,18 @@ export default {
         }
       })
     },
+
     start: function(){
       this.progress = 90
+    },
+
+    back: function(){
+      this.show = false
+
     }
   }
 }
+
 </script>
 
 <style>
