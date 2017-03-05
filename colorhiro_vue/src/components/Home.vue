@@ -15,7 +15,13 @@
       </div>
     </div>
     </transition>
-    <world v-if="submitted" v-bind:colorName="color"></world>
+    <div class="progress progress-striped">
+      <div class="progress-bar" :style="progressWidth">
+        <span>{{ progess }}</span>
+      </div>
+    </div>
+    <button class="btn btn-default" v-on:click="start" type="submit">Button</button>
+    <!-- <world v-if="submitted" v-bind:colorName="color"></world> -->
     <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
   </div>
 </template>
@@ -41,8 +47,17 @@ export default {
       submitted: false,
       show: true,
       colorCode: '',
-      data_in: null
+      data_in: null,
+      progress: 10
     }
+  },
+  computed: {
+    progressWidth: function(){
+      return "width:" + this.progress + "%";
+    }
+  },
+  created: function(){
+
   },
   methods: {
     handleColorInput: function(ev){
@@ -54,6 +69,9 @@ export default {
         console.log(this.colorCode);
         return null
       }
+    },
+    start: function(){
+      this.progress = 90
     }
   },
   watch: {
