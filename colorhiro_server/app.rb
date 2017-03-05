@@ -53,7 +53,7 @@ class App < Sinatra::Application
         key: i.key
       }
     end
-    json :rooms => rooms
+    json :rooms => @rooms
   end
 
   # MAKE THIS SECUURE

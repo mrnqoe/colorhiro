@@ -1,20 +1,31 @@
 <template>
   <div class="spec">
-    <h1> Here is your color specification </h1>
-    <h3>Color Name: {{ colorData }} /  Hex code: {{ colorHex }}</h3>
-      <br><br><br><br>
-    <h3> How about little more details? on your {{ colors.hex }} </h3>
-    <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
-    <material-picker v-model="colors" @change-color="onChange"></material-picker>
-      <br><br>
-    <h2> COLOR PALETTES</h2>
-    <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
-    {{ paletteName }}
-      <br><br>
-      <p> If you wish to share your favourite color with amigos here is your link! </p>
-      <br><br>
-      <h1> Photos from Unsplash </h1>
-      {{ unsplashPhotos }}
+    <div class="row">
+      <div class="col-xs-6 col-md-6">
+        <h3> Here is your color specification </h3>
+        <h3>Color Name: {{ colorData }} /  Hex code: {{ colorHex }}</h3>
+        <br><br>
+        <h3> How about little more details? on your {{ colors.hex }} </h3>
+      </div>
+      <div class="col-xs-6 col-md-6 text-center">
+        <h3>COLOR PALETTES</h3>
+        <swatches-picker v-model="colors" @change-color="onChange"></swatches-picker>
+        {{ paletteName }}
+        <br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12 text-center">
+        <slider-picker v-model="colors" @change-color="onChange"></slider-picker>
+        <h4> If you wish to share your favourite color with amigos here is your link! </h4>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          <h3> Photos from Unsplash </h3>
+          {{ unsplashPhotos }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,6 +36,7 @@ import {post_data, get_data}                                from '../helpers/que
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 /*import Unsplash, { toJson }                                 from 'unsplash-js'*/
 /*import { unsplashCred }                                     from '../helpers/variable.js'*/
+
 
 /*const unsplash = new Unsplash(unsplashCred());*/
 
@@ -124,6 +136,29 @@ export default {
 </script>
 
 <style>
+
+.spec .vue-color__slider{
+  position: relative;
+  width: auto;
+  padding: 1em 5em;
+  box-shadow: 0;
+}
+
+.spec .vue-color__swatches{
+  position: relative;
+  width: auto;
+  height: auto;
+  background-color: rgba(0, 0, 0, .12);
+}
+
+.spec .vue-color__slider__hue-warp{
+  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
+}
+
+.spec .vue-color__slider__swatch{
+  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
+}
+
 /*
 .color{
   padding: 3em;

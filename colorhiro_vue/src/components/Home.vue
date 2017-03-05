@@ -1,17 +1,28 @@
 <template>
-  <div class="home" >
+  <div>
     <transition name="fade">
-      <div v-if="show">
-        <h1>Type in a color</h1>
+    <div v-if="show" class="inner cover">
+      <h1 class="cover-heading">Type a color</h1>
+      <div class="lead form-group form-group-lg">
         <input
+          class="form-control"
           type="text"
           v-model="color"
           v-on:keyup.enter="handleColorInput"
-          placeholder="ex: Lavender blue" />
+          placeholder=""
+          autofocus
+          />
       </div>
+    </div>
     </transition>
+    <div class="progress progress-striped">
+      <div class="progress-bar" :style="progressWidth">
+        <span>{{ progess }}</span>
+      </div>
+    </div>
+    <button class="btn btn-default" v-on:click="start" type="submit">Button</button>
     <colorList v-if="submitted" v-bind:colorName="color"></colorList>
-    <!-- <spec v-if="submitted" v-bind:colorName="color"></spec> -->
+    <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
   </div>
 </template>
 
@@ -38,19 +49,30 @@ export default {
       submitted: false,
       show: true,
       colorCode: '',
-      data_in: null
+      data_in: null,
+      progress: 10
     }
+  },
+  computed: {
+    progressWidth: function(){
+      return "width:" + this.progress + "%";
+    }
+  },
+  created: function(){
+
   },
   methods: {
     handleColorInput: function(ev){
       if(this.color){
         this.submitted = true
-        // this.show = false
         this.colorCode = this.color
         console.log(this.color);
         console.log(this.colorCode);
-        return null
+        console.log('MAIN VUE DATA:',this.$root.$data);
       }
+    },
+    start: function(){
+      this.progress = 90
     }
   }
   // watch: {
@@ -90,7 +112,31 @@ h2{
   font-weight: bold;
   color: white;
 }
+
+.center-page {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+
+.form-group {
+  position: auto;
+  margin-bottom: 15px;
+  padding-top: 50px;
+}
+
+.form-group-lg .form-control {
+  text-align: -webkit-center;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
 /*ul {
+
   list-style-type: none;
   padding: 0;
 }
@@ -98,12 +144,14 @@ li {
   display: inline-block;
   margin: 0 10px;
 }*/
+
 a {
   color: #42b983;
 }
 input {
-  padding: 1em 1em;
-  font-size: 2em;
-  border-style: black;
+  outline: 0;
+  border-width: 0 0 2px 0;
+  border-color: blue
 }
+
 </style>
