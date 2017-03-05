@@ -1,54 +1,57 @@
 <template>
-  <div class="app">
-    <header>
-      <nav class="navbar navbar-light bg-faded">
-        <a class="navbar-brand">
-          <img src="./assets/logo.png" width="30" height="30" class="d-inline-block align-right" alt="">Colorhiro</a>
-      </nav>
-    </header>
-    <div>
-    <router-view></router-view>
+  <div  class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <div class="app masthead clearfix">
+          <div class="inner">
+            <h3 class="masthead-brand">Colorhiro</h3>
+          </div>
+        </div>
+        <div>
+        <router-view></router-view>
+        </div>
+        <!-- <footer>
+          <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container">
+              <ul class="bs-docs-footer-links">
+                <li>
+                  <a href="https://www.facebook.com/scott.farmer.35325">Facebook</a>
+                </li>
+                <li>
+                  <a href="https://github.com/scottfarmer2">Github</a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/ScottFarmerrrr">Twitter</a>
+                </li>
+              </ul>
+              <p>Our thanks to colorname for their unreal list of color names</p>
+            </div>
+          </nav>
+        </footer> -->
+       <!--  <footer>
+          <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container panel-footer clearfix">
+              <ul class="bs-docs-footer-links">
+                <li>
+                  <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/scott.farmer.35325">
+                    <span class="fa fa-facebook"></span>
+                  </a>
+                </li>
+                <li>
+                  <a class="btn btn-social-icon btn-github" href="https://github.com/scottfarmer2">
+                    <span class="fa fa-github"></span>
+                  </a>
+                </li>
+                <li>
+                  <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/ScottFarmerrrr">
+                    <span class="fa fa-twitter"></span>
+                  </a>
+                </li>
+            </div>
+          </nav>
+        </footer> -->
+      </div>
     </div>
-    <footer>
-      <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-          <ul class="bs-docs-footer-links">
-            <li>
-              <a href="https://www.facebook.com/scott.farmer.35325">Facebook</a>
-            </li>
-            <li>
-              <a href="https://github.com/scottfarmer2">Github</a>
-            </li>
-            <li>
-              <a href="https://twitter.com/ScottFarmerrrr">Twitter</a>
-            </li>
-          </ul>
-          <p>Our thanks to colorname for their unreal list of color names</p>
-        </div>
-      </nav>
-    </footer>
-   <!--  <footer>
-      <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container panel-footer clearfix">
-          <ul class="bs-docs-footer-links">
-            <li>
-              <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/scott.farmer.35325">
-                <span class="fa fa-facebook"></span>
-              </a>
-            </li>
-            <li>
-              <a class="btn btn-social-icon btn-github" href="https://github.com/scottfarmer2">
-                <span class="fa fa-github"></span>
-              </a>
-            </li>
-            <li>
-              <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/ScottFarmerrrr">
-                <span class="fa fa-twitter"></span>
-              </a>
-            </li>
-        </div>
-      </nav>
-    </footer> -->
   </div>
 </template>
 
@@ -78,6 +81,62 @@ body #app {
   margin-top: 60px;
 }
 
+.site-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.site-wrapper-inner {
+  vertical-align: top;
+}
+
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.inner {
+    padding: 30px;
+}
+
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+
+navs.less:9
+
+.nav>li {
+  position: relative;
+  display: block;
+}
+
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+cover.css:70
+.masthead-nav > li {
+  display: inline-block;
+}
+
+navs.less:9
+
+.nav>li {
+  position: relative;
+  display: block;
+}
+
 #logo{
   width: 20px;
   height: 20px;
@@ -90,7 +149,7 @@ body #app {
 
 }
 
-.navbar-brand>img {
+/*.navbar-brand>img {
   display: inline-block;
 }
 
@@ -102,7 +161,7 @@ body #app {
   background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#f8f8f8));
   background-image: linear-gradient(to bottom,#403d3d 0,#000000 100%);
 }
-
+*/
 /*.home{
   text-align: center;
 }
@@ -123,7 +182,7 @@ h2{
   text-align: center;
 }
 
-.spec .vue-color__slider{
+/*.spec .vue-color__slider{
   position: relative;
   width: auto;
   padding: 1em 5em;
@@ -144,7 +203,7 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-
+*/
 a {
   color: #42b983;
 }
@@ -156,7 +215,7 @@ input {
 
 }
 
-.wrapper {
+/*.wrapper {
   min-height: 100%;
   height: auto;
   margin: 0 auto -100px;
@@ -164,6 +223,6 @@ input {
 }
 .footer {
   height: 100px;
-}
+}*/
 
 </style>

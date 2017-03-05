@@ -1,21 +1,15 @@
 <template>
   <div>
     <transition name="fade">
-    <div v-if="show" class="center-page">
-      <div class="home row">
-        <div class="col-xs-12 col-md-12 text-center">
-          <h1>Type in a color</h1>
-        </div>
-      </div>
-      <div class="row form-group form-group-lg">
-        <div class="col-xs-12 col-md-12 text-center">
-          <input
-            class="form-control"
-            type="text"
-            v-model="color"
-            v-on:keyup.enter="handleColorInput"
-            placeholder="Color" />
-        </div>
+    <div v-if="show" class="inner cover">
+      <h1 class="cover-heading">Type a color</h1>
+      <div class="lead form-group form-group-lg">
+        <input
+          class="form-control"
+          type="text"
+          v-model="color"
+          v-on:keyup.enter="handleColorInput"
+          placeholder="Color" />
       </div>
     </div>
     </transition>
@@ -113,14 +107,11 @@ h2{
   position: auto;
   margin-bottom: 15px;
   padding-top: 50px;
-  padding-left: 200px;
-  padding-right: 200px;
-
 }
 
 .form-group-lg .form-control {
   text-align: -webkit-center;
-  width: auto;
+  width: 100%;
   border: 0;
   outline: 0;
   background: transparent;
@@ -148,11 +139,5 @@ input {
 
 }
 
-.navbar-fixed-bottom, .navbar-fixed-top {
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-}
 
 </style>
