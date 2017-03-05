@@ -7,7 +7,12 @@
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  data: function () {
+    return {
+      share_key: null
+    }
+  }
 }
 
 </script>

@@ -43,7 +43,6 @@ export default {
     handleColorInput: function(ev){
       if(this.color){
         this.submitted = true
-        // this.show = false
         this.colorCode = this.color
         console.log(this.color);
         console.log(this.colorCode);

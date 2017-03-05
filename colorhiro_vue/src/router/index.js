@@ -5,7 +5,8 @@ import Hello from         'components/Hello'
 import Room from          'components/Room'
 import Home from          'components/Home'
 import Spec from          'components/Spec'
-import socketTest from    'components/socketTest'
+import SocketTest from    'components/SocketTest'
+import RoomAccess from    'components/RoomAccess'
 import colorList from     'components/colorList'
 
 Vue.use(require('vue-faker'))
@@ -18,13 +19,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-
     },
     {
       path: '/sockets',
-      name: 'socketTest',
-      component: socketTest
-
+      name: 'roomAccess',
+      component: RoomAccess
     },
     {
       path: '/room/:share_key',
@@ -35,7 +34,6 @@ export default new Router({
       path: '/spec',
       name: 'spec',
       component: Spec
-
     }
   ]
 })
