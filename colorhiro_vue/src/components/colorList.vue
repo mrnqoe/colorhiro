@@ -14,7 +14,7 @@
         <div class="container">
           <h5>Wait.. but which " {{ colorName }} " are you talking about? </h5>
           <ul class="list-group" >
-            <li v-for="color in colorData" class="list-group-item" v-on:click="colorSelected($event.target.innerText)">
+            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected($event.target.innerText)">
               {{ color.name }}
             </li>
           </ul>
@@ -38,7 +38,7 @@ import colorPreview                                         from './colorPreview
 export default {
   name: 'colorList',
   components: {
-    'colorPreview' : colorPreview
+    'colorPreview' : colorPreview,
   },
   props: ['colorName'],
   data: function(){
@@ -100,14 +100,32 @@ export default {
 
     back: function(){
       this.show = false
-
-    }
+    },
+    // NotaColor: function () {
+    //   console.log(colorData)
+    // }
   }
 }
+
 
 </script>
 
 <style>
+
+.foo:hover {
+  background: gold;
+  opacity: .5;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0;
+  text-align: center;
+}
 
 /*
 .color{
