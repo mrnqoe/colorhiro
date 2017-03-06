@@ -103,15 +103,15 @@ export default {
         }
       })
     },
-    backHome: function(home){
-      // console.log("clicked back")
-      // this.selectedItem = null
-      // EventBus.$emit('wanna-go-back', this.$root.$router.push({name:"roomAccess"});
+    // backHome: function(home){
+    //   // console.log("clicked back")
+    //   // this.selectedItem = null
+    //   // EventBus.$emit('wanna-go-back', this.$root.$router.push({name:"roomAccess"});
 
-      console.log("clicked")
-      this.$router.go({name:"home"})
+    //   console.log("clicked")
+    //   this.$router.go({name:"home"})
 
-    }
+    // }
 
     // start: function(){
     //   this.progress = 90
