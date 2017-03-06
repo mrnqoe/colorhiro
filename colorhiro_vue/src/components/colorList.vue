@@ -6,8 +6,11 @@
     <div v-else>
 
       <div v-if="selectedItem === null">
+        <div class="container colorContainer" :style="{ 'background-color': colorName }">
+          <h4> "{{ colorName }}"?  Not a bad choice! </h4>
+        </div>
         <div class="container">
-          <h5>Wait.. but which " {{ colorName }} " are you talking about? </h5>
+          <h5>Or.. we have more verities of " {{ colorName }} " for you ;) </h5>
           <ul class="list-group" >
             <li v-for="color in colorData" class="list-group-item" v-on:click="colorSelected($event.target.innerText)">
               {{ color.name }}
@@ -26,9 +29,13 @@
 
 <script>
 import Home                                                 from './Home.vue'
-import {post_data, get_data}                                from '../helpers/queries.js'
+import {post_data, get_data, getColorData }                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorPreview                                         from './colorPreview.vue'
+import {EventBus}                                           from '../helpers/event-bus.js'
+
+
+
 
 export default {
   name: 'colorList',
@@ -42,17 +49,14 @@ export default {
       loading: true,
       clicked: false,
       selectedItem: null
-
-
-      // colorHex: this.colorData,
     }
   },
   created: function () {
+    let self = this
+    EventBus.$on('wanna-go-back', result => self.selectedItem = null);
     this.getColorData();
   },
-  // ready: function () {
-  //   this.getColorData();
-  // },
+
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/user"
@@ -88,7 +92,10 @@ export default {
 </script>
 
 <style>
+.colorContainer{
+  padding: 30px;
 
+}
 /*
 .color{
   padding: 3em;

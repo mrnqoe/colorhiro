@@ -1,6 +1,13 @@
 <template>
   <div class="spec">
-    <div class="row">
+    {{ colorName }}
+
+  <div class="col-xs-12 col-md-12 text-center">
+    <h3> Photos from Unsplash </h3>
+    {{ unsplashPhotos }}
+  </div>
+
+    <!-- <div class="row">
       <div class="col-xs-6 col-md-6">
         <h3> Here is your color specification </h3>
         <h3>Color Name: {{ colorData }} /  Hex code: {{ colorHex }}</h3>
@@ -25,15 +32,15 @@
           {{ unsplashPhotos }}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { Swatches, Slider, Material }                       from 'vue-color'
+
 import Home                                                 from './Home.vue'
-import {post_data, get_data}                                from '../helpers/queries.js'
-import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
+import colorList                                            from './colorList.vue'
+
 /*import Unsplash, { toJson }                                 from 'unsplash-js'*/
 /*import { unsplashCred }                                     from '../helpers/variable.js'*/
 
@@ -43,11 +50,7 @@ import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/col
 export default {
   name: 'spec',
   props: ['colorName'],
-  components: {
-    'swatches-picker': Swatches,
-    'material-picker': Material,
-    'slider-picker': Slider
-  },
+
   created: function() {
     var url = "http://localhost:3000/user"
     this.colorData = post_data(this.$http, url, {color: this.colorName})
@@ -55,7 +58,7 @@ export default {
   data: function(){
     return {
       colorData: null,
-      // colorName: this.colorName,
+
       colorHex: "this.colorName",
       unsplashPhotos: [],
       colors: {

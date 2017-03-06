@@ -37,3 +37,23 @@ export function get_data(http, url, data){
     })
   })
 }
+
+export function getColorData() {
+      var url = "http://localhost:3000/user"
+      this.$http.post(url, {color:this.colorName}, {
+         emulateJSON: true
+       })
+        .then(function(response){
+          // console.log('response');
+          return response
+        })
+        .then(function(json) {
+          this.colorData = json.body.color
+          this.loading = false
+          // console.log("Event added!");
+          resolve(json);
+        }).catch(function(error) {
+          return error
+        // console.log(error);
+      })
+    }

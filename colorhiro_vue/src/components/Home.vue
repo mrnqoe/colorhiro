@@ -22,7 +22,9 @@
     </div>
     <button class="btn btn-default" v-on:click="start" type="submit">Button</button>
     <colorList v-if="submitted" v-bind:colorName="color"></colorList>
-    <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
+
+   <!--  <spec v-if="test" v-bind:colorName="color"></spec> -->
+
   </div>
 </template>
 
