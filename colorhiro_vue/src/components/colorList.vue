@@ -6,8 +6,11 @@
     <div v-else>
 
       <div v-if="selectedItem === null">
+        <div class="container colorContainer" :style="{ 'background-color': colorName }">
+          <h4> "{{ colorName }}"?  Not a bad choice! </h4>
+        </div>
         <div class="container">
-          <h5>Wait.. but which " {{ colorName }} " are you talking about? </h5>
+          <h5>Or.. we have more verities of " {{ colorName }} " for you ;) </h5>
           <ul class="list-group" >
             <li v-for="color in colorData" class="list-group-item" v-on:click="colorSelected($event.target.innerText)">
               {{ color.name }}
@@ -53,9 +56,7 @@ export default {
     EventBus.$on('wanna-go-back', result => self.selectedItem = null);
     this.getColorData();
   },
-  // ready: function () {
-  //   this.getColorData();
-  // },
+
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/user"
@@ -84,29 +85,17 @@ export default {
           return i
         }
       })
-
-
     }
-
-    // back: function(){
-    //   this.selectedItem === null
-    // }
-
-    // showList: function() {
-    //   if(this.selectedItem === null){
-    //     showList = true
-    //     console.log("show list now")
-    //   } else {
-    //     showList = false
-    //   }
-    // }
 
   }
 }
 </script>
 
 <style>
+.colorContainer{
+  padding: 30px;
 
+}
 /*
 .color{
   padding: 3em;
