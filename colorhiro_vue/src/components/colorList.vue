@@ -1,18 +1,26 @@
 <template>
   <div class="colorList">
-    <div v-if="loading">
+    <div v-if="loading" :duration="5000">
       loading ... {{ loading }}
+      <div class="progress progress-striped">
+        <div class="progress-bar" :style="progressWidth">
+          <span></span>
+        </div>
+      </div>
     </div>
     <div v-else>
 
       <div v-if="selectedItem === null">
         <div class="container colorContainer" :style="{ 'background-color': colorName }">
-          <h4> "{{ colorName }}"?  Not a bad choice! </h4>
+          <h4> "{{ colorName }}"?  Not a bad choice! {{ colorName.hex }}</h4>
+          <p>I'll go with this
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
+          </p>
         </div>
         <div class="container">
           <h5>Or.. we have more verities of " {{ colorName }} " for you ;) </h5>
           <ul class="list-group" >
-            <li v-for="color in colorData" class="list-group-item" v-on:click="colorSelected($event.target.innerText)">
+            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected($event.target.innerText)">
               {{ color.name }}
             </li>
           </ul>
@@ -40,7 +48,7 @@ import {EventBus}                                           from '../helpers/eve
 export default {
   name: 'colorList',
   components: {
-    'colorPreview' : colorPreview
+    'colorPreview' : colorPreview,
   },
   props: ['colorName'],
   data: function(){
@@ -48,7 +56,13 @@ export default {
       colorData: null,
       loading: true,
       clicked: false,
-      selectedItem: null
+      selectedItem: null,
+      progress: 50
+    }
+  },
+  computed: {
+    progressWidth: function(){
+      return "width:" + this.progress + "%";
     }
   },
   created: function () {
@@ -66,18 +80,20 @@ export default {
         .then(function(response){
           // console.log('response');
           return response
-        })
+        } )
         .then(function(json) {
           this.colorData = json.body.color
           this.loading = false
-          // console.log("Event added!");
           resolve(json);
         }).catch(function(error) {
           return error
         // console.log(error);
       })
     },
-
+    enterRoom: function(){
+      console.log("clicked")
+      this.$root.$router.push({name:"roomAccess"})
+    },
     colorSelected: function(c){
       this.selectedItem = this.colorData.filter(function(i){
         if (i.name === c) {
@@ -86,16 +102,34 @@ export default {
         }
       })
     }
-
   }
 }
+
+
 </script>
 
 <style>
+h5{
+  text-align: center;
+}
 .colorContainer{
   padding: 30px;
-
 }
+.foo:hover {
+  background: gold;
+  opacity: .5;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0;
+  text-align: center;
+}
+
 /*
 .color{
   padding: 3em;

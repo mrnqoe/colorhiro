@@ -1,7 +1,7 @@
 <template>
   <div>
-    <transition name="fade">
-    <div v-if="show" class="inner cover">
+    <!-- <transition name="fade"> -->
+    <div class="inner cover">
       <h1 class="cover-heading">Type a color</h1>
       <div class="lead form-group form-group-lg">
         <input
@@ -14,17 +14,10 @@
           />
       </div>
     </div>
-    </transition>
-    <div class="progress progress-striped">
-      <div class="progress-bar" :style="progressWidth">
-        <span></span>
-      </div>
-    </div>
-    <button class="btn btn-default" v-on:click="start" type="submit">Button</button>
+<!--     </transition> -->
+    <transition name="fade">
     <colorList v-if="submitted" v-bind:colorName="color"></colorList>
-
-   <!--  <spec v-if="test" v-bind:colorName="color"></spec> -->
-
+    </transition>
   </div>
 </template>
 
@@ -49,19 +42,10 @@ export default {
       name  : '',
       color: '',
       submitted: false,
-      show: true,
+      // show: true,
       colorCode: '',
       data_in: null,
-      progress: 50
     }
-  },
-  computed: {
-    progressWidth: function(){
-      return "width:" + this.progress + "%";
-    }
-  },
-  created: function(){
-
   },
   methods: {
     handleColorInput: function(ev){
@@ -73,9 +57,6 @@ export default {
         console.log('MAIN VUE DATA:',this.$root.$data);
       }
     },
-    start: function(){
-      this.progress = 90
-    }
   }
   // watch: {
   //   color: function(){
@@ -86,12 +67,14 @@ export default {
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
+
+/*.fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
-}
+}*/
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

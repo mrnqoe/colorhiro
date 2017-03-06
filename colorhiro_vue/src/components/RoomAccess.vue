@@ -14,7 +14,7 @@
     type="text"
     v-model="name0"
     v-on:keyup.enter="createKey($event.target.value)"
-    placeholder="ex: Lavender blue" />
+    placeholder="Please print your name" />
   </div>
 </template>
 
