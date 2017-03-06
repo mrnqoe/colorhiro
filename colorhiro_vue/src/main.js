@@ -4,21 +4,23 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
-import VueWebsocket from "vue-websocket";
-
+import VueSocketio from 'vue-socket.io';
 
 var vm = new Vue({
   el: '#app',
   router,
   data: {
+    name: '',
     color: '',
-    shareKey: false
+    roomAccess: false
   },
   template: '<App/>',
   components: {App},
   watch: {
-    shareKey: function () {
-      Vue.use(VueWebsocket, "ws://localhost:5000");
+    name: function () {
+      Vue.use(VueSocketio, 'http://localhost:5000');
+      this.roomAccess = true;
+      router.push({path: '/room/:01010'})
     }
   }
 })

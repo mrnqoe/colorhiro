@@ -1,39 +1,38 @@
 <template>
-  <div class='roomAccess'>
-    <div v-if="!shareKey">
-      <h1>ROOM ACCESS</h1>
-      <div v-if="!user_name">
-        <h1>USER NAME PROMPT</h1>
-      </div>
-      <div v-else-if="!colorData" class="">
-        <h1>COLOR NAME PROMPT</h1>
-      </div>
-      <div v-else>
-        <h1>ROOM ACCESS LINK</h1>
-      </div>
-      <input
-      type="text"
-      v-model="color"
-      v-on:keyup.enter="createKey"
-      placeholder="ex: Lavender blue" />
+  <div class='RoomAccess'>
+    <h1>ROOM ACCESS</h1>
+    <div v-if="!user_name">
+      <h1>USER NAME PROMPT</h1>
+    </div>
+    <div v-else-if="!colorData" class="">
+      <h1>COLOR NAME PROMPT</h1>
     </div>
     <div v-else>
-      <socketTest :roomKey='roomKey'></socketTest>
+      <h1>ROOM ACCESS LINK</h1>
     </div>
+    <input
+    type="text"
+    v-model="name0"
+    v-on:keyup.enter="createKey($event.target.value)"
+    placeholder="ex: Lavender blue" />
   </div>
 </template>
 
 <script>
-import SocketTest from './SocketTest.vue'
+
 export default {
-  name: 'roomAccess',
+  name: 'RoomAccess',
   props: ['colorData', 'user_name', 'shareKey'],
   data: function(){
-    roomKey: this.shareKey
+    return{
+      name0: '',
+      roomKey: this.shareKey
+    }
   },
   methods: {
-    createKey: function(){
-      this.$root.$data.shareKey = '01010'
+    createKey: function(val){
+      this.$root.$data.name = val
+      this.roomKey = '01010'
     }
   }
 }

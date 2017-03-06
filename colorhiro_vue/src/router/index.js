@@ -8,6 +8,7 @@ import Spec from          'components/Spec'
 import BootstrapVue from  'bootstrap-vue'
 import SocketTest from    'components/SocketTest'
 import RoomAccess from    'components/RoomAccess'
+import testRoom from      'components/testRoom'
 import colorList from     'components/colorList'
 import colorPreview from  'components/colorPreview'
 
@@ -31,7 +32,7 @@ export default new Router({
     {
       path: '/room/:share_key',
       name: 'room',
-      component: Room
+      component: testRoom
     },
     {
       path: '/spec',
