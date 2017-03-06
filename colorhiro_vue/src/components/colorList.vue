@@ -8,11 +8,9 @@
         </div>
       </div>
     </div>
-    <div v-else>
-
+    <div v-else-if="colorName">
       <div v-if="selectedItem === null">
         <div class="container">
-          <h5>Wait.. but which " {{ colorName }} " are you talking about? </h5>
           <ul class="list-group" >
             <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected($event.target.innerText)">
               {{ color.name }}
@@ -31,7 +29,7 @@
 
 <script>
 import Home                                                 from './Home.vue'
-import {post_data, get_data, getColorData }                                from '../helpers/queries.js'
+import {post_data, get_data, getColorData }                 from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorPreview                                         from './colorPreview.vue'
 import {EventBus}                                           from '../helpers/event-bus.js'
@@ -42,7 +40,9 @@ import {EventBus}                                           from '../helpers/eve
 export default {
   name: 'colorList',
   components: {
+
     'colorPreview' : colorPreview,
+    'home' : Home,
   },
   props: ['colorName'],
   data: function(){
@@ -59,14 +59,16 @@ export default {
       return "width:" + this.progress + "%";
     }
   },
+  watch: {
+    colorName: function () {
+      this.getColorData();
+    }
+  },
   created: function () {
     let self = this
     EventBus.$on('wanna-go-back', result => self.selectedItem = null);
     this.getColorData();
   },
-  // ready: function () {
-  //   this.getColorData();
-  // },
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/user"
@@ -78,10 +80,15 @@ export default {
           return response
         } )
         .then(function(json) {
-          this.colorData = json.body.color
-          this.loading = false
+          if(json.body.color.length >= 1){
+            this.colorData = json.body.color
+            this.loading = false
+            resolve(json);
+          }else{
+            this.colorData = null
+            this.loading = false
+          }
           // console.log("Event added!");
-          resolve(json);
         }).catch(function(error) {
           return error
         // console.log(error);
@@ -95,6 +102,15 @@ export default {
           return i
         }
       })
+    },
+    backHome: function(home){
+      // console.log("clicked back")
+      // this.selectedItem = null
+      // EventBus.$emit('wanna-go-back', this.$root.$router.push({name:"roomAccess"});
+
+      console.log("clicked")
+      this.$router.go({name:"home"})
+
     }
 
     // start: function(){
