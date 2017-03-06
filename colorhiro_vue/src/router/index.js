@@ -32,7 +32,7 @@ export default new Router({
     {
       path: '/room/:share_key',
       name: 'room',
-      component: testRoom
+      component: Room
     },
     {
       path: '/spec',
