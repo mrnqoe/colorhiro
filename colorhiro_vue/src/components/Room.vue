@@ -1,56 +1,109 @@
 <template>
-  <div class="room">
-    <h1>ROOM</h1>
+  <div class="Room">
     <i v-show="loading" class="fa fa-spinner fa-spin"></i>
+    <h4>{{ name }} {{ pickedColor }}</h4>
+    <div id="roomContent" class="container">
+      <div class="container msgContainer" v-for="msg in msgList">
+        <span> {{ name }} : </span> <span> {{ msg }} </span>
+      </div>
+
+      <div id="currentUser">
+        <h3>Online Users</h3>
+        <ul v-for="user in users">
+          <li>
+            {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <button v-on:click="send">Add 1</button>
+      <p>The button above has been clicked {{ a }} times.</p> -->
+
+    </div>
+    <input class="msgInput" v-on:keyup.enter="send" v-model="msg">
+    <draw-canvas></draw-canvas>
   </div>
 </template>
 
 <script>
-
-import {post_data, get_data}        from '../helpers/queries.js'
+import VueSocketio from 'vue-socket.io';
+import userGenerator from '../helpers/userGenerator.js'
+import DrawCanvas from './DrawCanvas'
 
 export default {
-  name: 'room',
-  data: function() {
+  name: 'Room',
+  components: {
+    'draw-canvas': DrawCanvas
+  },
+  props: ['roomKey','pickedColor'],
+  data: function () {
     return {
-      loading: true
+      loading: true,
+      test: null,
+      name: this.$root.$data.name,
+      a: 0,
+      b: 1,
+      id: null,
+      msg: 'example msg',
+      msgList: [],
+      users: userGenerator()
     }
   },
-  ready: function() {
-    this.loading = false;
-    let data_out = {color: this.color, share_key: this.share_key}
-      get_data(this.$http, {share_key: 'ehCVe5'})
-      console.log(this.$http)
+  sockets:{
+    connect: function(){
+      console.log('socket connected')
+    },
+    message: function(val){
+      this.msgList.push(val)
+
+      console.log("value: ", val)
+    }
+  },
+  methods: {
+    test0: function(){
+      console.log(this.$root);
+    },
+    send: function(event){
+      // this.msg = {
+      // content: this.msg
+      // }
+      this.a += 1
+      this.$socket.emit('message', this.msg, function(response) {
+        console.log(response);
+      }.bind(this));
+    },
+    add: function () {
+      // Emit the server side
+
+      // this.$options.sockets.emit("join", { a: 5, b: 3 });
+    },
+    connect: function () {
+      console.log('hello');
+      return 'hello'
+    },
+    get: function (msg) {
+      // this.$options.sockets.emit("messages", msg, (response) => {
+      //   console.log(response);
+      // });
+      this.$options.socket.emit("messages", msg)
+    }
   }
-  // created: function () {
-  //   this.get_data()
-  // },
-  // methods: {
-  //   importShareKey: function(){
-  //       let data_in = {share_key: share_key}
-  //       return get_data(this.$http, data_in)
-  //   }
-  // }
 }
 </script>
 
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-  color: black;
+<style>
+#currentUser{
+  float: right;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+.msgInput{
+  float: bottom;
 }
-
-li {
-  display: inline-block;
-  margin: 0 10px;
+.usersColor{
+  height: 5px;
+  font-weight: 5px;
+  border-radius: 50%;
 }
-
-a {
-  color: #42b983;
+.msgContainer{
+  float: top;
 }
 </style>

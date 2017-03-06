@@ -10,7 +10,14 @@
     </div>
     <div v-else-if="colorName">
       <div v-if="selectedItem === null">
+        <div class="container colorContainer" :style="{ 'background-color': colorName }">
+          <h4> "{{ colorName }}"?  Not a bad choice! {{ colorName.hex }}</h4>
+          <p>I'll go with this
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
+          </p>
+        </div>
         <div class="container">
+
           <ul class="list-group" >
             <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
               {{ color.name }}
@@ -21,7 +28,7 @@
       </div>
 
       <div v-else>
-        <colorPreview v-bind:pickedColor="selectedItem"></colorPreview>
+        <colorPreview v-bind:pickedColor="selectedItem[0]"></colorPreview>
       </div>
 
     </div>
@@ -70,6 +77,7 @@ export default {
     EventBus.$on('wanna-go-back', result => self.selectedItem = null);
     this.getColorData();
   },
+
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/user"
@@ -89,13 +97,15 @@ export default {
             this.colorData = null
             this.loading = false
           }
-          // console.log("Event added!");
         }).catch(function(error) {
           return error
         // console.log(error);
       })
     },
-
+    enterRoom: function(){
+      console.log("clicked")
+      this.$root.$router.push({name:"roomAccess"})
+    },
     colorSelected: function(c){
       this.selectedItem = this.colorData.filter(function(i){
         if (i.name === c) {
@@ -103,24 +113,8 @@ export default {
           return i
         }
       })
-    },
-    // backHome: function(home){
-    //   // console.log("clicked back")
-    //   // this.selectedItem = null
-    //   // EventBus.$emit('wanna-go-back', this.$root.$router.push({name:"roomAccess"});
-
-    //   console.log("clicked")
-    //   this.$router.go({name:"home"})
-
-    // }
-
-    // start: function(){
-    //   this.progress = 90
-    // },
-
-    // back: function(){
-    //   this.show = false
-    // },
+      this.$root.$data.color = this.selectedItem[0]
+    }
   }
 }
 
@@ -128,7 +122,12 @@ export default {
 </script>
 
 <style>
-
+h5{
+  text-align: center;
+}
+.colorContainer{
+  padding: 30px;
+}
 .foo:hover {
   background: gold;
   opacity: .5;

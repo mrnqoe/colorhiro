@@ -7,7 +7,7 @@ TOP.
 4.  FONT                                  - SCOTT
 5.  INTERACTIVITY THROUGH WEBSOCKETS      - EVERYONE
 6.  CONTENT IN ROOM                       - SARA
-7.  COLOR DASHBOARD                       - SARA
+7.  COLOR DASHBOARD                       - SARA - DONE...ish
 8.  UNSPLASH                              - EVERYONE
 9.  COLOR CODE CONVERSIONS                - NICK
 10. SOME 3JS                              - EVERYONE

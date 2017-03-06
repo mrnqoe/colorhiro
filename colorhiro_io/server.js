@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var env = require('dotenv').config();
+const PORT = process.env.port;
 
 var visitorsData = {};
 
@@ -13,6 +15,7 @@ app.use(express.static(__dirname + '/node_modules'));
 
 io.on('connection', function(socket){
   console.log('socket connected');
+  socket.emit("message");
   // console.log(socket.request);
   socket.on('join', function(data) {
     console.log(data);
@@ -24,15 +27,19 @@ io.on('connection', function(socket){
   // }, 1000);
 
   socket.on('message', function(data) {
-    console.log(socket.server);
-    socket.send('hello front !')
+    // const chatMsg = JSON.parse
+    console.log("this is the data : ", data);
+    // console.log(socket.server);
+    socket.send(data);
+
+
     // socket.emit('broad', data);
     // socket.broadcast.emit('broad',data);
   });
 
   socket.on('connect', function(data) {
     console.log(data);
-    socket.emit("customEmit", 'THIS IS SERVER DATA');
+
   });
 
   // socket.emit('join', 'Hello World from socket');
@@ -45,4 +52,5 @@ io.on('connection', function(socket){
   });
 });
 
-server.listen(5000);
+server.listen(PORT);
+
