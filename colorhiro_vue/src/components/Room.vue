@@ -1,8 +1,7 @@
 <template>
   <div class="room">
     <h1>ROOM</h1>
-    <p>import</p>
-    <i  v-show="loading" class="fa fa-spinner fa-spin"></i>
+    <i v-show="loading" class="fa fa-spinner fa-spin"></i>
   </div>
 </template>
 
@@ -14,12 +13,11 @@ export default {
   name: 'room',
   data: function() {
     return {
-      loading: false
+      loading: true
     }
   },
-
   ready: function() {
-    this.loading = true;
+    this.loading = false;
     let data_out = {color: this.color, share_key: this.share_key}
       get_data(this.$http, {share_key: 'ehCVe5'})
       console.log(this.$http)
