@@ -1,9 +1,9 @@
 <template>
   <div class="Room">
     <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-    <h4>{{ name }}</h4>
+    <h4>{{ name }} {{ pickedColor }}</h4>
     <div id="roomContent" class="container">
-      <div class="container msgContainer" v-model="msgList" v-for="msg in msgList">
+      <div class="container msgContainer" v-for="msg in msgList">
         <span> {{ name }} : </span> <span> {{ msg }} </span>
       </div>
 
@@ -21,16 +21,21 @@
 
     </div>
     <input class="msgInput" v-on:keyup.enter="send" v-model="msg">
+    <draw-canvas></draw-canvas>
   </div>
 </template>
 
 <script>
 import VueSocketio from 'vue-socket.io';
 import userGenerator from '../helpers/userGenerator.js'
+import DrawCanvas from './DrawCanvas'
 
 export default {
   name: 'Room',
-  props: ['roomKey'],
+  components: {
+    'draw-canvas': DrawCanvas
+  },
+  props: ['roomKey','pickedColor'],
   data: function () {
     return {
       loading: true,
