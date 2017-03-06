@@ -28,7 +28,7 @@
       </div>
 
       <div v-else>
-        <colorPreview v-bind:pickedColor="selectedItem"></colorPreview>
+        <colorPreview v-bind:pickedColor="selectedItem[0]"></colorPreview>
       </div>
 
     </div>
@@ -101,6 +101,7 @@ export default {
           return i
         }
       })
+      this.$root.$data.color = this.selectedItem[0]
     }
   }
 }

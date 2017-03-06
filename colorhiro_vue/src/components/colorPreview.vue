@@ -2,8 +2,8 @@
 
   <div class="inner cover">
     <div v-show="showPreview">
-      <div class="thumbnail" :style="{ 'background-color': '#'+ pickedColor[0].hex }">
-        <h3> {{ pickedColor[0]["name"] }}   #{{ pickedColor[0]["hex"] }}  </h3>
+      <div class="thumbnail" :style="{ 'background-color': '#'+ pickedColor.hex }">
+        <h3> {{ pickedColor.name }}   #{{ pickedColor.hex }}  </h3>
       </div>
       <div class="lead">
         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
