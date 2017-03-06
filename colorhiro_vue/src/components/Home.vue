@@ -18,7 +18,6 @@
     <transition name="fade">
     <colorList v-if="submitted" v-bind:colorName="color"></colorList>
     </transition>
-    <!-- <spec v-if="test" v-bind:colorCode="color"></spec> -->
   </div>
 </template>
 

@@ -1,17 +1,15 @@
 <template>
+
   <div class="inner cover">
-    <div v-if="show">
+    <div v-show="showPreview">
       <div class="thumbnail" :style="{ 'background-color': '#'+ pickedColor[0].hex }">
         <h3> {{ pickedColor[0]["name"] }}   #{{ pickedColor[0]["hex"] }}  </h3>
       </div>
       <div class="lead">
-      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="showSpec"></span>
-      <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" v-on:click="back"></span>
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="showSpec"></span>
+        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" v-on:click="back"></span>
       </div>
-<!--     <div v-else>
-      <spec v-if="specClicked" v-bind:colorName="pickedColor[0]"></spec>
-      <colorList v-if="backClicked"></colorList>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -21,34 +19,45 @@ import {post_data, get_data}                                from '../helpers/que
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorList                                            from './colorList.vue'
 import { Swatches, Slider, Material }                       from 'vue-color'
-import spec                                                 from './Spec.vue'
+import RoomAccess                                           from './RoomAccess.vue'
+import {EventBus}                                           from '../helpers/event-bus.js'
+
+
 
 
 export default {
+
   name: 'colorPreview',
   props: ['pickedColor'],
   components: {
     'colorList' : colorList,
-    'spec' : spec,
+    'roomAccess' : RoomAccess,
+
   },
   data: function(){
     return {
-      show: true,
-      backClicked: false,
-      specClicked: false
+      showPreview: true,
+      selectedItem: true,
+      colorList: false
+      // backClicked: false
     }
   },
   methods: {
     showSpec: function(){
       console.log("clicked")
-      this.specClicked = true
       this.$root.$router.push({name:"roomAccess"})
 
     },
     back: function(){
-      this.backClicked = true
-      this.show = false
-      this.$forceUpdate();
+      console.log("clicked back")
+      this.selectedItem = null
+      EventBus.$emit('wanna-go-back', this.selectedItem);
+      // this.showPreview = false
+      // this.selectedItem === null
+      // this.backClicked = true
+
+      // this.$root.$router.go('/').$mount('.colorList')
+
     }
   }
 }
