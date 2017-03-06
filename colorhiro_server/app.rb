@@ -9,23 +9,23 @@ require 'sinatra-websocket'
 require './environments'
 
 # set :sockets, []
-class Room < ActiveRecord::Base
+class User < ActiveRecord::Base
+  belongs_to :rooms
+  belongs_to :colors
 end
-
+class Room < ActiveRecord::Base
+  has_many :users
+end
+class Color < ActiveRecord::Base
+  has_many :users
+end
 class Post < ActiveRecord::Base
 end
 
-class Session < ActiveRecord::Base
-end
-
-class User < ActiveRecord::Base
-end
-
-class Color < ActiveRecord::Base
-end
-
 class App < Sinatra::Application
-
+  set :sessions => true
+  set :protection, false
+  
   before do
     content_type 'application/json'
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
@@ -41,10 +41,8 @@ class App < Sinatra::Application
     halt 200
   end
 
-  set :protection, false
-
   # MAKE THIS PRIVATE AND AUTHENTICATED
-  get '/' do
+  get '/rooms' do
     rooms = []
     @rooms = Room.all
     @rooms.each do |i|
