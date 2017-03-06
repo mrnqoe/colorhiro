@@ -8,8 +8,6 @@
           class="form-control"
           type="text"
           v-model="color"
-          @keyup.enter="handleColorInput"
-
           placeholder=""
           autofocus
           />

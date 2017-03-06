@@ -1,19 +1,20 @@
 <template>
   <div class="colorList">
     <div v-if="loading" :duration="5000">
-      loading ... {{ loading }}
-      <div class="progress progress-striped">
+     <!--  {{ loading }} -->
+      <!-- <div class="progress progress-striped">
         <div class="progress-bar" :style="progressWidth">
           <span></span>
         </div>
-      </div>
+      </div> -->
     </div>
     <div v-else-if="colorName">
       <div v-if="selectedItem === null">
         <div class="container">
           <ul class="list-group" >
-            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected($event.target.innerText)">
+            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
               {{ color.name }}
+              <!-- <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span> -->
             </li>
           </ul>
         </div>
@@ -132,6 +133,14 @@ export default {
   background: gold;
   opacity: .5;
 }
+
+/*.color-ball span {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  float: right;
+}*/
 
 .list-group-item {
   position: relative;
