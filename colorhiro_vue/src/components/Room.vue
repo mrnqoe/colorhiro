@@ -21,7 +21,6 @@ export default {
       test: null,
       name: this.$root.$data.name,
       a: 0,
-      b: 1,
       id: null,
       messages: []
     }
@@ -30,9 +29,9 @@ export default {
     connect: function(){
       console.log('socket connected')
     },
-    message: function(val){
+    adjust: function(val){
       console.log(val)
-      console.log('message ?');
+      this.a = val.count
     }
   },
   methods: {
@@ -42,6 +41,7 @@ export default {
     send: function(event){
       this.a += 1
       this.$socket.emit('message', function(response) {
+        this.a
         console.log(response);
       }.bind(this));
     },

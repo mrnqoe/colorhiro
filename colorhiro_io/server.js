@@ -24,8 +24,8 @@ io.on('connection', function(socket){
   // }, 1000);
 
   socket.on('message', function(data) {
-    console.log(socket.server);
     socket.send('hello front !')
+    socket.emit('adjust', {'count': data.a});
     // socket.emit('broad', data);
     // socket.broadcast.emit('broad',data);
   });

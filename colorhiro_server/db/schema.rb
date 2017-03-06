@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303210252) do
+ActiveRecord::Schema.define(version: 20170306161232) do
 
   create_table "colors", force: :cascade do |t|
     t.integer  "users_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170303210252) do
     t.string   "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "tone"
     t.index ["rooms_id"], name: "index_users_on_rooms_id"
   end
 
