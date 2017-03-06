@@ -3,12 +3,13 @@ require 'faker'
 require 'json'
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/activerecord'
 require 'sinatra/base'
-require 'sinatra-websocket'
-require './environments'
+require 'sinatra/activerecord'
+require 'sinatra/authorization'
+require 'sinatra/mapping'
+# require './environments'
 
-# set :sockets, []
+# ACTIVERECORD CLASSES
 class User < ActiveRecord::Base
   belongs_to :rooms
   belongs_to :colors
@@ -22,10 +23,19 @@ end
 class Post < ActiveRecord::Base
 end
 
-class App < Sinatra::Application
+class ColorhiroAPI < Sinatra::Base
+  set :authorization_realm, "Protected zone"
+  set :namespace, '/admin'
+  set :protection, :except => :path_traversal
   set :sessions => true
   set :protection, false
-  
+
+  helpers do
+    def authorize(login, password)
+      login == "admin" && password == "secret"
+    end
+  end
+
   before do
     content_type 'application/json'
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
@@ -83,6 +93,10 @@ class App < Sinatra::Application
   get '/color' do
     json :color => Color.all
     # @color = Color.all
+  end
+
+  get '/users' do
+    json :users => User.all
   end
 
   get '/color/:name' do

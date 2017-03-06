@@ -4,5 +4,6 @@ require "dotenv"
 Bundler.require
 Dotenv.load
 
+require './environments.rb'
 require "./app"
-run App
+run ColorhiroAPI
