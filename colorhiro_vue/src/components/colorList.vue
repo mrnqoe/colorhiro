@@ -17,7 +17,7 @@
       </div>
 
       <div v-else>
-        <colorPreview v-bind:pickedColor="selectedItem" v-on:click="back"></colorPreview>
+        <colorPreview v-bind:pickedColor="selectedItem"></colorPreview>
       </div>
 
     </div>
@@ -26,9 +26,13 @@
 
 <script>
 import Home                                                 from './Home.vue'
-import {post_data, get_data}                                from '../helpers/queries.js'
+import {post_data, get_data, getColorData }                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorPreview                                         from './colorPreview.vue'
+import {EventBus}                                           from '../helpers/event-bus.js'
+
+
+
 
 export default {
   name: 'colorList',
@@ -42,12 +46,11 @@ export default {
       loading: true,
       clicked: false,
       selectedItem: null
-
-
-      // colorHex: this.colorData,
     }
   },
   created: function () {
+    let self = this
+    EventBus.$on('wanna-go-back', result => self.selectedItem = null);
     this.getColorData();
   },
   // ready: function () {
@@ -81,10 +84,22 @@ export default {
           return i
         }
       })
-    },
-    back: function(){
-      this.show = false
+
+
     }
+
+    // back: function(){
+    //   this.selectedItem === null
+    // }
+
+    // showList: function() {
+    //   if(this.selectedItem === null){
+    //     showList = true
+    //     console.log("show list now")
+    //   } else {
+    //     showList = false
+    //   }
+    // }
 
   }
 }
