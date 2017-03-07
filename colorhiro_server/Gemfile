@@ -1,20 +1,10 @@
 source 'https://rubygems.org'
-  # gem "redcarpet"
-  # gem "guard"
-  # gem "guard-bundler"
-  # gem "guard-livereload"
-  # gem "guard-shell"
-  # gem 'libnotify',  :require => false
-  # gem 'growl',      :require => false
-  # gem 'rb-inotify', :require => false
-  # gem 'rb-fsevent', :require => false
-  # gem 'rb-fchange', :require => false
 
 # Added by Nico
   gem 'sinatra', require: 'sinatra/base'
+  gem "sinatra-cross_origin", "~> 0.3.1"
   gem 'sinatra-jsonp'
   gem 'sinatra-contrib', require: false
-  gem 'sinatra-authorization'
   gem 'sinatra-mapping'
   gem 'sinatra-activerecord'
   gem 'sinatra-flash'

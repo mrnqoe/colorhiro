@@ -1,4 +1,4 @@
-$LOAD_PATH << '.'
+$LOAD_PATH << './lib'
 require 'colors'
 include ColorLibrary
 
@@ -28,7 +28,11 @@ User.destroy_all
 (0..100).each do |n|
   @name = Faker::StarWars.droid
   @FakeColorNumber = Faker::Number.between(Color.first.id, Color.last.id)
-  @FakeTone = Faker::Boolean
+  if Faker::Boolean.boolean
+    @FakeTone = 'Black'
+  else
+    @FakeTone = 'White'
+  end
   @FakeRoomNumber = Faker::Number.between(Room.first.id, Room.last.id)
   # @room = Room.find_by(id: @FakeRoomNumber).pluck(:id)
   # @color = Color.find_by(id: @FakeColorNumber).pluck(:id)
