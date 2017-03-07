@@ -2,7 +2,9 @@
   <div class="container-fluid">
     <div class="Room">
       <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-      <h4>{{ name }} {{ chosenOne }}</h4>
+      <div :style="{ 'background-color': '#'+ this.color }" >
+        <h4>{{ name }} </h4>
+      </div>
       <div id="roomContent" class="container">
         <div class="container msgContainer" v-for="msg in msgList">
           <span> {{ name }} : </span> <span> {{ msg }} </span>
@@ -27,7 +29,7 @@
           v-on:keyup.enter="send"
           v-model="msg">
       </div>
-      <draw-canvas v-bind:drawingColor="chosenOne"></draw-canvas>
+      <draw-canvas></draw-canvas>
     </div>
   </div>
 
@@ -44,7 +46,7 @@ export default {
   components: {
     'draw-canvas': DrawCanvas
   },
-  props: ['roomKey','chosenOne'],
+  props: ['roomKey'],
   data: function () {
     return {
       loading: true,
@@ -55,7 +57,7 @@ export default {
       msg: 'example msg',
       msgList: [],
       users: userGenerator(),
-      red: "red"
+      color: this.$root.$data.color
     }
   },
   sockets:{

@@ -12,15 +12,11 @@
 
   var canvas
   var ctx
-  var x = "black";
   var y = 5;
 
   export default {
     name: 'draw-canvas',
     props: ['drawingColor'],
-    // components: {
-    // 'Room' : Room
-    // },
     data: function(){
       return {
         flag: false,
@@ -37,8 +33,8 @@
       console.log("this is ",canvas)
 
       var self = this
-       ctx = canvas.getContext("2d");
-       canvas.width  = $(window).width()*0.5;
+      ctx = canvas.getContext("2d");
+
       let w = canvas.width;
       let h = canvas.height;
 
@@ -55,6 +51,8 @@
       canvas.addEventListener("mouseout", function(e){
           self.findxy('out', e)
       }, false);
+
+    //mobile//
       canvas.addEventListener("touchstart", function(e){
         if (e.target == canvas) {
           e.preventDefault();
@@ -93,8 +91,7 @@
         ctx.beginPath();
         ctx.moveTo(this.prevX, this.prevY);
         ctx.lineTo(this.currX, this.currY);
-        ctx.strokeStyle = '#'+this.$root.$data.chosenColor;
-        console.log(this.$root.$data.chosenColor)
+        ctx.strokeStyle = '#'+this.$root.$data.color;
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
@@ -109,7 +106,7 @@
           this.dot_flag = true;
           if (this.dot_flag) {
               ctx.beginPath();
-              ctx.fillStyle = x;
+              ctx.fillStyle = '#'+this.$root.$data.color;
               ctx.fillRect(this.currX, this.currY, 2, 2);
               ctx.closePath();
               this.dot_flag = false;
