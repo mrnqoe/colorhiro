@@ -28,12 +28,11 @@ io.on('connection', function(socket){
 
   socket.on('message', function(data) {
 
+
     // const chatMsg = JSON.parse
     console.log("this is the data : ", data);
     // console.log(socket.server);
     socket.send(data);
-
-
 
     // socket.emit('broad', data);
     // socket.broadcast.emit('broad',data);

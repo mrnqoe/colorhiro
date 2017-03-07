@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <transition name="fade"> -->
+    <transition name="fade">
     <div class="inner cover">
       <h1 class="cover-heading">Type a color</h1>
       <div class="lead form-group form-group-lg">
@@ -8,16 +8,13 @@
           class="form-control"
           type="text"
           v-model="color"
-          v-on:keyup.enter="handleColorInput"
           placeholder=""
           autofocus
           />
       </div>
     </div>
-<!--     </transition> -->
-    <transition name="fade">
-    <colorList v-if="submitted" v-bind:colorName="color"></colorList>
     </transition>
+      <colorList v-bind:colorName="color"></colorList>
   </div>
 </template>
 
@@ -27,8 +24,9 @@ import { generateRandomString }                             from '../helpers/sha
 import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
 import spec                                                 from './Spec.vue'
 import colorList                                            from './colorList.vue'
+import { getColorData }                                     from '../helpers/queries.js'
 import colorPreview                                         from './colorPreview.vue'
-
+import {EventBus}                                           from '../helpers/event-bus.js'
 
 export default {
   name: 'home',
@@ -42,22 +40,44 @@ export default {
       name  : '',
       color: '',
       submitted: false,
-      // show: true,
-      colorCode: '',
+      previousColor: null,
       data_in: null,
     }
   },
-  methods: {
-    handleColorInput: function(ev){
-      if(this.color){
-        this.submitted = true
-        this.colorCode = this.color
-        console.log(this.color);
-        console.log(this.colorCode);
-        console.log('MAIN VUE DATA:',this.$root.$data);
-      }
-    },
-  }
+  // methods: {
+  //   handleColorInput: function(ev){
+  //     // console.log("precious color:", this.previousColor)
+  //     // console.log("color:", this.color)
+  //     // if (!this.previousColor) {
+  //     //   this.previousColor = this.color
+  //     // } else if (this.previousColor !== this.color) {
+  //     //   this.submitted = false
+  //     //   let i = 0
+  //     //   while (i < 100000) {
+  //     //     i++
+  //     //     console.log(i)
+  //     //   }
+  //     //   console.log("prrrrrrecious color:", this.previousColor)
+  //     // console.log("rrrrrrcolor:", this.color)
+  //     // }
+  //     if(this.color){
+  //       let arr = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGrey","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"]
+  //       if(arr.indexOf(this.color) >= 0){
+  //         this.submitted = true
+  //         console.log('MAIN VUE DATA:',this.$root.$data.color);
+  //       }else{
+  //         this.submitted = false
+  //         this.color = null;
+  //       }
+  //     }
+  //   },
+    // deleteColoreInput: function(ev){
+    //   if (this.color){
+    //     this.submitted = false
+    //     this.color = null
+    //   }
+    // }
+  // }
   // watch: {
   //   color: function(){
   //     changeColor(this.color)
@@ -71,8 +91,8 @@ export default {
 /*.fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+/*  opacity: 0
 }*/
 
 #app {

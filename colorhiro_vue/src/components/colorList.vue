@@ -1,15 +1,14 @@
 <template>
   <div class="colorList">
     <div v-if="loading" :duration="5000">
-      loading ... {{ loading }}
-      <div class="progress progress-striped">
+     <!--  {{ loading }} -->
+      <!-- <div class="progress progress-striped">
         <div class="progress-bar" :style="progressWidth">
           <span></span>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div v-else>
-
+    <div v-else-if="colorName">
       <div v-if="selectedItem === null">
         <div class="container colorContainer" :style="{ 'background-color': colorName }">
           <h4> "{{ colorName }}"?  Not a bad choice! {{ colorName.hex }}</h4>
@@ -18,10 +17,11 @@
           </p>
         </div>
         <div class="container">
-          <h5>Or.. we have more verities of " {{ colorName }} " for you ;) </h5>
+
           <ul class="list-group" >
-            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected($event.target.innerText)">
+            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
               {{ color.name }}
+              <!-- <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span> -->
             </li>
           </ul>
         </div>
@@ -37,7 +37,7 @@
 
 <script>
 import Home                                                 from './Home.vue'
-import {post_data, get_data, getColorData }                                from '../helpers/queries.js'
+import {post_data, get_data, getColorData }                 from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorPreview                                         from './colorPreview.vue'
 import {EventBus}                                           from '../helpers/event-bus.js'
@@ -48,7 +48,9 @@ import {EventBus}                                           from '../helpers/eve
 export default {
   name: 'colorList',
   components: {
+
     'colorPreview' : colorPreview,
+    'home' : Home,
   },
   props: ['colorName'],
   data: function(){
@@ -63,6 +65,11 @@ export default {
   computed: {
     progressWidth: function(){
       return "width:" + this.progress + "%";
+    }
+  },
+  watch: {
+    colorName: function () {
+      this.getColorData();
     }
   },
   created: function () {
@@ -82,9 +89,14 @@ export default {
           return response
         } )
         .then(function(json) {
-          this.colorData = json.body.color
-          this.loading = false
-          resolve(json);
+          if(json.body.color.length >= 1){
+            this.colorData = json.body.color
+            this.loading = false
+            resolve(json);
+          }else{
+            this.colorData = null
+            this.loading = false
+          }
         }).catch(function(error) {
           return error
         // console.log(error);
@@ -121,6 +133,14 @@ h5{
   background: gold;
   opacity: .5;
 }
+
+/*.color-ball span {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  border-radius: 20px;
+  float: right;
+}*/
 
 .list-group-item {
   position: relative;

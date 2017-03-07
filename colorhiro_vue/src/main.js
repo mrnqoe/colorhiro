@@ -11,7 +11,7 @@ var vm = new Vue({
   router,
   data: {
     name: '',
-    color: '',
+    color: null,
     roomAccess: false
   },
   template: '<App/>',

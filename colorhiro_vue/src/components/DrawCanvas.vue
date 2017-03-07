@@ -1,7 +1,9 @@
 <template>
+
   <div>
     <canvas width="600" height="400" style="border:0.3em solid black;" ref="drawCanvas"></canvas>
   </div>
+
 </template>
 
 <script>
@@ -131,7 +133,8 @@
 </script>
 
 <style>
-canvas{
-  display:block;
-}
+
+  canvas{
+    display:block;
+  }
 </style>
