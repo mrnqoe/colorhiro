@@ -73,8 +73,8 @@ export default {
 
   methods: {
     getColorData: function() {
-      var url = "http://localhost:3000/user"
-      this.$http.post(url, {color:this.colorName}, {
+      var url = "http://localhost:3000/color/"+this.colorName
+      this.$http.get(url, {
          emulateJSON: true
        })
         .then(function(response){
@@ -91,6 +91,7 @@ export default {
       })
     },
     enterRoom: function(){
+
       console.log("clicked")
       this.$root.$router.push({name:"roomAccess"})
     },
