@@ -1,8 +1,6 @@
 <template>
 
-  <div>
-    <canvas width="600" height="400" style="border:0.3em solid black;" ref="drawCanvas"></canvas>
-  </div>
+  <canvas height="auto" width="auto" style="border:2px solid black;" ref="drawCanvas"></canvas>
 
 </template>
 
@@ -134,7 +132,9 @@
 
 <style>
 
+
   canvas{
     display:block;
   }
+
 </style>

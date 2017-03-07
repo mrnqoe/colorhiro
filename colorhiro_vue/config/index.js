@@ -28,18 +28,22 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: { '/api': {
-        target: 'http://localhost:3000',
+    proxyTable: {
+      '/api': {
+        target: process.env['API_URL'],
+
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
         }
       },
       '/io': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
+
+        target: process.env['IO'],
+        ws: true,
         pathRewrite: {
-            '^/io':''
+          '^/io': ''
+
         }
       }
     },

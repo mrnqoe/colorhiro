@@ -37,7 +37,9 @@ class ColorhiroAPI < Sinatra::Base
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
     headers 'Access-Control-Allow-Origin' => '*'
 
+
    @oreo = request.cookies
+
     if request.host == 'localhost' || @oreo.include?(ENV['COLORHIRO_KEY'])
       puts request.host
       puts 'ADMIN YES'

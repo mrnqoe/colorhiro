@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import $ from 'jquery'
 import VueSocketio from 'vue-socket.io';
+var http = require('http'),
+    httpProxy = require('http-proxy');
 
 var vm = new Vue({
   el: '#app',
@@ -19,9 +21,13 @@ var vm = new Vue({
   watch: {
     name: function () {
 
-      Vue.use(VueSocketio, 'http://socketserver.com:1923');
       this.roomAccess = true;
+      Vue.use(VueSocketio, '/io');
+      // proxy.on('upgrade', function (req, socket, head) {
+      //   proxy.ws(req, socket, head);
+      // });
       router.push({path: '/room/:01010'})
+      console.log('hello sockets !!! READY FOR DEPLOYMENT ??');
     }
   }
 })
