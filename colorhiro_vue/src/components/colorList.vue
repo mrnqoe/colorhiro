@@ -75,17 +75,18 @@ export default {
   created: function () {
     let self = this
     EventBus.$on('wanna-go-back', result => self.selectedItem = null);
-    this.getColorData();
+    // this.getColorData();
   },
 
   methods: {
     getColorData: function() {
       var url = "http://localhost:3000/color/"+this.colorName
-      this.$http.get(url, {
-         emulateJSON: true
-       })
+      if(this.colorName){
+        this.$http.get(url, {
+           emulateJSON: true
+        })
         .then(function(response){
-          // console.log('response');
+            // console.log('response');
           return response
         } )
         .then(function(json) {
@@ -99,8 +100,9 @@ export default {
           }
         }).catch(function(error) {
           return error
-        // console.log(error);
-      })
+          // console.log(error);
+        })
+      }
     },
     enterRoom: function(){
 
@@ -194,4 +196,3 @@ input {
 }*/
 
 </style>
-

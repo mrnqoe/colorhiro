@@ -22,10 +22,11 @@
 
       </div>
       <div class="lead form-group">
-      <input
-        class="form-control"
-        v-on:keyup.enter="send"
-        v-model="msg">
+        <input
+          class="form-control"
+          v-on:keyup.enter="send"
+          v-model="msg">
+      </div>
       <draw-canvas></draw-canvas>
     </div>
   </div>
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import VueSocketio from 'vue-socket.io';
+// import VueSocketio from 'vue-socket.io';
 import userGenerator from '../helpers/userGenerator.js'
 import DrawCanvas from './DrawCanvas'
 
@@ -58,6 +59,7 @@ export default {
   sockets:{
     connect: function(){
       console.log('socket connected')
+      console.log(this.$socket);
     },
 
     message: function(val){
