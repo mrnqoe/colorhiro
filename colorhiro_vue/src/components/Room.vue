@@ -49,7 +49,6 @@ export default {
       test: null,
       name: this.$root.$data.name,
       a: 0,
-      b: 1,
       id: null,
       msg: 'example msg',
       msgList: [],
@@ -60,10 +59,9 @@ export default {
     connect: function(){
       console.log('socket connected')
     },
-    message: function(val){
-      this.msgList.push(val)
-
-      console.log("value: ", val)
+    adjust: function(val){
+      console.log(val)
+      this.a = val.count
     }
   },
   methods: {
@@ -75,7 +73,8 @@ export default {
       // content: this.msg
       // }
       this.a += 1
-      this.$socket.emit('message', this.msg, function(response) {
+      this.$socket.emit('message', function(response) {
+        this.a
         console.log(response);
       }.bind(this));
     },

@@ -1,3 +1,5 @@
+require 'sinatra'
+
 configure :development do
   set :server, :puma
   set :show_exceptions, true

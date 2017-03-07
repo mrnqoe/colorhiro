@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303210252) do
+ActiveRecord::Schema.define(version: 20170306172627) do
 
   create_table "colors", force: :cascade do |t|
-    t.integer  "users_id"
     t.string   "name"
     t.string   "hex"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_colors_on_users_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -35,20 +33,15 @@ ActiveRecord::Schema.define(version: 20170303210252) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sessions", force: :cascade do |t|
-    t.string   "share_key"
-    t.string   "init_color"
-    t.string   "admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.integer  "rooms_id"
     t.string   "name"
     t.string   "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "tone"
+    t.integer  "colors_id"
+    t.index ["colors_id"], name: "index_users_on_colors_id"
     t.index ["rooms_id"], name: "index_users_on_rooms_id"
   end
 
