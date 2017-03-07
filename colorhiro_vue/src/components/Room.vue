@@ -29,6 +29,7 @@
       <draw-canvas></draw-canvas>
     </div>
   </div>
+
 </template>
 
 <script>
