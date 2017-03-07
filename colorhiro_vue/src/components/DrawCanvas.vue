@@ -1,18 +1,20 @@
 <template>
 
 
-  <canvas height="auto" width="auto" style="border:2px solid black;" ref="drawCanvas"></canvas>
+  <canvas class="container-fluid" height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
 
 </template>
 
 <script>
+
   import Room                                        from './Room.vue'
   import $ from 'jquery'
 
 
+
   var canvas
   var ctx
-  var y = 5;
+  var y = 3;
 
   export default {
     name: 'draw-canvas',
@@ -54,9 +56,9 @@
 
     //mobile//
       canvas.addEventListener("touchstart", function(e){
-        if (e.target == canvas) {
+        // if (e.target == canvas) {
           e.preventDefault();
-        }
+        // }
         mousePost = getTouchPost(canvas, e);
         var touch = e.touches[0];
         var touchevent = new TouchEvent("mousedown",{
@@ -66,16 +68,16 @@
         canvas.dispatchEvent(moustEvent);
       }, false);
       canvas.addEventListener("touchend", function (e) {
-        if (e.target == canvas) {
+        // if (e.target == canvas) {
           e.preventDefault();
-        }
+        // }
         var touchevent = new TouchEvent("mouseup", {});
         canvas.dispatchEvent(touchevent);
       }, false);
       canvas.addEventListener("touchmove", function (e) {
-        if (e.target == canvas) {
+        // if (e.target == canvas) {
           e.preventDefault();
-        }
+        // }
         var touch = e.touches[0];
         var touchevent = new TouchEvent("mousemove", {
         clientX: touch.clientX,
@@ -139,8 +141,5 @@
 <style>
 
 
-  canvas{
-    display:block;
-  }
 
 </style>

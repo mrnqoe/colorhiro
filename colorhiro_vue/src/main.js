@@ -3,11 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import $ from 'jquery'
+// import $ from 'jquery'
 import VueSocketio from 'vue-socket.io';
 var http = require('http'),
     httpProxy = require('http-proxy');
 
+var $ = require ('jquery');
 var vm = new Vue({
   el: '#app',
   router,

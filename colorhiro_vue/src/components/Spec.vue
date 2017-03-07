@@ -140,28 +140,6 @@ export default {
 
 <style>
 
-.spec .vue-color__slider{
-  position: relative;
-  width: auto;
-  padding: 1em 5em;
-  box-shadow: 0;
-}
-
-.spec .vue-color__swatches{
-  position: relative;
-  width: auto;
-  height: auto;
-  background-color: rgba(0, 0, 0, .12);
-}
-
-.spec .vue-color__slider__hue-warp{
-  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
-}
-
-.spec .vue-color__slider__swatch{
-  box-shadow: 0 2px 10px rgba(0,0,0,.12), 0 2px 5px rgba(0,0,0,.16);
-}
-
 /*
 .color{
   padding: 3em;

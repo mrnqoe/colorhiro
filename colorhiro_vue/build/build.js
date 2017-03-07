@@ -13,10 +13,6 @@ var faker = require('faker');
 
 
 
-var colorpicker = require('vue-color');
-
-
-
 var spinner = ora('building for production...')
 spinner.start()
 

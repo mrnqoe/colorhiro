@@ -5,8 +5,8 @@
       <div :style="{ 'background-color': '#'+ this.color }" >
         <h4>{{ name }} </h4>
       </div>
-      <div id="roomContent" class="container">
-        <div class="container msgContainer" v-for="msg in msgList">
+      <div id="roomContent">
+        <div class="container msgContainer" v-for="msg in msgList" @scroll="handleScroll">
           <span> {{ name }} : </span> <span> {{ msg }} </span>
         </div>
 
@@ -80,6 +80,13 @@ export default {
     test0: function(){
       console.log(this.$root);
     },
+    handleScroll: function(e) {
+      var currentScrollPosition = e.srcElement.scrollTop;
+      if (currentScrollPosition > this.scrollPosition) {
+          console.log("Scrolling down");
+      }
+      this.scrollPosition = currentScrollPosition;
+    },
     send: function(event){
       // this.msg = {
       // content: this.msg
@@ -124,5 +131,7 @@ export default {
 }
 .msgContainer{
   float: top;
+  position: fixed;
+  height: 30em;
 }
 </style>

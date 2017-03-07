@@ -18,7 +18,6 @@ import Home                                                 from './Home.vue'
 import {post_data, get_data}                                from '../helpers/queries.js'
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorList                                            from './colorList.vue'
-import { Swatches, Slider, Material }                       from 'vue-color'
 import RoomAccess                                           from './RoomAccess.vue'
 import {EventBus}                                           from '../helpers/event-bus.js'
 
