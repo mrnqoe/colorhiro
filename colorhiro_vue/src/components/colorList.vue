@@ -80,8 +80,8 @@ export default {
 
   methods: {
     getColorData: function() {
-      var url = "http://localhost:3000/color/"+this.colorName
-      this.$http.get(url, {
+        var url = "http://localhost:3000/color/"+this.colorName
+       this.$http.get(url, {
          emulateJSON: true
        })
         .then(function(response){

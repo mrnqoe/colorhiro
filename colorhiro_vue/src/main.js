@@ -19,7 +19,7 @@ var vm = new Vue({
   watch: {
     name: function () {
 
-      Vue.use(VueSocketio, ENV['websocketURI']);
+      Vue.use(VueSocketio, 'http://socketserver.com:1923');
       this.roomAccess = true;
       router.push({path: '/room/:01010'})
     }

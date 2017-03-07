@@ -29,10 +29,17 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: { '/api': {
-        target: process.env['API_URL'],
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
+        }
+      },
+      '/io': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        pathRewrite: {
+            '^/io':''
         }
       }
     },
