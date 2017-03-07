@@ -6,7 +6,7 @@
         <h4>{{ name }} </h4>
       </div>
       <div id="roomContent">
-        <div class="container msgContainer" v-for="msg in msgList" @scroll="handleScroll">
+        <div class="container msgContainer" v-for="msg in msgList">
           <span> {{ name }} : </span> <span> {{ msg }} </span>
         </div>
 
@@ -79,13 +79,6 @@ export default {
   methods: {
     test0: function(){
       console.log(this.$root);
-    },
-    handleScroll: function(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-      if (currentScrollPosition > this.scrollPosition) {
-          console.log("Scrolling down");
-      }
-      this.scrollPosition = currentScrollPosition;
     },
     send: function(event){
       // this.msg = {

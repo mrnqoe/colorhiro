@@ -1,8 +1,8 @@
 <template>
 
-
-  <canvas class="container-fluid" height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
-
+  <div ref="canvasContainer">
+  <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
+  </div>
 </template>
 
 <script>
@@ -36,15 +36,17 @@
 
       var self = this
       ctx = canvas.getContext("2d");
-
+      canvas.width = this.$refs.canvasContainer.clientWidth;
       let w = canvas.width;
       let h = canvas.height;
 
 
       canvas.addEventListener("mousemove", function(e){
+        console.log("mouse", e.clientX, e.clientY)
         self.findxy('move',e)
       }, false);
       canvas.addEventListener("mousedown", function(e){
+        console.log("mouse", e.clientX, e.clientY)
         self.findxy('down', e)
       }, false);
       canvas.addEventListener("mouseup", function(e){
@@ -56,34 +58,36 @@
 
     //mobile//
       canvas.addEventListener("touchstart", function(e){
-        // if (e.target == canvas) {
+        if (e.target == canvas) {
           e.preventDefault();
-        // }
-        mousePost = getTouchPost(canvas, e);
+        }
+        // mousePost = self.getTouchPost(canvas, e);
         var touch = e.touches[0];
-        var touchevent = new TouchEvent("mousedown",{
+        console.log(touch)
+        var mouseevent = new MouseEvent("mousedown",{
           clientX: touch.clientX,
           clientY: touch.clientY
         });
-        canvas.dispatchEvent(moustEvent);
+        canvas.dispatchEvent(mouseevent);
       }, false);
       canvas.addEventListener("touchend", function (e) {
-        // if (e.target == canvas) {
+        if (e.target == canvas) {
           e.preventDefault();
-        // }
-        var touchevent = new TouchEvent("mouseup", {});
-        canvas.dispatchEvent(touchevent);
+        }
+        var mouseevent = new MouseEvent("mouseup", {});
+        canvas.dispatchEvent(mouseevent);
       }, false);
       canvas.addEventListener("touchmove", function (e) {
-        // if (e.target == canvas) {
+        if (e.target == canvas) {
           e.preventDefault();
-        // }
+        }
         var touch = e.touches[0];
-        var touchevent = new TouchEvent("mousemove", {
+        console.log(touch)
+        var mouseevent = new MouseEvent("mousemove", {
         clientX: touch.clientX,
         clientY: touch.clientY
         });
-        canvas.dispatchEvent(touchevent);
+        canvas.dispatchEvent(mouseevent);
       }, false);
 
     },
@@ -97,13 +101,14 @@
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
+        console.log(this.currY)
       },
       findxy: function(res,e){
         if (res == 'down') {
           this.prevX = this.currX;
           this.prevY = this.currY;
           this.currX = e.clientX - canvas.offsetLeft;
-          this.currY = e.clientY - canvas.offsetTop;
+          this.currY = e.clientY - canvas.offsetTop + window.scrollY;
           this.flag = true;
           this.dot_flag = true;
           if (this.dot_flag) {
@@ -122,7 +127,7 @@
             this.prevX = this.currX;
             this.prevY = this.currY;
             this.currX = e.clientX - canvas.offsetLeft;
-            this.currY = e.clientY - canvas.offsetTop;
+            this.currY = e.clientY - canvas.offsetTop + window.scrollY;
             this.draw();
           }
         }
