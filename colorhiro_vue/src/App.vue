@@ -153,18 +153,6 @@ h2{
   text-align: center;
 }
 
-/*.spec .vue-color__slider{
-  position: relative;
-  width: auto;
-  padding: 1em 5em;
-}
-
-.spec .col-xs-6 .col-md-6 .text-center .vue-color__swatches{
-  position: relative;
-  width: auto;
-  height: auto;
-}
-
 ul {
   list-style-type: none;
   padding: 0;

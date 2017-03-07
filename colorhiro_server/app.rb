@@ -1,7 +1,4 @@
 # this has to come first, or settings isn't built up for the bundler call.
-require 'json'
-require 'faker'
-require 'rubygems'
 require 'sinatra'
 require 'sinatra/base'
 # require 'sinatra/contrib'
@@ -9,6 +6,9 @@ require 'sinatra/activerecord'
 # require 'sinatra/mapping'
 require './environments'
 require 'dotenv'
+require 'json'
+require 'faker'
+require 'rubygems'
 Dotenv.load
 
 # ACTIVERECORD CLASSES
@@ -32,7 +32,7 @@ class ColorhiroAPI < Sinatra::Base
   before do
     @admin = false
     @visitor = true
-    request.secure? #|| request.host == 'localhost'
+    # request.secure? #|| request.host == 'localhost'
     content_type 'application/json'
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
     headers 'Access-Control-Allow-Origin' => '*'

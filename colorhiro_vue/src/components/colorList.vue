@@ -78,12 +78,14 @@ export default {
 
   methods: {
     getColorData: function() {
+
       var url = "http://localhost:3000/color/"+this.colorName
-      this.$http.get(url, {
-         emulateJSON: true
-       })
+      if(this.colorName){
+        this.$http.get(url, {
+           emulateJSON: true
+        })
         .then(function(response){
-          // console.log('response');
+            // console.log('response');
           return response
         } )
         .then(function(json) {
@@ -97,12 +99,14 @@ export default {
           }
         }).catch(function(error) {
           return error
-        // console.log(error);
-      })
+          // console.log(error);
+        })
+      }
     },
     enterRoom: function(){
 
       console.log("clicked")
+      this.$root.$data.color = this.pickedColor.hex
       this.$root.$router.push({name:"roomAccess"})
     },
     colorSelected: function(c){
@@ -195,4 +199,3 @@ input {
 }*/
 
 </style>
-

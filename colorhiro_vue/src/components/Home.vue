@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { Swatches, Material, Slider }                       from 'vue-color'
 import { generateRandomString }                             from '../helpers/share_key.js'
 import { changeColor, changeName, colorToHex, hexToColor }  from '../helpers/color.js'
 import spec                                                 from './Spec.vue'

@@ -21,5 +21,8 @@
     "express": "^4.15.0",
     "socket.io": "^1.7.3",
     "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.17.4"
   }
 }
