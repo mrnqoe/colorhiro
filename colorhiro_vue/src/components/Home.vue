@@ -41,7 +41,7 @@ export default {
       submitted: false,
       previousColor: null,
       data_in: null,
-      active: true
+      active: true,
     }
   },
   // methods: {
@@ -93,12 +93,6 @@ export default {
 
 <style>
 
-/*.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
-/*  opacity: 0
-}*/
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -152,6 +146,8 @@ div .lead {
 h1 .cover-heading:hover div .lead {
   display: none;
 }
+
+
 
 /*ul {
 

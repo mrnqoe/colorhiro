@@ -41,7 +41,10 @@ import colorPreview                                         from './colorPreview
 import {EventBus}                                           from '../helpers/event-bus.js'
 
 
-
+var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
+    if (!touchsupport){ // browser doesn't support touch
+    document.documentElement.className += " non-touch"
+  }
 
 export default {
   name: 'colorList',
@@ -138,7 +141,7 @@ h5{
 }*/
 
 
-.foo:hover span {
+.foo:hover span, .foo:focus span {
 
   height: 20px;
   width: 50px;
