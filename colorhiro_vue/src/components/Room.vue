@@ -59,9 +59,11 @@ export default {
     connect: function(){
       console.log('socket connected')
     },
-    adjust: function(val){
-      console.log(val)
-      this.a = val.count
+
+    message: function(val){
+      this.msgList.push(val)
+
+      console.log("value: ", val)
     }
   },
   methods: {
@@ -73,8 +75,9 @@ export default {
       // content: this.msg
       // }
       this.a += 1
-      this.$socket.emit('message', function(response) {
-        this.a
+
+      this.$socket.emit('message', this.msg, function(response) {
+
         console.log(response);
       }.bind(this));
     },
