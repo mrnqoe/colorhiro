@@ -22,10 +22,11 @@
 
       </div>
       <div class="lead form-group">
-      <input
-        class="form-control"
-        v-on:keyup.enter="send"
-        v-model="msg">
+        <input
+          class="form-control"
+          v-on:keyup.enter="send"
+          v-model="msg">
+      </div>
       <draw-canvas></draw-canvas>
     </div>
   </div>

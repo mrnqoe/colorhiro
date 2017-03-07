@@ -3,8 +3,8 @@
   <div class="inner cover">
     <div v-show="showPreview">
       <div class="thumbnail" :style="{ 'background-color': '#'+ pickedColor.hex }">
-        <h3> {{ pickedColor.name }}   #{{ pickedColor.hex }}  </h3>
       </div>
+        <h3> {{ pickedColor.name }}   #{{ pickedColor.hex }}  </h3>
       <div class="lead">
         <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom" v-bind:chosenOne="pickedColor.hex"></span>
         <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" v-on:click="back"></span>
@@ -38,6 +38,7 @@ export default {
     return {
       showPreview: true,
       selectedItem: true,
+      home: false,
       colorList: false
       // backClicked: false
     }
@@ -51,6 +52,7 @@ export default {
       console.log("clicked back")
       this.selectedItem = null
       EventBus.$emit('wanna-go-back', this.selectedItem);
+      this.$parent.$parent.$data.active = !this.$parent.$parent.$data.active
       // this.showPreview = false
       // this.selectedItem === null
       // this.backClicked = true
