@@ -1,0 +1,28 @@
+{
+  "name": "colorhiro_socketio",
+  "version": "1.0.0",
+  "description": "websocket server for the colorhiro vue",
+  "main": "server.js",
+  "scripts": {
+    "test": "io"
+  },
+  "keywords": [
+    "websocket",
+    "vuejs"
+  ],
+  "author": "t34m",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrnqoe/colorhiro/issues"
+  },
+  "homepage": "https://github.com/mrnqoe/colorhiro#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.0",
+    "socket.io": "^1.7.3",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^0.17.4"
+  }
+}

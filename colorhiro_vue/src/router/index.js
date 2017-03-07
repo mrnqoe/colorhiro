@@ -2,28 +2,42 @@ import Vue from           'vue'
 import Router from        'vue-router'
 import VueResource from   'vue-resource'
 import Hello from         'components/Hello'
-import World from         'components/World'
-import Posts from         'components/Posts'
+import Room from          'components/Room'
+import Home from          'components/Home'
+import Spec from          'components/Spec'
+import BootstrapVue from  'bootstrap-vue'
+import SocketTest from    'components/SocketTest'
+import RoomAccess from    'components/RoomAccess'
+import testRoom from      'components/testRoom'
+import colorList from     'components/colorList'
+import colorPreview from  'components/colorPreview'
 
+Vue.use(require('vue-faker'))
 Vue.use(VueResource)
 Vue.use(Router)
+Vue.use(BootstrapVue)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'home',
+      component: Home
     },
     {
-      path: '/world',
-      name: 'World',
-      component: World
+      path: '/sockets',
+      name: 'roomAccess',
+      component: RoomAccess
     },
     {
-      path: '/posts',
-      name: 'Posts',
-      component: Posts
+      path: '/room/:share_key',
+      name: 'room',
+      component: Room
+    },
+    {
+      path: '/spec',
+      name: 'spec',
+      component: Spec
     }
   ]
 })

@@ -1,34 +1,25 @@
 source 'https://rubygems.org'
-  # gem "redcarpet"
-  # gem "guard"
-  # gem "guard-bundler"
-  # gem "guard-livereload"
-  # gem "guard-shell"
-  # gem 'libnotify',  :require => false
-  # gem 'growl',      :require => false
-  # gem 'rb-inotify', :require => false
-  # gem 'rb-fsevent', :require => false
-  # gem 'rb-fchange', :require => false
 
-# Added by Nico
-  gem 'sinatra'
-  gem 'sinatra-contrib'
-  gem 'shotgun'
-  gem 'byebug'
-  gem 'slim'
-  gem 'puma'
-  gem 'coffee-script'
-  gem 'activerecord'
-  gem 'sinatra-activerecord'
-  gem 'sinatra-flash'
-  gem 'sinatra-redirect-with-flash'
+gem 'sinatra'
+gem "sinatra-cross_origin", "~> 0.3.1"
+gem 'sinatra-jsonp'
+gem 'sinatra-contrib', require: false
+gem 'sinatra-mapping'
+gem 'sinatra-activerecord'
+gem 'sinatra-flash'
+gem 'sinatra-redirect-with-flash'
+gem 'shotgun'
+gem 'byebug'
+gem 'slim'
+gem 'puma'
+gem 'coffee-script'
+gem 'activerecord'
+gem 'faker'
+gem 'dotenv'
+gem 'rake'
+gem 'sqlite3'
 
-  group :development do
-    gem 'pry'
-    gem 'sqlite3'
-    gem 'tux'
-  end
-
-  group :production do
-    gem 'pg'
-  end
+group :development do
+  gem 'pry'
+  gem 'tux'
+end

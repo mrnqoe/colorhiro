@@ -3,14 +3,15 @@ h1 Loving Slim
 #content
   p This example shows you how a basic Slim file looks.
 
-- if @posts.any?
-  table#posts
-    - for post in @posts
+- if @sessions.any?
+  table#sessions
+    - for session in @sessions
       tr
-        td.name = post.title
-        td.price = post.body
+        td.name = session.name
+        td.key = session.key
+        td.color = session.color
 - else
-  p No posts found. Please add some inventory.
+  p No sessions found. Please add some inventory.
     Thank you!
 
 h1 Vue.js Sample
@@ -18,7 +19,6 @@ h1 Vue.js Sample
 div#vue-table
   input type="text" name="name" v-model="newName"
   input type="text" name="age" v-model="newAge"
-  input type="text" name="age" v-model="newAddress"
   button.btn.btn-default @click="addPerson" Add Person
   h2
   /   = "status: {{status}}"

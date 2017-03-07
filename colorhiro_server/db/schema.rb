@@ -10,13 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224181541) do
+ActiveRecord::Schema.define(version: 20170306172627) do
+
+  create_table "colors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "hex"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "key"
+    t.string   "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer  "rooms_id"
+    t.string   "name"
+    t.string   "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "tone"
+    t.integer  "colors_id"
+    t.index ["colors_id"], name: "index_users_on_colors_id"
+    t.index ["rooms_id"], name: "index_users_on_rooms_id"
   end
 
 end

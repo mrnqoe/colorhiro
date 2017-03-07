@@ -1,5 +1,15 @@
 require './app'
+require 'dotenv/tasks'
+require 'dotenv'
+Dotenv.load
+require './environments.rb'
 require 'sinatra/activerecord/rake'
+
+task :default do
+  set :database, {adapter: "sqlite3", database: ENV['DATABASE_URL']}
+  set :database_file, "#{APP_ROOT}/db/colorhiro.sqlite3"
+end
+
 # require 'rspec/core/rake_task'
 
 # RSpec::Core::RakeTask.new(:spec)

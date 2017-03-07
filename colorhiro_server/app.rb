@@ -1,129 +1,152 @@
 # this has to come first, or settings isn't built up for the bundler call.
+require 'sinatra'
 require 'sinatra/base'
-require 'json'
-require 'rubygems'
+# require 'sinatra/contrib'
 require 'sinatra/activerecord'
-require 'sinatra/json'
+# require 'sinatra/mapping'
 require './environments'
-# require 'json/ext' # required for .to_json
-# require 'bundler'
-# Bundler.require(:default, settings.environment)
+require 'dotenv'
+require 'json'
+require 'faker'
+require 'rubygems'
+Dotenv.load
+
+# ACTIVERECORD CLASSES
+class User < ActiveRecord::Base
+  belongs_to :rooms
+  belongs_to :colors
+end
+class Room < ActiveRecord::Base
+  has_many :users
+end
+class Color < ActiveRecord::Base
+  has_many :users
+end
 class Post < ActiveRecord::Base
 end
 
-class App < Sinatra::Application
-  # pid = Process.spawn('./node_modules/.bin/webpack-dev-server')
-  # Process.detach(pid)
-  # puts "webpack dev server pid: #{pid}"
+class ColorhiroAPI < Sinatra::Base
+  # set :protection, :session => true
+  # set :protection, :except => :path_traversal
+
+  before do
+    @admin = false
+    @visitor = true
+    # request.secure? #|| request.host == 'localhost'
+    content_type 'application/json'
+    headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+    headers 'Access-Control-Allow-Origin' => '*'
+    @oreo = request.cookies
+    if request.host == 'localhost' || @oreo.include?(ENV['COLORHIRO_KEY'])
+      puts request.host
+      puts 'ADMIN YES'
+      @admin = true
+    else
+      puts 'NOT ADMIN'
+    end
+
+  end
 
   get '/' do
-    # File.read(File.join('public', 'getting_started.html'))
-    @posts = Post.all
-    @title = "Welcome."
-    slim :index
-  end
-
-  get '/posts' do
-    postsout = []
-    @posts = Post.all
-    @posts.each do |i|
-      postsout << {
-          name: "Post #{i.title}",
-          id: i.body
+    unless @admin
+      redirect '/posts'
+    end
+    stream do |out|
+      out << "It's gonna be legen -\n"
+      sleep 0.5
+      out << " (wait for it) \n"
+      sleep 1
+      out << "- dary!\n"
+    end
+    colors = []
+    Color.all.each do |i|
+      colors << {
+        name: i.name,
+        hex: i.hex
       }
     end
-    json :posts => postsout
+    @color_id = Color.find_by(hex: '000000')
+    puts @color_id
+    response.set_cookie(:colorhiroADM, :value => ENV['COLORHIRO_KEY'], :expires => Time.now + 3600*48)
+    JSON :colors => colors
+  end
+  # MAKE THIS PRIVATE AND AUTHENTICATED
+  get '/rooms' do
+    rooms = []
+    Room.all.each do |i|
+      rooms << {
+        admin: i.admin,
+        key: i.key
+      }
+    end
+    JSON :rooms => rooms
   end
 
-  #
-  # get '/collections/?' do
-  #   content_type :json
-  #   settings.mongo_db.database.collection_names.to_json
-  # end
+  get '/users' do
+    unless @admin
+      redirect '/posts'
+    end
+    users = []
+    User.all.each do |i|
+      users << {
+        room: i.rooms_id,
+        color: i.colors_id,
+        tone: i.tone,
+        name: i.name
+      }
+    end
+    JSON :users => users
+  end
 
-  # helpers do
-  #   # a helper method to turn a string ID
-  #   # representation into a BSON::ObjectId
-  #   def object_id val
-  #     begin
-  #       BSON::ObjectId.from_string(val)
-  #     rescue BSON::ObjectId::Invalid
-  #       nil
-  #     end
-  #   end
-  #
-  #   def document_by_id id
-  #     id = object_id(id) if String === id
-  #     if id.nil?
-  #       {}.to_json
-  #     else
-  #       document = settings.mongo_db.find(:_id => id).to_a.first
-  #       (document || {}).to_json
-  #     end
-  #   end
-  # end
-  #
-  # # SINATRA FINDING RECORDS IN MONGODB
+  get '/color/:name' do
+    @data_in = params[:name]
+    @color = Color.where("hex LIKE ?", "%#{@data_in}%")
+    if @color.any?
+      JSON :color => @color
+    else
+      colors = []
+      @colors = Color.where("name LIKE ?", "#{@data_in}%")
+      @colors.each do |i|
+        colors << {
+          name: i.name,
+          hex: i.hex
+        }
+      end
+      JSON :color => colors
+    end
+  end
 
-  # get '/documents/?' do
-  #   content_type :json
-  #   settings.mongo_db.find.to_a.to_json
-  # end
-  #
-  # # find a document by its ID
-  # get '/document/:id/?' do
-  #   content_type :json
-  #   document_by_id(params[:id])
-  # end
+  # MAKE THIS SECUURE
+  get '/room/:share_key' do
+    @room = Room.find_by(key: params[:share_key])
+    JSON :room => @room
+  end
 
-  # SINATRA INSERTING RECORDS INTO MONGODB
+  post '/room' do
+    unless @admin || request.secure?
+      redirect '/posts'
+    end
+    @data_in = request.params
+    @room = Room.create!(
+      key: @data_in['share_key'],
+    )
+    JSON :room => @room
+  end
 
-  # insert a new document from the request parameters,
-  # then return the full document
-  # post '/new_document/?' do
-  #   content_type :json
-  #   db = settings.mongo_db
-  #   result = db.insert_one params
-  #   db.find(:_id => result.inserted_id).to_a.first.to_json
-  # end
+  post '/user' do
+    unless @admin || request.secure?
+      redirect '/posts'
+    end
+    @data_in = request.params
+    @color_id = Color.find_by(hex: @data_in['hex'])
+    puts @color_id
+    @user = User.create!(
+      colors_id: @colors_id,
+      name: @data_in['name'],
+      color: Faker::Crypto.sha256
+    )
+    response.set_cookie(:userKey, :value => @user.color, :expires => Time.now + 3600*48)
+    JSON :color => @color
+  end
 
-  # SINATRA UPDATING RECORDS IN MONGODB
-
-  # update the document specified by :id, setting its
-  # contents to params, then return the full document
-  # put '/update/:id/?' do
-  #   content_type :json
-  #   id = object_id(params[:id])
-  #   settings.mongo_db.find(:_id => id).
-  #   find_one_and_update('$set' => request.params)
-  #   document_by_id(id)
-  # end
-
-  # update the document specified by :id, setting just its
-  # name attribute to params[:name], then return the full
-  # document
-  # put '/update_name/:id/?' do
-  #   content_type :json
-  #   id   = object_id(params[:id])
-  #   name = params[:name]
-  #   settings.mongo_db.find(:_id => id).
-  #   find_one_and_update('$set' => {:name => name})
-  #   document_by_id(id)
-  # end
-
-  # SINATRA DELETING RECORDS IN MONGODB
-
-  # delete the specified document and return success
-  # delete '/remove/:id' do
-  #   content_type :json
-  #   db = settings.mongo_db
-  #   id = object_id(params[:id])
-  #   documents = db.find(:_id => id)
-  #   if !documents.to_a.first.nil?
-  #     documents.find_one_and_delete
-  #     {:success => true}.to_json
-  #   else
-  #     {:success => false}.to_json
-  #   end
-  # end
 end
