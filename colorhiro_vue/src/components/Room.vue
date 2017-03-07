@@ -1,20 +1,41 @@
 <template>
   <div class="Room">
     <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-    <h4>{{ name }}</h4>
-    <div id="roomContent">
-      <button v-on:click="send">Add 1</button>
-      <p>The button above has been clicked {{ a }} times.</p>
+    <h4>{{ name }} {{ pickedColor }}</h4>
+    <div id="roomContent" class="container">
+      <div class="container msgContainer" v-for="msg in msgList">
+        <span> {{ name }} : </span> <span> {{ msg }} </span>
+      </div>
+
+      <div id="currentUser">
+        <h3>Online Users</h3>
+        <ul v-for="user in users">
+          <li>
+            {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <button v-on:click="send">Add 1</button>
+      <p>The button above has been clicked {{ a }} times.</p> -->
+
     </div>
+    <input class="msgInput" v-on:keyup.enter="send" v-model="msg">
+    <draw-canvas></draw-canvas>
   </div>
 </template>
 
 <script>
 import VueSocketio from 'vue-socket.io';
+import userGenerator from '../helpers/userGenerator.js'
+import DrawCanvas from './DrawCanvas'
 
 export default {
   name: 'Room',
-  props: ['roomKey'],
+  components: {
+    'draw-canvas': DrawCanvas
+  },
+  props: ['roomKey','pickedColor'],
   data: function () {
     return {
       loading: true,
@@ -22,16 +43,19 @@ export default {
       name: this.$root.$data.name,
       a: 0,
       id: null,
-      messages: []
+      msg: 'example msg',
+      msgList: [],
+      users: userGenerator()
     }
   },
   sockets:{
     connect: function(){
       console.log('socket connected')
     },
-    adjust: function(val){
-      console.log(val)
-      this.a = val.count
+    message: function(val){
+      this.msgList.push(val)
+
+      console.log("value: ", val)
     }
   },
   methods: {
@@ -39,9 +63,13 @@ export default {
       console.log(this.$root);
     },
     send: function(event){
+      // this.msg = {
+      // content: this.msg
+      // }
       this.a += 1
-      this.$socket.emit('message', function(response) {
-        this.a
+
+      this.$socket.emit('message', this.msg, function(response) {
+
         console.log(response);
       }.bind(this));
     },
@@ -65,4 +93,18 @@ export default {
 </script>
 
 <style>
+#currentUser{
+  float: right;
+}
+.msgInput{
+  float: bottom;
+}
+.usersColor{
+  height: 5px;
+  font-weight: 5px;
+  border-radius: 50%;
+}
+.msgContainer{
+  float: top;
+}
 </style>
