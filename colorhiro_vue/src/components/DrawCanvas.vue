@@ -1,19 +1,26 @@
 <template>
 
+
   <canvas height="auto" width="auto" style="border:2px solid black;" ref="drawCanvas"></canvas>
 
 </template>
 
 <script>
   import Room                                        from './Room.vue'
+  import $ from 'jquery'
+
 
   var canvas
   var ctx
   var x = "black";
-  var y = 1;
+  var y = 5;
 
   export default {
     name: 'draw-canvas',
+    props: ['drawingColor'],
+    // components: {
+    // 'Room' : Room
+    // },
     data: function(){
       return {
         flag: false,
@@ -31,6 +38,7 @@
 
       var self = this
        ctx = canvas.getContext("2d");
+       canvas.width  = $(window).width()*0.5;
       let w = canvas.width;
       let h = canvas.height;
 
@@ -85,7 +93,8 @@
         ctx.beginPath();
         ctx.moveTo(this.prevX, this.prevY);
         ctx.lineTo(this.currX, this.currY);
-        ctx.strokeStyle = x;
+        ctx.strokeStyle = '#'+this.$root.$data.chosenColor;
+        console.log(this.$root.$data.chosenColor)
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();

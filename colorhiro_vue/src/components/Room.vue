@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="Room">
       <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-      <h4>{{ name }} {{ pickedColor }}</h4>
+      <h4>{{ name }} {{ chosenOne }}</h4>
       <div id="roomContent" class="container">
         <div class="container msgContainer" v-for="msg in msgList">
           <span> {{ name }} : </span> <span> {{ msg }} </span>
@@ -27,7 +27,7 @@
           v-on:keyup.enter="send"
           v-model="msg">
       </div>
-      <draw-canvas></draw-canvas>
+      <draw-canvas v-bind:drawingColor="chosenOne"></draw-canvas>
     </div>
   </div>
 
@@ -38,12 +38,13 @@
 import userGenerator from '../helpers/userGenerator.js'
 import DrawCanvas from './DrawCanvas'
 
+
 export default {
   name: 'Room',
   components: {
     'draw-canvas': DrawCanvas
   },
-  props: ['roomKey','pickedColor'],
+  props: ['roomKey','chosenOne'],
   data: function () {
     return {
       loading: true,
@@ -53,14 +54,19 @@ export default {
       id: null,
       msg: 'example msg',
       msgList: [],
-      users: userGenerator()
+      users: userGenerator(),
+      red: "red"
     }
   },
   sockets:{
-    connect: function(){
-      console.log('socket connected')
-      console.log(this.$socket);
+    connect: function(val){
+      if(val) { console.log('socket connected -> val: ', val); }
+      else    { console.log('socket connected'); }
     },
+    // connect: function(){
+    //   console.log('socket connected')
+    //   console.log(this.$socket);
+    // },
 
     message: function(val){
       this.msgList.push(val)
