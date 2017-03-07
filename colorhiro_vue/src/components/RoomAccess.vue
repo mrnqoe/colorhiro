@@ -1,20 +1,27 @@
 <template>
   <div class='RoomAccess'>
-    <h1>ROOM ACCESS</h1>
-    <div v-if="!user_name">
-      <h1>USER NAME PROMPT</h1>
+    <div class="inner cover">
+      <h1>ROOM ACCESS</h1>
+      <div v-if="!user_name">
+        <h1>ENTER A USERNAME</h1>
+      </div>
+      <div v-else-if="!colorData" class="">
+        <h1>COLOR NAME PROMPT</h1>
+      </div>
+      <div v-else>
+        <h1>ROOM ACCESS LINK</h1>
+      </div>
+      <div class="lead form-group form-group-lg">
+        <input
+          class="form-control"
+          type="text"
+          v-model="name0"
+          v-on:keyup.enter="createKey($event.target.value)"
+          placeholder="Please print your name"
+          autofocus
+        />
+      </div>
     </div>
-    <div v-else-if="!colorData" class="">
-      <h1>COLOR NAME PROMPT</h1>
-    </div>
-    <div v-else>
-      <h1>ROOM ACCESS LINK</h1>
-    </div>
-    <input
-    type="text"
-    v-model="name0"
-    v-on:keyup.enter="createKey($event.target.value)"
-    placeholder="Please print your name" />
   </div>
 </template>
 
@@ -39,4 +46,14 @@ export default {
 </script>
 
 <style lang="css">
+
+.form-group-lg .form-control {
+  text-align: -webkit-center;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
 </style>

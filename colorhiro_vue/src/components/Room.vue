@@ -1,27 +1,33 @@
 <template>
-  <div class="Room">
-    <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-    <h4>{{ name }} {{ pickedColor }}</h4>
-    <div id="roomContent" class="container">
-      <div class="container msgContainer" v-for="msg in msgList">
-        <span> {{ name }} : </span> <span> {{ msg }} </span>
+  <div class="container-fluid">
+    <div class="Room">
+      <i v-show="loading" class="fa fa-spinner fa-spin"></i>
+      <h4>{{ name }} {{ pickedColor }}</h4>
+      <div id="roomContent" class="container">
+        <div class="container msgContainer" v-for="msg in msgList">
+          <span> {{ name }} : </span> <span> {{ msg }} </span>
+        </div>
+
+        <div id="currentUser">
+          <h3>Online Users</h3>
+          <ul v-for="user in users">
+            <li>
+              {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <button v-on:click="send">Add 1</button>
+        <p>The button above has been clicked {{ a }} times.</p> -->
+
       </div>
-
-      <div id="currentUser">
-        <h3>Online Users</h3>
-        <ul v-for="user in users">
-          <li>
-            {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
-          </li>
-        </ul>
-      </div>
-
-      <!-- <button v-on:click="send">Add 1</button>
-      <p>The button above has been clicked {{ a }} times.</p> -->
-
+      <div class="lead form-group">
+      <input
+        class="form-control"
+        v-on:keyup.enter="send"
+        v-model="msg">
+      <draw-canvas></draw-canvas>
     </div>
-    <input class="msgInput" v-on:keyup.enter="send" v-model="msg">
-    <draw-canvas></draw-canvas>
   </div>
 </template>
 

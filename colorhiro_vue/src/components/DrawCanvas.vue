@@ -1,6 +1,6 @@
 <template>
 
-  <canvas height="500" width="800" style="border:2px solid black;" ref="drawCanvas"></canvas>
+  <canvas height="auto" width="auto" style="border:2px solid black;" ref="drawCanvas"></canvas>
 
 </template>
 
