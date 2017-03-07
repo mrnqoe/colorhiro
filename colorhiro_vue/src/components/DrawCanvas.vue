@@ -1,20 +1,23 @@
 <template>
-
   <div ref="canvasContainer">
-  <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
+    <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
+    <button type="button" class="btn btn-outline-danger btn-block" v-on:click="clearCanvas"> Clear </button>
+    <div class="btn-group btn-group-justified">
+      <a v-model="y" class="btn btn-default" v-on:click="drawingSize1" > size 1 </a>
+      <a v-model="y" class="btn btn-default" v-on:click="drawingSize2" > size 2 </a>
+      <a v-model="y" class="btn btn-default" v-on:click="drawingSize3" > size 3 </a>
+      <a v-model="y" class="btn btn-default" v-on:click="drawingSize4" > size 4 </a>
+    </div>
   </div>
 </template>
 
 <script>
-
   import Room                                        from './Room.vue'
-  import $ from 'jquery'
-
-
+  import $                                           from 'jquery'
 
   var canvas
   var ctx
-  var y = 3;
+  var y
 
   export default {
     name: 'draw-canvas',
@@ -30,17 +33,13 @@
       }
     },
     mounted: function() {
-
       canvas = this.$refs.drawCanvas;
       console.log("this is ",canvas)
-
       var self = this
       ctx = canvas.getContext("2d");
       canvas.width = this.$refs.canvasContainer.clientWidth;
       let w = canvas.width;
       let h = canvas.height;
-
-
       canvas.addEventListener("mousemove", function(e){
         console.log("mouse", e.clientX, e.clientY)
         self.findxy('move',e)
@@ -55,13 +54,11 @@
       canvas.addEventListener("mouseout", function(e){
           self.findxy('out', e)
       }, false);
-
     //mobile//
       canvas.addEventListener("touchstart", function(e){
         if (e.target == canvas) {
           e.preventDefault();
         }
-        // mousePost = self.getTouchPost(canvas, e);
         var touch = e.touches[0];
         console.log(touch)
         var mouseevent = new MouseEvent("mousedown",{
@@ -89,10 +86,8 @@
         });
         canvas.dispatchEvent(mouseevent);
       }, false);
-
     },
     methods: {
-
       draw: function(){
         ctx.beginPath();
         ctx.moveTo(this.prevX, this.prevY);
@@ -132,19 +127,24 @@
           }
         }
       },
-      getTouchPost: function(canvasDom, touchEvent) {
-        var rect = canvasDom.getBoundingClientRect();
-        return {
-          x: touchEvent.touches[0].clientX - rect.left,
-          y: touchEvent.touches[0].clientY - rect.top
-        };
+      clearCanvas: function(){
+        canvas.width = canvas.width;
+      },
+      drawingSize1: function(button){
+        y = 1;
+      },
+      drawingSize2: function(button){
+        y = 2;
+      },
+      drawingSize3: function(button){
+        y = 3;
+      },
+      drawingSize4: function(button){
+        y = 4;
       }
     }
   }
 </script>
 
 <style>
-
-
-
 </style>

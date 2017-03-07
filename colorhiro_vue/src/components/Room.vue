@@ -39,8 +39,6 @@
 // import VueSocketio from 'vue-socket.io';
 import userGenerator from '../helpers/userGenerator.js'
 import DrawCanvas from './DrawCanvas'
-
-
 export default {
   name: 'Room',
   components: {
@@ -54,25 +52,23 @@ export default {
       name: this.$root.$data.name,
       a: 0,
       id: null,
-      msg: 'example msg',
+      msg: 'type in your message',
       msgList: [],
       users: userGenerator(),
       color: this.$root.$data.color
     }
   },
   sockets:{
-    connect: function(val){
-      if(val) { console.log('socket connected -> val: ', val); }
-      else    { console.log('socket connected'); }
-    },
-    // connect: function(){
-    //   console.log('socket connected')
-    //   console.log(this.$socket);
+    // connect: function(val){
+    //   if(val) { console.log('socket connected -> val: ', val); }
+    //   else    { console.log('socket connected'); }
     // },
-
+    connect: function(){
+      console.log('socket connected')
+      console.log(this.$socket);
+    },
     message: function(val){
       this.msgList.push(val)
-
       console.log("value: ", val)
     }
   },
@@ -81,19 +77,14 @@ export default {
       console.log(this.$root);
     },
     send: function(event){
-      // this.msg = {
-      // content: this.msg
-      // }
+
       this.a += 1
-
       this.$socket.emit('message', this.msg, function(response) {
-
         console.log(response);
       }.bind(this));
     },
     add: function () {
       // Emit the server side
-
       // this.$options.sockets.emit("join", { a: 5, b: 3 });
     },
     connect: function () {
@@ -118,7 +109,8 @@ export default {
   float: bottom;
 }
 .usersColor{
-  height: 5px;
+  height: 1em;
+  width: 1em;
   font-weight: 5px;
   border-radius: 50%;
 }
