@@ -1,4 +1,3 @@
-// see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 require('dotenv').config()
 
@@ -31,19 +30,16 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: process.env['API_URL'],
-
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
         }
       },
       '/io': {
-
         target: process.env['IO'],
         ws: true,
         pathRewrite: {
           '^/io': ''
-
         }
       }
     },

@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var env = require('dotenv').config();
-// const PORT = process.env.port;
+const PORT = process.env.port;
 
 var visitorsData = {};
 
@@ -53,5 +53,5 @@ io.on('connection', function(socket){
   });
 });
 
-server.listen('http://socketserver.com:1923');
+server.listen(PORT);
 
