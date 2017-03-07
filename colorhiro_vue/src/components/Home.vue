@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <transition name="fade">
-    <div class="inner cover">
+  <main>
+    <!-- <transition name="fade"> -->
+    <div class="inner cover" v-if="active">
       <h1 class="cover-heading">Type a color</h1>
       <div class="lead form-group form-group-lg">
         <input
@@ -13,9 +13,9 @@
           />
       </div>
     </div>
-    </transition>
+    <!-- </transition> -->
       <colorList v-bind:colorName="color"></colorList>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -41,9 +41,15 @@ export default {
       submitted: false,
       previousColor: null,
       data_in: null,
+      active: true
     }
   },
   // methods: {
+  //   mouseOver: function(){
+  //     this.active = !this.active
+  //   }
+  // }
+
   //   handleColorInput: function(ev){
   //     // console.log("precious color:", this.previousColor)
   //     // console.log("color:", this.color)
@@ -139,6 +145,14 @@ h2{
   border-bottom: 1px solid black;
 }
 
+div .lead {
+  display: block;
+}
+
+h1 .cover-heading:hover div .lead {
+  display: none;
+}
+
 /*ul {
 
   list-style-type: none;
@@ -149,7 +163,7 @@ li {
   margin: 0 10px;
 }*/
 
-a {
+/*a {
   color: #42b983;
 }
 input {
@@ -157,5 +171,5 @@ input {
   border-width: 0 0 2px 0;
   border-color: blue
 }
-
+*/
 </style>

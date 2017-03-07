@@ -2,9 +2,11 @@
   <div class="container-fluid">
     <div class="Room">
       <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-      <h4>{{ name }} {{ pickedColor }}</h4>
-      <div id="roomContent" class="container">
-        <div class="container msgContainer" v-for="msg in msgList">
+      <div :style="{ 'background-color': '#'+ this.color }" >
+        <h4>{{ name }} </h4>
+      </div>
+      <div id="roomContent">
+        <div class="container msgContainer" v-for="msg in msgList" @scroll="handleScroll">
           <span> {{ name }} : </span> <span> {{ msg }} </span>
         </div>
 
@@ -38,12 +40,13 @@
 import userGenerator from '../helpers/userGenerator.js'
 import DrawCanvas from './DrawCanvas'
 
+
 export default {
   name: 'Room',
   components: {
     'draw-canvas': DrawCanvas
   },
-  props: ['roomKey','pickedColor'],
+  props: ['roomKey'],
   data: function () {
     return {
       loading: true,
@@ -53,14 +56,19 @@ export default {
       id: null,
       msg: 'example msg',
       msgList: [],
-      users: userGenerator()
+      users: userGenerator(),
+      color: this.$root.$data.color
     }
   },
   sockets:{
-    connect: function(){
-      console.log('socket connected')
-      console.log(this.$socket);
+    connect: function(val){
+      if(val) { console.log('socket connected -> val: ', val); }
+      else    { console.log('socket connected'); }
     },
+    // connect: function(){
+    //   console.log('socket connected')
+    //   console.log(this.$socket);
+    // },
 
     message: function(val){
       this.msgList.push(val)
@@ -71,6 +79,13 @@ export default {
   methods: {
     test0: function(){
       console.log(this.$root);
+    },
+    handleScroll: function(e) {
+      var currentScrollPosition = e.srcElement.scrollTop;
+      if (currentScrollPosition > this.scrollPosition) {
+          console.log("Scrolling down");
+      }
+      this.scrollPosition = currentScrollPosition;
     },
     send: function(event){
       // this.msg = {
@@ -116,5 +131,7 @@ export default {
 }
 .msgContainer{
   float: top;
+  position: fixed;
+  height: 30em;
 }
 </style>

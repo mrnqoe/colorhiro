@@ -10,18 +10,16 @@
     </div>
     <div v-else-if="colorName">
       <div v-if="selectedItem === null">
-        <div class="container colorContainer" :style="{ 'background-color': colorName }">
-          <h4> "{{ colorName }}"?  Not a bad choice! {{ colorName.hex }}</h4>
-          <p>I'll go with this
-            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
-          </p>
-        </div>
-        <div class="container">
+       <!--  <div class="container colorContainer" :style="{ 'background-color': colorName }"> -->
 
-          <ul class="list-group" >
+        <!-- </div> -->
+        <div class="container colorContainer" >
+
+          <ul class="list-group">
             <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
               {{ color.name }}
-              <!-- <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span> -->
+              <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }">
+              </span>
             </li>
           </ul>
         </div>
@@ -59,7 +57,7 @@ export default {
       loading: true,
       clicked: false,
       selectedItem: null,
-      progress: 50
+      progress: 50,
     }
   },
   computed: {
@@ -80,6 +78,7 @@ export default {
 
   methods: {
     getColorData: function() {
+
       var url = "http://localhost:3000/color/"+this.colorName
       if(this.colorName){
         this.$http.get(url, {
@@ -107,6 +106,7 @@ export default {
     enterRoom: function(){
 
       console.log("clicked")
+      this.$root.$data.color = this.pickedColor.hex
       this.$root.$router.push({name:"roomAccess"})
     },
     colorSelected: function(c){
@@ -116,6 +116,7 @@ export default {
           return i
         }
       })
+      this.$parent.$data.active = !this.$parent.$data.active
       this.$root.$data.color = this.selectedItem[0]
     }
   }
@@ -131,18 +132,20 @@ h5{
 .colorContainer{
   padding: 30px;
 }
-.foo:hover {
+/*.foo:hover {
   background: gold;
   opacity: .5;
-}
+}*/
 
-/*.color-ball span {
+
+.foo:hover span {
+
   height: 20px;
-  width: 20px;
+  width: 50px;
   display: inline-block;
   border-radius: 20px;
   float: right;
-}*/
+}
 
 .list-group-item {
   position: relative;

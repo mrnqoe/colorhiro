@@ -21,6 +21,7 @@ var vm = new Vue({
   components: {App},
   watch: {
     name: function () {
+
       this.roomAccess = true;
       Vue.use(VueSocketio, '/io');
       // proxy.on('upgrade', function (req, socket, head) {
