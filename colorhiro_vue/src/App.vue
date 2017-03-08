@@ -1,6 +1,5 @@
 <template>
   <div  class="site-wrapper">
-  <transition name="fade">
     <div class="site-wrapper-inner">
       <div v-if="show" class="cover-container">
         <div class="app masthead clearfix">
@@ -13,7 +12,6 @@
         </div>
       </div>
     </div>
-  </transition>
   </div>
 </template>
 
@@ -142,13 +140,13 @@ navs.less:9
 }*/
 
 h1{
-  /*font-weight: bold;*/
+  font-weight: bold;
   -webkit-text-stroke: black;
   -webkit-text-stroke-width: 0.2px;
   text-align: center;
 }
 h2{
-  /*font-weight: bold;*/
+  font-weight: bold;
   color: white;
   text-align: center;
 }
@@ -162,7 +160,6 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-*/
 a {
   color: #42b983;
 }
