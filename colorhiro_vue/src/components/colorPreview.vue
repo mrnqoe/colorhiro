@@ -8,8 +8,8 @@
     </div>
         <h3> {{ pickedColor.name }}   #{{ pickedColor.hex }}  </h3>
       <div class="lead">
-        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
-        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" v-on:click="back"></span>
+        <span v-bind:title="goBack" class="glyphicon glyphicon-thumbs-down" aria-hidden="true" v-on:click="back"></span>
+        <span v-bind:title="goFoward" class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
       </div>
     </div>
   </div>
@@ -40,8 +40,11 @@ export default {
       showPreview: true,
       selectedItem: true,
       home: false,
-      colorList: false
+      colorList: false,
+      goBack: 'Go back to color selector!',
+      goFoward: 'Continue to more fun!'
       // backClicked: false
+
     }
   },
   methods: {
@@ -136,6 +139,24 @@ export default {
 .previewContainer h3 {
     font-size: 24px;
     text-align: center;
+}
+
+.glyphicon-thumbs-up{
+  margin-left: 0.5em;
+  font-size: 1.8em;
+}
+
+.glyphicon-thumbs-up:hover {
+  color: seagreen;
+}
+
+.glyphicon-thumbs-down{
+  margin-right: 0.5em;
+  font-size: 1.8em;
+}
+
+.glyphicon-thumbs-down:hover {
+  color: red;
 }
 
 </style>

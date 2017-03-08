@@ -1,7 +1,7 @@
 <template>
   <div ref="canvasContainer">
     <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
-    <button type="button" class="btn btn-outline-danger btn-block" v-on:click="clearCanvas"> Clear </button>
+    <span v-bind:title="clear" class="glyphicon glyphicon-refresh" v-on:click="clearCanvas"></span>
     <div class="btn-group btn-group-justified">
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize1" > size 1 </a>
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize2" > size 2 </a>
@@ -29,7 +29,8 @@
         prevY: 0,
         currX: 0,
         currY: 0,
-        dot_flag: false
+        dot_flag: false,
+        clear: 'Clear the canvas and start over!'
       }
     },
     mounted: function() {
@@ -134,17 +135,27 @@
         y = 1;
       },
       drawingSize2: function(button){
-        y = 2;
-      },
-      drawingSize3: function(button){
         y = 3;
       },
+      drawingSize3: function(button){
+        y = 5;
+      },
       drawingSize4: function(button){
-        y = 4;
+        y = 7;
       }
     }
   }
 </script>
 
 <style>
+
+.glyphicon-refresh{
+  font-size: 1.8em;
+
+}
+
+.glyphicon-refresh:hover {
+  color: red;
+}
+
 </style>

@@ -2,8 +2,12 @@
   <div class="container-fluid">
     <div class="Room">
       <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-      <div :style="{ 'background-color': '#'+ this.color }" >
-        <h4>{{ name }} </h4>
+      <div>
+        <h4>
+          {{ name }}
+        </h4>
+        <span class="colorChosen" :style="{ 'background-color': '#'+ this.color }">
+        </span>
       </div>
       <div id="roomContent">
         <div class="container msgContainer" v-for="msg in msgList">
@@ -102,9 +106,17 @@ export default {
 </script>
 
 <style>
-#currentUser{
+/*#currentUser{
   float: right;
+}*/
+
+span .colorChosen {
+  height: 20px;
+  width: 50px;
+  display: inline-block;
+  border-radius: 20px;
 }
+
 .msgInput{
   float: bottom;
 }
