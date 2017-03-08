@@ -16,10 +16,6 @@
             </li>
           </ul>
         </div>
-
-        <!-- <button v-on:click="send">Add 1</button>
-        <p>The button above has been clicked {{ a }} times.</p> -->
-
       </div>
       <div class="lead form-group">
         <input
@@ -30,7 +26,6 @@
       <draw-canvas></draw-canvas>
     </div>
   </div>
-
 </template>
 
 <script>

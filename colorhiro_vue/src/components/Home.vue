@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <transition name="fade">
-    <div class="inner cover">
+
+  <main>
+   <!--  {{ img }} -->
+    <div class="inner cover" v-if="active">
       <h1 class="cover-heading">Type a color</h1>
       <div class="lead form-group form-group-lg">
         <input
@@ -13,9 +14,8 @@
           />
       </div>
     </div>
-    </transition>
-      <colorList v-bind:colorName="color"></colorList>
-  </div>
+    <colorList v-bind:colorName="color"></colorList>
+  </main>
 </template>
 
 <script>
@@ -41,19 +41,14 @@ export default {
       submitted: false,
       previousColor: null,
       data_in: null,
+      active: true
+      // img: spinball()
     }
   },
 }
 </script>
 
 <style>
-
-/*.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
-/*  opacity: 0
-}*/
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -100,23 +95,13 @@ h2{
   border-bottom: 1px solid black;
 }
 
-/*ul {
-
-  list-style-type: none;
-  padding: 0;
+div .lead {
+  display: block;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}*/
 
-a {
-  color: #42b983;
-}
-input {
-  outline: 0;
-  border-width: 0 0 2px 0;
-  border-color: blue
+h1 .cover-heading:hover div .lead {
+  display: none;
+
 }
 
 </style>

@@ -117,12 +117,20 @@
           }
         }
       },
-      getTouchPost: function(canvasDom, touchEvent) {
-        var rect = canvasDom.getBoundingClientRect();
-        return {
-          x: touchEvent.touches[0].clientX - rect.left,
-          y: touchEvent.touches[0].clientY - rect.top
-        };
+      clearCanvas: function(){
+        canvas.width = canvas.width;
+      },
+      drawingSize1: function(button){
+        y = 1;
+      },
+      drawingSize2: function(button){
+        y = 3;
+      },
+      drawingSize3: function(button){
+        y = 5;
+      },
+      drawingSize4: function(button){
+        y = 7;
       }
     }
   }

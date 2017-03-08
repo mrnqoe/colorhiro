@@ -1,36 +1,21 @@
 <template>
   <div class="colorList">
     <div v-if="loading" :duration="5000">
-     <!--  {{ loading }} -->
-      <!-- <div class="progress progress-striped">
-        <div class="progress-bar" :style="progressWidth">
-          <span></span>
-        </div>
-      </div> -->
     </div>
     <div v-else-if="colorName">
       <div v-if="selectedItem === null">
-        <div class="container colorContainer" :style="{ 'background-color': colorName }">
-          <h4> "{{ colorName }}"?  Not a bad choice! {{ colorName.hex }}</h4>
-          <p>I'll go with this
-            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
-          </p>
-        </div>
-        <div class="container">
-
-          <ul class="list-group" >
+        <div class="container colorContainer" >
+          <ul class="list-group">
             <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
               {{ color.name }}
-              <!-- <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span> -->
+              <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span>
             </li>
           </ul>
         </div>
       </div>
-
       <div v-else>
         <colorPreview v-bind:pickedColor="selectedItem[0]"></colorPreview>
       </div>
-
     </div>
   </div>
 </template>
@@ -41,9 +26,6 @@ import {post_data, get_data, getColorData }                 from '../helpers/que
 import {changeColor, changeName, colorToHex, hexToColor}    from '../helpers/color.js'
 import colorPreview                                         from './colorPreview.vue'
 import {EventBus}                                           from '../helpers/event-bus.js'
-
-
-
 
 export default {
   name: 'colorList',
@@ -75,9 +57,7 @@ export default {
   created: function () {
     let self = this
     EventBus.$on('wanna-go-back', result => self.selectedItem = null);
-    // this.getColorData();
   },
-
   methods: {
     getColorData: function() {
       var url = 'http://Sample-env.5ukbsjxwk2.us-east-1.elasticbeanstalk.com/color/'+this.colorName
@@ -105,7 +85,6 @@ export default {
       }
     },
     enterRoom: function(){
-
       console.log("clicked")
       this.$root.$router.push({name:"roomAccess"})
     },
@@ -121,7 +100,6 @@ export default {
   }
 }
 
-
 </script>
 
 <style>
@@ -131,18 +109,17 @@ h5{
 .colorContainer{
   padding: 30px;
 }
-.foo:hover {
-  background: gold;
-  opacity: .5;
-}
 
-/*.color-ball span {
+.foo:hover span {
+}
+.color-ball span {
   height: 20px;
   width: 20px;
   display: inline-block;
   border-radius: 20px;
   float: right;
-}*/
+
+}
 
 .list-group-item {
   position: relative;
@@ -153,46 +130,12 @@ h5{
   border: 0;
   text-align: center;
 }
-
-/*
-.color{
-  padding: 3em;
-  border-style: black 1em;
-  border-radius: 0.5em;
-}
-
-
-h1{
-  font-weight: bold;
-  -webkit-text-stroke: black;
-  -webkit-text-stroke-width: 0.2px;
-}
-h2{
-  font-weight: bold;
-  color: black;
-}
-
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-
 input {
   padding: 1em 1em;
   font-size: 2em;
   background:white;
   border-style: black;
 
-}*/
+}
 
 </style>
