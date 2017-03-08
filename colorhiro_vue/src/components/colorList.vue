@@ -6,9 +6,15 @@
       <div v-if="selectedItem === null">
         <div class="container colorContainer" >
           <ul class="list-group">
-            <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
+            <li
+            v-for="color in colorData"
+            class="list-group-item foo"
+            v-on:click="colorSelected(color.name)">
               {{ color.name }}
-              <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span>
+              <span
+              class="color-ball"
+              :style="{ 'background-color': '#'+ color.hex }">
+              </span>
             </li>
           </ul>
         </div>

@@ -145,9 +145,11 @@
 
 <style>
 
+span{
+  text-align: center;
+}
 .glyphicon-refresh{
   font-size: 1.8em;
-
 }
 
 .glyphicon-refresh:hover {
