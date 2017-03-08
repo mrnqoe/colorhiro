@@ -38,8 +38,7 @@ export function get_data(http, url, data){
   })
 }
 
-export function getColorData() {
-      var url = "http://localhost:3000/user"
+export function getColorData(url) {
       this.$http.post(url, {color:this.colorName}, {
          emulateJSON: true
        })

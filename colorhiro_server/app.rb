@@ -33,24 +33,24 @@ class ColorhiroAPI < Sinatra::Base
     @admin = false
     @visitor = true
     # request.secure? #|| request.host == 'localhost'
-    content_type 'application/json'
+    # content_type 'application/json'
     headers 'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
     headers 'Access-Control-Allow-Origin' => '*'
     @oreo = request.cookies
-    if request.host == 'localhost' || @oreo.include?(ENV['COLORHIRO_KEY'])
-      puts request.host
-      puts 'ADMIN YES'
-      @admin = true
-    else
-      puts 'NOT ADMIN'
-    end
+    # if request.host == 'localhost' || @oreo.include?(ENV['COLORHIRO_KEY'])
+    #   puts request.host
+    #   puts 'ADMIN YES'
+    #   @admin = true
+    # else
+    #   puts 'NOT ADMIN'
+    # end
 
   end
 
   get '/' do
-    unless @admin
-      redirect '/posts'
-    end
+    # unless @admin
+    #   redirect '/posts'
+    # end
     stream do |out|
       out << "It's gonna be legen -\n"
       sleep 0.5
@@ -83,9 +83,9 @@ class ColorhiroAPI < Sinatra::Base
   end
 
   get '/users' do
-    unless @admin
-      redirect '/posts'
-    end
+    # unless @admin
+    #   redirect '/posts'
+    # end
     users = []
     User.all.each do |i|
       users << {
@@ -123,9 +123,9 @@ class ColorhiroAPI < Sinatra::Base
   end
 
   post '/room' do
-    unless @admin || request.secure?
-      redirect '/posts'
-    end
+    # unless @admin || request.secure?
+    #   redirect '/posts'
+    # end
     @data_in = request.params
     @room = Room.create!(
       key: @data_in['share_key'],
@@ -134,9 +134,9 @@ class ColorhiroAPI < Sinatra::Base
   end
 
   post '/user' do
-    unless @admin || request.secure?
-      redirect '/posts'
-    end
+    # unless @admin || request.secure?
+    #   redirect '/posts'
+    # end
     @data_in = request.params
     @color_id = Color.find_by(hex: @data_in['hex'])
     puts @color_id

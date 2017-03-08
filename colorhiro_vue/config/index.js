@@ -1,10 +1,9 @@
+// see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
 require('dotenv').config()
 
 module.exports = {
   build: {
-
-
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
@@ -30,20 +29,20 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: process.env['API_URL'],
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
-      '/io': {
-        target: process.env['IO'],
-        ws: true,
-        pathRewrite: {
-          '^/io': ''
-        }
-      }
+      // '/api': {
+      //   target: process.env['API_URL'],
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': '0101011010101'
+      //   }
+      // },
+      // '/io': {
+      //   target: process.env['IO'],
+      //   ws: true,
+      //   pathRewrite: {
+      //     '^/io': '2020202020220'
+      //   }
+      // }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

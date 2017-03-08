@@ -14,11 +14,9 @@
 <script>
   import Room                                        from './Room.vue'
   import $                                           from 'jquery'
-
   var canvas
   var ctx
   var y
-
   export default {
     name: 'draw-canvas',
     props: ['drawingColor'],
@@ -97,7 +95,6 @@
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
-        console.log(this.currY)
       },
       findxy: function(res,e){
         if (res == 'down') {
