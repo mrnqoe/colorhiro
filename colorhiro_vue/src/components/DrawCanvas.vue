@@ -16,7 +16,7 @@
   import $                                           from 'jquery'
   var canvas
   var ctx
-  var y
+  var y = ""
   export default {
     name: 'draw-canvas',
     props: ['drawingColor'],
@@ -28,7 +28,7 @@
         currX: 0,
         currY: 0,
         dot_flag: false,
-        y: null,
+        // y: null,
         clear: 'Clear the canvas and start over!'
       }
     },
@@ -128,16 +128,16 @@
         canvas.width = canvas.width;
       },
       drawingSize1: function(button){
-        this.y = 1;
+        y = 1;
       },
       drawingSize2: function(button){
-        this.y = 3;
+        y = 3;
       },
       drawingSize3: function(button){
-        this.y = 5;
+        y = 5;
       },
       drawingSize4: function(button){
-        this.y = 7;
+        y = 7;
       }
     }
   }
