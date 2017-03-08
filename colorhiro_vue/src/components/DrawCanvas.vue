@@ -27,7 +27,8 @@
         prevY: 0,
         currX: 0,
         currY: 0,
-        dot_flag: false
+        dot_flag: false,
+        y: null
       }
     },
     mounted: function() {
@@ -39,11 +40,9 @@
       let w = canvas.width;
       let h = canvas.height;
       canvas.addEventListener("mousemove", function(e){
-        console.log("mouse", e.clientX, e.clientY)
         self.findxy('move',e)
       }, false);
       canvas.addEventListener("mousedown", function(e){
-        console.log("mouse", e.clientX, e.clientY)
         self.findxy('down', e)
       }, false);
       canvas.addEventListener("mouseup", function(e){
@@ -128,16 +127,16 @@
         canvas.width = canvas.width;
       },
       drawingSize1: function(button){
-        y = 1;
+        this.y = 1;
       },
       drawingSize2: function(button){
-        y = 3;
+        this.y = 3;
       },
       drawingSize3: function(button){
-        y = 5;
+        this.y = 5;
       },
       drawingSize4: function(button){
-        y = 7;
+        this.y = 7;
       }
     }
   }

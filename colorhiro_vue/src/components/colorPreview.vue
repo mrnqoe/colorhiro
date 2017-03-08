@@ -44,6 +44,7 @@ export default {
   methods: {
     enterRoom: function(){
       console.log("clicked")
+      this.$root.$data.color = this.pickedColor.hex
       this.$root.$router.push({name:"roomAccess"})
     },
     back: function(){
