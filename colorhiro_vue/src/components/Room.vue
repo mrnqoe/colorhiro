@@ -2,10 +2,8 @@
   <div class="container-fluid">
     <div class="Room">
       <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-      <div :style="{ 'background-color': '#'+ this.color }" >
-        <h4>{{ name }} </h4>
-      </div>
-      <div id="roomContent">
+      <h4>{{ name }} {{ pickedColor }}</h4>
+      <div id="roomContent" class="container">
         <div class="container msgContainer" v-for="msg in msgList">
           <span> {{ name }} : </span> <span> {{ msg }} </span>
         </div>
@@ -39,12 +37,13 @@
 // import VueSocketio from 'vue-socket.io';
 import userGenerator from '../helpers/userGenerator.js'
 import DrawCanvas from './DrawCanvas'
+
 export default {
   name: 'Room',
   components: {
     'draw-canvas': DrawCanvas
   },
-  props: ['roomKey'],
+  props: ['roomKey','pickedColor'],
   data: function () {
     return {
       loading: true,
@@ -52,23 +51,20 @@ export default {
       name: this.$root.$data.name,
       a: 0,
       id: null,
-      msg: 'type in your message',
+      msg: 'example msg',
       msgList: [],
-      users: userGenerator(),
-      color: this.$root.$data.color
+      users: userGenerator()
     }
   },
   sockets:{
-    // connect: function(val){
-    //   if(val) { console.log('socket connected -> val: ', val); }
-    //   else    { console.log('socket connected'); }
-    // },
     connect: function(){
       console.log('socket connected')
       console.log(this.$socket);
     },
+
     message: function(val){
       this.msgList.push(val)
+
       console.log("value: ", val)
     }
   },
@@ -77,14 +73,19 @@ export default {
       console.log(this.$root);
     },
     send: function(event){
-
+      // this.msg = {
+      // content: this.msg
+      // }
       this.a += 1
+
       this.$socket.emit('message', this.msg, function(response) {
+
         console.log(response);
       }.bind(this));
     },
     add: function () {
       // Emit the server side
+
       // this.$options.sockets.emit("join", { a: 5, b: 3 });
     },
     connect: function () {
@@ -109,14 +110,11 @@ export default {
   float: bottom;
 }
 .usersColor{
-  height: 1em;
-  width: 1em;
+  height: 5px;
   font-weight: 5px;
   border-radius: 50%;
 }
 .msgContainer{
   float: top;
-  position: fixed;
-  height: 30em;
 }
 </style>

@@ -10,16 +10,18 @@
     </div>
     <div v-else-if="colorName">
       <div v-if="selectedItem === null">
-       <!--  <div class="container colorContainer" :style="{ 'background-color': colorName }"> -->
+        <div class="container colorContainer" :style="{ 'background-color': colorName }">
+          <h4> "{{ colorName }}"?  Not a bad choice! {{ colorName.hex }}</h4>
+          <p>I'll go with this
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
+          </p>
+        </div>
+        <div class="container">
 
-        <!-- </div> -->
-        <div class="container colorContainer" >
-
-          <ul class="list-group">
+          <ul class="list-group" >
             <li v-for="color in colorData" class="list-group-item foo" v-on:click="colorSelected(color.name)">
               {{ color.name }}
-              <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }">
-              </span>
+              <!-- <span class="color-ball" :style="{ 'background-color': '#'+ color.hex }"></span> -->
             </li>
           </ul>
         </div>
@@ -41,10 +43,7 @@ import colorPreview                                         from './colorPreview
 import {EventBus}                                           from '../helpers/event-bus.js'
 
 
-var touchsupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)
-    if (!touchsupport){ // browser doesn't support touch
-    document.documentElement.className += " non-touch"
-  }
+
 
 export default {
   name: 'colorList',
@@ -60,7 +59,7 @@ export default {
       loading: true,
       clicked: false,
       selectedItem: null,
-      progress: 50,
+      progress: 50
     }
   },
   computed: {
@@ -70,7 +69,7 @@ export default {
   },
   watch: {
     colorName: function () {
-      this.getColorData();
+      this.getColorData('/api');
     }
   },
   created: function () {
@@ -81,8 +80,7 @@ export default {
 
   methods: {
     getColorData: function() {
-
-      var url = "http://localhost:3000/color/"+this.colorName
+      var url = 'http://Sample-env.5ukbsjxwk2.us-east-1.elasticbeanstalk.com/color/'+this.colorName
       if(this.colorName){
         this.$http.get(url, {
            emulateJSON: true
@@ -109,7 +107,6 @@ export default {
     enterRoom: function(){
 
       console.log("clicked")
-      this.$root.$data.color = this.pickedColor.hex
       this.$root.$router.push({name:"roomAccess"})
     },
     colorSelected: function(c){
@@ -119,7 +116,6 @@ export default {
           return i
         }
       })
-      this.$parent.$data.active = !this.$parent.$data.active
       this.$root.$data.color = this.selectedItem[0]
     }
   }
@@ -135,20 +131,18 @@ h5{
 .colorContainer{
   padding: 30px;
 }
-/*.foo:hover {
+.foo:hover {
   background: gold;
   opacity: .5;
-}*/
+}
 
-
-.foo:hover span, .foo:focus span {
-
+/*.color-ball span {
   height: 20px;
-  width: 50px;
+  width: 20px;
   display: inline-block;
   border-radius: 20px;
   float: right;
-}
+}*/
 
 .list-group-item {
   position: relative;

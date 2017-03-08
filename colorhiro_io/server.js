@@ -28,7 +28,6 @@ io.on('connection', function(socket){
 
   socket.on('message', function(data) {
 
-
     // const chatMsg = JSON.parse
     console.log("this is the data : ", data);
     // console.log(socket.server);
@@ -54,4 +53,4 @@ io.on('connection', function(socket){
 });
 
 server.listen(PORT);
-// server.listen(app.get(PORT));
+
