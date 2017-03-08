@@ -17,7 +17,7 @@
           type="text"
           v-model="name0"
           v-on:keyup.enter="createKey($event.target.value)"
-          placeholder="Please print your name"
+          placeholder="Please print your username"
           autofocus
         />
       </div>

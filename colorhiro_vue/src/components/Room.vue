@@ -2,34 +2,50 @@
   <div class="container-fluid">
     <div class="Room">
       <i v-show="loading" class="fa fa-spinner fa-spin"></i>
-      <div>
-        <h4>
+        <h4 class="colorChosen" :style="{ 'background-color': '#'+ this.color }">
           {{ name }}
         </h4>
-        <span class="colorChosen" :style="{ 'background-color': '#'+ this.color }">
-        </span>
-      </div>
-      <div id="roomContent">
-        <div class="container msgContainer" v-for="msg in msgList">
-          <span> {{ name }} : </span> <span> {{ msg }} </span>
+        <div v-if="chatting" id="roomContent">
+        <div class="onlineUserBox">
+          <div id="currentUser">
+            <h3>Online Users</h3>
+            <ul v-for="user in users">
+              <li>
+                {{ user.name }}
+                <p
+                class="usersColor"
+                :style="{ 'background-color': user.color }">
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <div id="currentUser">
-          <h3>Online Users</h3>
-          <ul v-for="user in users">
-            <li>
-              {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
-            </li>
-          </ul>
+        <div class="container chatBox" >
+          <div class="container msgs" v-model="msgList" v-for="msg in msgList">
+            <span v-if="name"> {{ name }} :</span>
+            <span v-else-if="!name"> Unknown-user : </span>
+            <span> {{ msg }} </span>
+          </div>
         </div>
+          <div class="lead form-group">
+            <input
+              class="form-control"
+              v-on:keyup.enter="send"
+              v-model="msg"
+              />
+          </div>
+        <button v-show="drawBtn"v-on:click="toggleCanvas()" class="ChatroomBtn">DRAW</button>
       </div>
-      <div class="lead form-group">
-        <input
-          class="form-control"
-          v-on:keyup.enter="send"
-          v-model="msg">
+      <div v-else>
+        <draw-canvas></draw-canvas>
+          <br>
+        <button
+        v-show="hideCanvasBtn"
+        v-on:click="toggleCanvasUp()"
+        class="ChatroomBtn">
+        HIDE CANVAS
+        </button>
       </div>
-      <draw-canvas></draw-canvas>
     </div>
   </div>
 </template>
@@ -51,23 +67,23 @@ export default {
       name: this.$root.$data.name,
       a: 0,
       id: null,
-      msg: 'type in your message',
+      msg: '',
       msgList: [],
       users: userGenerator(),
-      color: this.$root.$data.color
+      color: this.$root.$data.color,
+      hideCanvasBtn: false,
+      drawBtn:true,
+      chatting: true
     }
   },
   sockets:{
-    // connect: function(val){
-    //   if(val) { console.log('socket connected -> val: ', val); }
-    //   else    { console.log('socket connected'); }
-    // },
     connect: function(){
       console.log('socket connected')
       console.log(this.$socket);
     },
     message: function(val){
-      this.msgList.push(val)
+      this.msgList.push(val);
+      val = '';
       console.log("value: ", val)
     }
   },
@@ -76,15 +92,16 @@ export default {
       console.log(this.$root);
     },
     send: function(event){
-      this.a += 1
+      this.msgList.push(this.msg)
+      this.msg ='';
       this.$socket.emit('message', this.msg, function(response) {
         console.log(response);
       }.bind(this));
     },
-    add: function () {
-      // Emit the server side
-      // this.$options.sockets.emit("join", { a: 5, b: 3 });
-    },
+    // add: function () {
+    //   // Emit the server side
+    //   // this.$options.sockets.emit("join", { a: 5, b: 3 });
+    // },
     connect: function () {
       console.log('hello');
       return 'hello'
@@ -94,6 +111,16 @@ export default {
       //   console.log(response);
       // });
       this.$options.socket.emit("messages", msg)
+    },
+    toggleCanvas: function(){
+      this.hideCanvasBtn = true
+      this.drawBtn = false
+      this.chatting = false
+    },
+    toggleCanvasUp: function(){
+      this.drawBtn = true
+      this.hideCanvasBtn = false
+      this.chatting = true
     }
   }
 }
@@ -103,6 +130,21 @@ export default {
 /*#currentUser{
   float: right;
 }*/
+.onlineUserBox{
+  float: right;
+  width: 20%;
+}
+
+.ChatroomBtn {
+  width: 100%;
+  border-style: 0.5em;
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 5em;
+}
+.ChatroomBtn:hover{
+  background-color: #71EEB8;
+}
 
 span .colorChosen {
   height: 20px;
@@ -120,9 +162,16 @@ span .colorChosen {
   font-weight: 5px;
   border-radius: 50%;
 }
-.msgContainer{
-  float: top;
-  position: fixed;
-  height: 30em;
+/*.chatBox{
+  width: 80%;
+  height: 40%;
+  overflow: none;
+  position: relative;
+
 }
+.msgs{
+  overflow: auto;
+  position: absolute;
+  max-height: 40%;
+}*/
 </style>
