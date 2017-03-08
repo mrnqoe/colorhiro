@@ -1,7 +1,7 @@
 <template>
   <div ref="canvasContainer">
     <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
-    <button type="button" class="btn btn-outline-danger btn-block" v-on:click="clearCanvas"> Clear </button>
+    <span v-bind:title="clear" class="glyphicon glyphicon-refresh" v-on:click="clearCanvas"></span>
     <div class="btn-group btn-group-justified">
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize1" > size 1 </a>
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize2" > size 2 </a>
@@ -16,7 +16,7 @@
   import $                                           from 'jquery'
   var canvas
   var ctx
-  var y
+  var y = ""
   export default {
     name: 'draw-canvas',
     props: ['drawingColor'],
@@ -27,7 +27,9 @@
         prevY: 0,
         currX: 0,
         currY: 0,
-        dot_flag: false
+        dot_flag: false,
+        // y: null,
+        clear: 'Clear the canvas and start over!'
       }
     },
     mounted: function() {
@@ -39,11 +41,9 @@
       let w = canvas.width;
       let h = canvas.height;
       canvas.addEventListener("mousemove", function(e){
-        console.log("mouse", e.clientX, e.clientY)
         self.findxy('move',e)
       }, false);
       canvas.addEventListener("mousedown", function(e){
-        console.log("mouse", e.clientX, e.clientY)
         self.findxy('down', e)
       }, false);
       canvas.addEventListener("mouseup", function(e){
@@ -144,4 +144,17 @@
 </script>
 
 <style>
+<<<<<<< HEAD
+=======
+
+.glyphicon-refresh{
+  font-size: 1.8em;
+
+}
+
+.glyphicon-refresh:hover {
+  color: red;
+}
+
+>>>>>>> e54a2809a94e1ede68a184403fae3bb48cbe0789
 </style>
