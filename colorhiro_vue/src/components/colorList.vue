@@ -62,6 +62,8 @@ export default {
     getColorData: function() {
       var url = 'http://Sample-env.5ukbsjxwk2.us-east-1.elasticbeanstalk.com/color/'+this.colorName
       if(this.colorName){
+        console.log(this.colorName);
+
         this.$http.get(url, {
            emulateJSON: true
         })
