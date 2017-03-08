@@ -96,7 +96,7 @@
         ctx.lineWidth = y;
         ctx.stroke();
         ctx.closePath();
-        console.log(this.currY)
+
       },
       findxy: function(res,e){
         if (res == 'down') {
@@ -134,13 +134,13 @@
         y = 1;
       },
       drawingSize2: function(button){
-        y = 2;
-      },
-      drawingSize3: function(button){
         y = 3;
       },
+      drawingSize3: function(button){
+        y = 5;
+      },
       drawingSize4: function(button){
-        y = 4;
+        y = 7;
       }
     }
   }
