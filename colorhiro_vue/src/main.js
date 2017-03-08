@@ -22,7 +22,7 @@ var vm = new Vue({
   watch: {
     name: function () {
       this.roomAccess = true;
-      Vue.use(VueSocketio, 'https://colorhiroyo.herokuapp.com/');
+      Vue.use(VueSocketio, 'http://colorhiro-io-dev.us-east-1.elasticbeanstalk.com:80');
       router.push({path: '/room/:01010'})
       console.log('hello sockets !!! READY FOR DEPLOYMENT ??');
     }

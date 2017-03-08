@@ -52,5 +52,4 @@ io.on('connection', function(socket){
   });
 });
 
-server.listen(PORT);
-
+server.listen(80);
