@@ -41,7 +41,7 @@ export default {
       loading: true,
       clicked: false,
       selectedItem: null,
-      progress: 50
+      progress: 50,
     }
   },
   computed: {
@@ -87,6 +87,7 @@ export default {
     enterRoom: function(){
       console.log("clicked")
       this.$root.$router.push({name:"roomAccess"})
+      this.$root.$data.color = this.pickedColor.hex
     },
     colorSelected: function(c){
       this.selectedItem = this.colorData.filter(function(i){
@@ -96,6 +97,7 @@ export default {
         }
       })
       this.$root.$data.color = this.selectedItem[0]
+      this.$root.$data.colorInput = false
     }
   }
 }
@@ -111,6 +113,11 @@ h5{
 }
 
 .foo:hover span {
+  height: 20px;
+  width: 50px;
+  display: inline-block;
+  border-radius: 20px;
+  float: right;
 }
 .color-ball span {
   height: 20px;

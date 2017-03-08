@@ -1,13 +1,13 @@
 <template>
-  <div ref="canvasContainer">
+  <div ref="canvasContainer" class="lead">
     <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
     <span v-bind:title="clear" class="glyphicon glyphicon-refresh" v-on:click="clearCanvas"></span>
-    <div class="btn-group btn-group-justified">
+    <!-- <div class="btn-group btn-group-justified">
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize1" > size 1 </a>
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize2" > size 2 </a>
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize3" > size 3 </a>
       <a v-model="y" class="btn btn-default" v-on:click="drawingSize4" > size 4 </a>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -16,7 +16,7 @@
   import $                                           from 'jquery'
   var canvas
   var ctx
-  var y
+  var y = 6
   export default {
     name: 'draw-canvas',
     props: ['drawingColor'],
@@ -128,18 +128,18 @@
       clearCanvas: function(){
         canvas.width = canvas.width;
       },
-      drawingSize1: function(button){
-        y = 1;
-      },
-      drawingSize2: function(button){
-        y = 3;
-      },
-      drawingSize3: function(button){
-        y = 5;
-      },
-      drawingSize4: function(button){
-        y = 7;
-      }
+      // drawingSize1: function(button){
+      //   y = 1;
+      // },
+      // drawingSize2: function(button){
+      //   y = 3;
+      // },
+      // drawingSize3: function(button){
+      //   y = 5;
+      // },
+      // drawingSize4: function(button){
+      //   y = 7;
+      // }
     }
   }
 </script>

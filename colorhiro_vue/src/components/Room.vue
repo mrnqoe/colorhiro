@@ -1,33 +1,35 @@
 <template>
   <div class="container-fluid">
     <div class="Room">
-      <i v-show="loading" class="fa fa-spinner fa-spin"></i>
+      <!-- <i v-show="loading" class="fa fa-spinner fa-spin"></i> -->
       <div>
         <h4>
-          {{ name }}
+          {{ name }} <div class="colorChosen" :style="{ 'background-color': '#'+ this.color }"></div>
         </h4>
-        <span class="colorChosen" :style="{ 'background-color': '#'+ this.color }">
-        </span>
       </div>
       <div id="roomContent">
-        <div class="container msgContainer" v-for="msg in msgList">
-          <span> {{ name }} : </span> <span> {{ msg }} </span>
-        </div>
+        <div class="col-lg-6">
+          <div class="container msgContainer" v-for="msg in msgList">
+            <span> {{ name }} : </span> <span> {{ msg }} </span>
+          </div>
 
-        <div id="currentUser">
-          <h3>Online Users</h3>
-          <ul v-for="user in users">
-            <li>
-              {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
-            </li>
-          </ul>
+          <div class="lead form-group">
+            <input
+              class="form-control"
+              v-on:keyup.enter="send"
+              v-model="msg">
+          </div>
         </div>
-      </div>
-      <div class="lead form-group">
-        <input
-          class="form-control"
-          v-on:keyup.enter="send"
-          v-model="msg">
+        <div class="col-lg-6">
+          <div id="currentUser">
+            <h3>Online Users</h3>
+            <ul class="list-inline">
+              <li v-for="user in users">
+                {{ user.name }} <p class="usersColor" :style="{ 'background-color': user.color }">  </p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <draw-canvas></draw-canvas>
     </div>
@@ -100,15 +102,32 @@ export default {
 </script>
 
 <style>
-/*#currentUser{
+
+#currentUser{
   float: right;
-}*/
+}
 
 span .colorChosen {
   height: 20px;
   width: 50px;
   display: inline-block;
   border-radius: 20px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0;
+  text-align: -webkit-right;
+}
+
+.usersColor {
+  height: 1em;
+  width: 4em;
+  border-radius: 8%
 }
 
 .msgInput{

@@ -15,7 +15,8 @@ var vm = new Vue({
   data: {
     name: '',
     color: null,
-    roomAccess: false
+    roomAccess: false,
+    colorInput: true
   },
   template: '<App/>',
   components: {App},
