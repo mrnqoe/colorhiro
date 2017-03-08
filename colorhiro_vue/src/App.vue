@@ -5,7 +5,7 @@
       <div v-if="show" class="cover-container">
         <div class="app masthead clearfix">
           <div class="inner">
-            <h3 class="masthead-brand">Colorhiro</h3>
+            <span class='glyphicon glyphicon-home' href='/'></span>
           </div>
         </div>
         <div>
