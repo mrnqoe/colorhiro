@@ -6,8 +6,8 @@
           {{ name }}
         </h4>
         <div v-if="chatting" id="roomContent">
-        <div class="onlineUserBox">
-          <div id="currentUser">
+        <!-- <div class="onlineUserBox"> -->
+          <!-- <div id="currentUser">
             <h3>Online Users</h3>
             <ul v-for="user in users">
               <li>
@@ -18,8 +18,8 @@
                 </p>
               </li>
             </ul>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
         <div class="container chatBox" >
           <div class="container msgs" v-model="msgList" v-for="msg in msgList">
             <span v-if="name"> {{ name }} :</span>
@@ -35,7 +35,7 @@
               autofocus
               />
           </div>
-        <button v-show="drawBtn"v-on:click="toggleCanvas()" class="ChatroomBtn">DRAW</button>
+        <button v-show="drawBtn"v-on:click="toggleCanvas()" class="ToggleChatroomBtn">DRAW</button>
       </div>
       <div v-else>
         <draw-canvas></draw-canvas>
@@ -43,7 +43,7 @@
         <button
         v-show="hideCanvasBtn"
         v-on:click="toggleCanvasUp()"
-        class="ChatroomBtn">
+        class="ToggleChatroomBtn">
         HIDE CANVAS
         </button>
       </div>
@@ -70,7 +70,7 @@ export default {
       id: null,
       msg: '',
       msgList: [],
-      users: userGenerator(),
+      // users: userGenerator(),
       color: this.$root.$data.color,
       hideCanvasBtn: false,
       drawBtn:true,
@@ -138,7 +138,7 @@ export default {
   width: 20%;
 }
 
-.ChatroomBtn {
+.ToggleChatroomBtn {
   width: 100%;
   border-style: 0.5em;
   border-radius: 5px;

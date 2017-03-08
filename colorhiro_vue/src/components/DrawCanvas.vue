@@ -2,12 +2,13 @@
   <div ref="canvasContainer" class="lead">
     <canvas height="400" style="border:2px solid black;" ref="drawCanvas"></canvas>
     <span v-bind:title="clear" class="glyphicon glyphicon-refresh" v-on:click="clearCanvas"></span>
-    <!-- <div class="btn-group btn-group-justified">
-      <a v-model="y" class="btn btn-default" v-on:click="drawingSize1" > size 1 </a>
-      <a v-model="y" class="btn btn-default" v-on:click="drawingSize2" > size 2 </a>
-      <a v-model="y" class="btn btn-default" v-on:click="drawingSize3" > size 3 </a>
-      <a v-model="y" class="btn btn-default" v-on:click="drawingSize4" > size 4 </a>
-    </div> -->
+    <br>
+    <div class="buttons">
+      <button v-model="y" class="ChatroomBtn" v-on:click="drawingSize1" > Thin </button>
+      <button v-model="y" class="ChatroomBtn" v-on:click="drawingSize2" > Medium </button>
+      <button v-model="y" class="ChatroomBtn" v-on:click="drawingSize3" > Thick </button>
+      <button v-model="y" class="ChatroomBtn" v-on:click="drawingSize4" > Thicker </button>
+    </div>
   </div>
 </template>
 
@@ -128,18 +129,18 @@
       clearCanvas: function(){
         canvas.width = canvas.width;
       },
-      // drawingSize1: function(button){
-      //   y = 1;
-      // },
-      // drawingSize2: function(button){
-      //   y = 3;
-      // },
-      // drawingSize3: function(button){
-      //   y = 5;
-      // },
-      // drawingSize4: function(button){
-      //   y = 7;
-      // }
+      drawingSize1: function(button){
+        y = 1;
+      },
+      drawingSize2: function(button){
+        y = 3;
+      },
+      drawingSize3: function(button){
+        y = 5;
+      },
+      drawingSize4: function(button){
+        y = 7;
+      }
     }
   }
 </script>
@@ -155,5 +156,19 @@ span{
 
 .glyphicon-refresh:hover {
   color: red;
+}
+.buttons{
+  display: inline;
+}
+.ChatroomBtn {
+  width: 15%;
+  border-style: 0.5em;
+  border-radius: 5px;
+  background-color: white;
+  display: inline;
+}
+.ChatroomBtn:hover{
+  background-color: #71EEB8;
+  font-style: bold;
 }
 </style>
