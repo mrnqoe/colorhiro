@@ -144,8 +144,6 @@
 </script>
 
 <style>
-<<<<<<< HEAD
-=======
 
 .glyphicon-refresh{
   font-size: 1.8em;
@@ -155,6 +153,4 @@
 .glyphicon-refresh:hover {
   color: red;
 }
-
->>>>>>> e54a2809a94e1ede68a184403fae3bb48cbe0789
 </style>
