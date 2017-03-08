@@ -105,8 +105,8 @@ export default {
           return i
         }
       })
+      this.$parent.$data.active = !this.$parent.$data.active
       this.$root.$data.color = this.selectedItem[0]
-      this.$root.$data.colorInput = false
     }
   }
 }

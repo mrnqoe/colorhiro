@@ -32,6 +32,7 @@
               class="form-control"
               v-on:keyup.enter="send"
               v-model="msg"
+              autofocus
               />
           </div>
         <button v-show="drawBtn"v-on:click="toggleCanvas()" class="ChatroomBtn">DRAW</button>

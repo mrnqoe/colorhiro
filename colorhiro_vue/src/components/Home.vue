@@ -14,7 +14,7 @@
           />
       </div>
     </div>
-    <colorList v-bind:colorName="color" :active="colorInput"></colorList>
+    <colorList v-bind:colorName="color"></colorList>
   </main>
 </template>
 
@@ -41,7 +41,7 @@ export default {
       submitted: false,
       previousColor: null,
       data_in: null,
-      active: this.$root.$data.colorInput
+      active: true
       // img: spinball()
     }
   },

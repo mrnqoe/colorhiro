@@ -55,7 +55,7 @@ export default {
     back: function(){
       console.log("clicked back")
       this.selectedItem = null
-      this.$root.$data.colorInput = true
+      this.$parent.$parent.$data.active = !this.$parent.$parent.$data.active
       EventBus.$emit('wanna-go-back', this.selectedItem);
       // this.showPreview = false
       // this.selectedItem === null
