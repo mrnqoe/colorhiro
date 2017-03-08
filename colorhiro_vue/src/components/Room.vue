@@ -127,9 +127,11 @@ export default {
 </script>
 
 <style>
-/*#currentUser{
+
+#currentUser{
   float: right;
-}*/
+
+}
 .onlineUserBox{
   float: right;
   width: 20%;
@@ -153,6 +155,22 @@ span .colorChosen {
   border-radius: 20px;
 }
 
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 0;
+  text-align: -webkit-right;
+}
+
+.usersColor {
+  height: 1em;
+  width: 4em;
+  border-radius: 8%
+}
+
 .msgInput{
   float: bottom;
 }
@@ -169,9 +187,11 @@ span .colorChosen {
   position: relative;
 
 }
+
 .msgs{
   overflow: auto;
   position: absolute;
   max-height: 40%;
 }*/
 </style>
+

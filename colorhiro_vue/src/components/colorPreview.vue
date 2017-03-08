@@ -3,9 +3,9 @@
   <div class="inner cover">
     <div v-show="showPreview">
       <div class="thumbnail" :style="{ 'background-color': '#'+ pickedColor.hex }">
-        <h3> {{ pickedColor.name }}   #{{ pickedColor.hex }}  </h3>
       </div>
       <div class="lead">
+        <h3> {{ pickedColor.name }}   #{{ pickedColor.hex }}  </h3>
         <span v-bind:title="goBack" class="glyphicon glyphicon-thumbs-down" aria-hidden="true" v-on:click="back"></span>
         <span v-bind:title="goFoward" class="glyphicon glyphicon-thumbs-up" aria-hidden="true" v-on:click="enterRoom"></span>
       </div>
@@ -50,10 +50,12 @@ export default {
       console.log("clicked")
       this.$root.$data.color = this.pickedColor.hex
       this.$root.$router.push({name:"roomAccess"})
+      this.$root.$data.color = this.pickedColor.hex
     },
     back: function(){
       console.log("clicked back")
       this.selectedItem = null
+      this.$root.$data.colorInput = true
       EventBus.$emit('wanna-go-back', this.selectedItem);
       // this.showPreview = false
       // this.selectedItem === null
@@ -73,10 +75,59 @@ export default {
 .colorPreview{
   height: 30em;
 }
+
 .thumbnail {
-  height: auto;
-  border-radius: 20px;
-  text-align: center;
+  display: block;
+  width: 5em;
+  height: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+  border: 0.5em solid black;
+  box-sizing: border-box;
+  -webkit-animation: spin 15s infinite linear;
+     -moz-animation: spin 15s infinite linear;
+       -o-animation: spin 15s infinite linear;
+          animation: spin 15s infinite linear;
+}
+
+@-moz-keyframes spin {
+  0% {
+   -moz-transform: rotateZ(0deg);
+  }
+  100% {
+   -moz-transform: rotateZ(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+  -webkit-transform: rotateZ(0deg);
+  }
+  100% {
+  -webkit-transform: rotateZ(360deg);
+ }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+
 }
 
 .lead {
