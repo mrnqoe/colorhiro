@@ -14,3 +14,4 @@ selenium-debug.log
 */.env
 colorhiro_vue/src/helpers/variable.js
 colorhiro_vue/build/dev-server.js
+/vendor
