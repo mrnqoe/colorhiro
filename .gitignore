@@ -15,3 +15,4 @@ selenium-debug.log
 colorhiro_vue/src/helpers/variable.js
 colorhiro_vue/build/dev-server.js
 /vendor
+*/Gemfile.lock
